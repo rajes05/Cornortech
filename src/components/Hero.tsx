@@ -14,11 +14,11 @@ const Hero = () => {
             <div className="space-y-8 animate-fade-in">
               <div className="space-y-6">
                 <h1 className="text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                  <span className="text-gradient">Cornor Tech</span>
+                  <span className="text-[#9333EA]">Cornor Tech</span>
                   <br />
-                  <span className="text-foreground">Where idea meet technology</span>
+                  <span className="text-[#9333EA]">Where idea meet technology</span>
                 </h1>
-                <p className="text-lg lg:text-xl text-foreground-secondary max-w-xl">
+                <p className="text-lg lg:text-xl text-[#9333EA] max-w-xl">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
               </div>
