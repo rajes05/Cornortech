@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AI Video Editor: Smart Online Video Editing with Advanced AI Tools",
-  description: "CapCut has everything you need to create trending content for YouTube, Instagram, and beyond. Free 7-day Pro for new desktop users—download and enjoy yours today!",
+  title: "Cornortech",
+  description: "Cornortech where idea meet solutions.",
 };
 
 export default function RootLayout({
