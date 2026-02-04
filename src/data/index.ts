@@ -182,6 +182,15 @@ export const stats: Stat[] = [
 ];
 
 export const navigationItems: NavigationItem[] = [
+   {
+    title: "Services",
+    children: [
+      { title: "Degital Marketing", link: "#" },
+      { title: "Web Development", link: "#" },
+      { title: "App Development", link: "#" },
+      { title: "Search Engine Optimization", link: "#" }
+    ]
+  },
   {
     title: "Courses",
     children: [
@@ -191,15 +200,6 @@ export const navigationItems: NavigationItem[] = [
       { title: "Motion Graphihc", link: "#" },
       { title: "MERN Stack", link: "#" },
       { title: "Spring Boot", link: "#" }
-    ]
-  },
-  {
-    title: "Services",
-    children: [
-      { title: "Degital Marketing", link: "#" },
-      { title: "Web Development", link: "#" },
-      { title: "App Development", link: "#" },
-      { title: "Search Engine Optimization", link: "#" }
     ]
   },
   {
@@ -222,24 +222,23 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const footerSections: FooterSection[] = [
-  {
-    title: "Courses",
-    links: [
-      { title: "Graphic Design", link: "#" },
-      { title: "Machine Learning", link: "#" },
-      { title: "Data Science", link: "#" },
-      { title: "Motion Graphihc", link: "#" },
-      { title: "MERN Stack", link: "#" },
-      { title: "Spring Boot", link: "#" }
-    ]
-  },
-  {
+   {
     title: "Services",
     links: [
       { title: "Degital Marketing", link: "#" },
       { title: "Web Development", link: "#" },
       { title: "App Development", link: "#" },
       { title: "Search Engine Optimization", link: "#" }
+    ]
+  },
+  {
+    title: "Courses",
+    links: [
+      { title: "Graphic Design", link: "#" },
+      { title: "Machine Learning", link: "#" },
+      { title: "Motion Graphihc", link: "#" },
+      { title: "MERN Stack", link: "#" },
+      { title: "Spring Boot", link: "#" }
     ]
   },
   {
