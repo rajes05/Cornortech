@@ -4,8 +4,7 @@ import Header from '@/components/Header';
 import TopBanner from '@/components/TopBanner'
 import Hero from '@/components/Hero';
 // import SmartEditor from '@/components/SmartEditor';
-// import AITools from '@/components/AITools';
-// import Templates from '@/components/Templates';
+import Templates from '@/components/Templates';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
@@ -22,8 +21,7 @@ export default function Home() {
       <main>
         <Hero />
         {/* <SmartEditor /> */}
-        {/* <AITools /> */}
-        {/* <Templates /> */}
+        <Templates />
         <Testimonials />
       </main>
       <Footer />
