@@ -1,5 +1,7 @@
 import { footerSections } from '@/data';
 import { FooterSection } from '@/types';
+import Logo from '@/../public/cornortech_logo.png'
+import Image from 'next/image';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -83,7 +85,8 @@ const Footer = () => {
             <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#111827] to-[#1f2937] rounded-xl flex items-center justify-center shadow-medium">
-                  <span className="text-white font-bold text-xl">CT</span>
+                  {/* <span className="text-white font-bold text-xl">CT</span> */}
+                  <Image src={Logo} alt='CT' height={35} width={35}/>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827]">Cornor Tech</h3>
               </div>
