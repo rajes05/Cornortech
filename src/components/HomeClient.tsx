@@ -3,7 +3,6 @@
 import Header from '@/components/Header';
 import TopBanner from '@/components/TopBanner'
 import Hero from '@/components/Hero';
-import Templates from '@/components/Templates';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Courses from '@/components/Courses'
@@ -23,7 +22,6 @@ export default function Home() {
         <Hero />
         <Services/>
         <Courses/>
-        <Templates />
         <Testimonials />
       </main>
       <Footer />
