@@ -3,11 +3,11 @@
 import Header from '@/components/Header';
 import TopBanner from '@/components/TopBanner'
 import Hero from '@/components/Hero';
-// import SmartEditor from '@/components/SmartEditor';
 import Templates from '@/components/Templates';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Courses from '@/components/Courses'
+import Services from '@/components/Services'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        {/* <SmartEditor /> */}
+        <Services/>
         <Courses/>
         <Templates />
         <Testimonials />
