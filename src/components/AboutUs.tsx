@@ -18,7 +18,7 @@ interface TeamMember {
 
 const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
     const [isHovered, setIsHovered] = useState(false);
-
+    const [imageError, setImageError] = useState(false);
     return (
         <div id='about-us'
             className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 hover-lift cursor-pointer animate-slide-up bg-white"
@@ -32,22 +32,30 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
                     {/* Placeholder for team member image */}
                     <div className="w-full h-full bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
                         <div className="text-center space-y-4">
+
                             <div className="w-32 h-32 mx-auto bg-white/90 rounded-full flex items-center justify-center shadow-medium transform group-hover:scale-110 transition-all duration-300 overflow-hidden">
 
-                                {/* <div className="w-full h-full bg-linear-to-br from-[#9333EA] to-[#7c3aed] flex items-center justify-center text-white font-bold text-4xl">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </div> */}
+                            {/* Conditional Render of team image */}
 
-                                <div className='w-32 h-32 mx-auto bg-white/90 rounded-full flex items-center justify-center shadow-medium transform group-hover:scale-110 transition-all duration-300 overflow-hidden relative'>
-                                    <Image
-                                        src={member.image}
-                                        alt={member.name}
-                                        fill
-                                        className='object-cover'
-                                        sizes='(max-width: 768px) 100vw, 300px'
-                                        priority={index<2}
-                                    />
-                                </div>
+                                {!imageError ? (
+
+                                    <div className='w-32 h-32 mx-auto bg-white/90 rounded-full flex items-center justify-center shadow-medium transform group-hover:scale-110 transition-all duration-300 overflow-hidden relative'>
+                                        <Image
+                                            src={member.image}
+                                            alt={member.name}
+                                            fill
+                                            className='object-cover'
+                                            sizes='(max-width: 768px) 100vw, 300px'
+                                            priority={index < 2}
+                                            onError={()=>setImageError(true)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="w-full h-full bg-linear-to-br from-[#9333EA] to-[#7c3aed] flex items-center justify-center text-white font-bold text-4xl">
+                                        {member.name.split(' ').map(n => n[0]).join('')}
+                                    </div>
+                                )}
+
                             </div>
                         </div>
                     </div>
@@ -56,7 +64,7 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
                 {/* Hover Overlay */}
                 <div className={`absolute inset-0 bg-linear-to-t from-[#9333EA]/95 via-[#9333EA]/60 to-transparent transition-opacity duration-300 flex items-end p-6 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="w-full space-y-3">
-                    <p className="text-foreground-secondary text-sm leading-relaxed line-clamp-4">
+                        <p className="text-foreground-secondary text-sm leading-relaxed line-clamp-4">
                             {member.bio}
                         </p>
 
