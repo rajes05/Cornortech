@@ -16,7 +16,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 hover-lift cursor-pointer animate-slide-up bg-white"
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
@@ -24,7 +24,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
     >
       {/* Decorative gradient background */}
       <div className={`absolute inset-0 ${testimonial.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-      
+
       <div className="relative z-10 p-6 space-y-4">
         {/* Quote Icon */}
         <div className="flex justify-between items-start">
@@ -33,7 +33,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
           </div>
-          
+
           {/* Rating Stars */}
           <div className="flex space-x-1">
             {[...Array(5)].map((_, i) => (
@@ -91,7 +91,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
             {/* Online indicator */}
             <div className="absolute bottom-0 right-0 w-4 h-4 bg-[#9333EA] rounded-full border-2 border-white" />
           </div>
-          
+
           <div className="flex-1">
             <h4 className="font-bold text-foreground group-hover:text-[#9333EA] transition-colors">
               {testimonial.name}
@@ -297,9 +297,21 @@ const Testimonials = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 transform hover:scale-105 transition-all duration-200 shadow-medium">
+
+            <button
+              onClick={() => {
+                const el = document.getElementById("hero");
+                if (el) {
+                  el.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+              className="px-8 py-4 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 transform hover:scale-105 transition-all duration-200 shadow-medium">
               Enroll Now
             </button>
+
             <button className="px-8 py-4 bg-white text-[#9333EA] border-2 border-[#9333EA] rounded-xl font-semibold hover:bg-[#9333EA] hover:text-white transform hover:scale-105 transition-all duration-200">
               View All Reviews
             </button>
