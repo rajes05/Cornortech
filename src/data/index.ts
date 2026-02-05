@@ -182,6 +182,9 @@ export const stats: Stat[] = [
 ];
 
 export const navigationItems: NavigationItem[] = [
+  {
+    title: "Home",
+  },
    {
     title: "Services",
     children: [
@@ -203,20 +206,31 @@ export const navigationItems: NavigationItem[] = [
     ]
   },
   {
-    title: "Blog",
+    title: "Our Works",
     children: [
-      { title: "Features", link: "#" },
-      { title: "Use Cases", link: "#" },
-      { title: "Resources", link: "#" }
+      { title: "Web Development", link: "#" },
+      { title: "Mobile Development", link: "#" },
+      { title: "AI & ML", link: "#" },
+      { title: "Digital Marketing", link: "#" },
+      { title: "Cloud Solutions", link: "#" },
     ]
   },
   {
     title: "Discover",
     children: [
-      { title: "About", link: "#" },
-      { title: "Initiatives", link: "#" },
+      { title: "Blog & Insignts", link: "#" },
+      { title: "Community", link: "#" },
+      { title: "Resources", link: "#" },
+      { title: "News & Update", link: "#" },
       { title: "Help", link: "#" },
-      { title: "Newsroom", link: "#" }
+    ]
+  },
+  {
+    title: "About Us",
+    children:[
+      {title: "Vision & Mission", link:"#"},
+      {title: "Team", link:"#"},
+      {title: "Contact", link:"#"},
     ]
   }
 ];

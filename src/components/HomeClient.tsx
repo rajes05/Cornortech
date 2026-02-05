@@ -7,6 +7,7 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Courses from '@/components/Courses'
 import Services from '@/components/Services'
+import OurWorks from '@/components/OurWorks'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <Services/>
         <Courses/>
+        <OurWorks/>
         <Testimonials />
       </main>
       <Footer />
