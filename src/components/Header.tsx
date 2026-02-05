@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { navigationItems } from '@/data';
 import { NavigationItem } from '@/types';
 import { useHeaderScroll } from '@/hooks/useAnimations';
+import Link from 'next/link';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -92,11 +93,13 @@ const Header = () => {
     }`}>
       <nav className="container-custom">
         <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
+          {/* <Link href={} scroll={true}> */}
           <div className="flex-shrink-0">
-            {/* <h1 className="text-2xl font-bold text-gradient">CapCut</h1> */}
             <Image src={Logo} alt='Cornor Tech' height={70} width={50}/>
           </div>
+          {/* </Link> */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

@@ -30,6 +30,10 @@ body {
   line-height: 1.6;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   /* .text-gradient {
     background: linear-gradient(135deg, var(--foreground) 0%, var(--dark-teal) 100%);
