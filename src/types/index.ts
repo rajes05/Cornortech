@@ -33,6 +33,7 @@ export interface Stat {
 
 export interface NavigationItem {
   title: string;
+  // scrollId:string;
   link?: string;
   children?: NavigationItem[];
 }

@@ -17,6 +17,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
 
   return (
     <div
+    id='testimonials'
       className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 hover-lift cursor-pointer animate-slide-up bg-white"
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
