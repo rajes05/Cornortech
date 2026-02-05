@@ -17,7 +17,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
 
   return (
     <div
-    id='testimonials'
+      id='testimonials'
       className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-large transition-all duration-300 hover-lift cursor-pointer animate-slide-up bg-white"
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
@@ -220,9 +220,11 @@ const Testimonials = () => {
       gradient: 'bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5'
     }
   ];
-
+  const [showVideo, setShowVideo] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const videoThumbnail = "https://img.youtube.com/vi/mXkmS2asah8/hqdefault.jpg";
+
 
   // Auto-play carousel
   useState(() => {
@@ -358,15 +360,34 @@ const Testimonials = () => {
                 <span>Watch Videos</span>
               </button>
             </div>
+
             <div className="relative">
-              <div className="aspect-video bg-gradient-to-br from-[#9333EA]/20 to-[#7c3aed]/20 rounded-xl flex items-center justify-center shadow-medium">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-large cursor-pointer hover:scale-110 transition-transform duration-300">
-                  <svg className="w-10 h-10 text-[#9333EA] ml-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                  </svg>
+
+              <div className="relative aspect-video rounded-xl overflow-hidden shadow-medium cursor-pointer">
+                {/* Thumbnail */}
+                <img
+                  src="https://img.youtube.com/vi/mXkmS2asah8/hqdefault.jpg"
+                  alt="Video Thumbnail"
+                  className="w-full h-full object-cover"
+                  onClick={() => setShowVideo(true)}
+                />
+
+                {/* Play Button Overlay */}
+                <div
+                  onClick={() => setShowVideo(true)}
+                  className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+                    <svg className="w-10 h-10 text-[#9333EA]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
+
+
+
             </div>
+
           </div>
         </div>
       </div>

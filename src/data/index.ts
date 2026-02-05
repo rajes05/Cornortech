@@ -184,7 +184,7 @@ export const stats: Stat[] = [
 export const navigationItems: NavigationItem[] = [
   {
     title: "Home",
-    scrollId:"hero",
+    // scrollId:"hero",
   },
    {
     title: "Services",
