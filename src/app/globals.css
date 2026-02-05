@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #090c14;
-  --foreground-secondary: #1c283d80;
+  --foreground-secondary: #090C14;
   --accent-cyan: #C8F8FF;
   --dark-teal: #00303B;
   --fill-bg: #111a20;
@@ -35,28 +35,28 @@ html {
 }
 
 @layer utilities {
-  /* .text-gradient {
+  .text-gradient {
     background: linear-gradient(135deg, var(--foreground) 0%, var(--dark-teal) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  } */
+  }
   
-  /* .bg-gradient-primary {
+  .bg-gradient-primary {
     background: linear-gradient(135deg, var(--dark-teal) 0%, #9333EA 100%);
-  } */
+  }
   
-  /* .bg-gradient-secondary {
+  .bg-gradient-secondary {
     background: linear-gradient(135deg, var(--accent-cyan) 0%, #94e8ff 100%);
-  } */
+  }
   
-  /* .bg-gradient-hero {
+   .bg-gradient-hero {
     background: linear-gradient(135deg, 
       rgba(0, 48, 59, 0.02) 0%, 
       rgba(200, 248, 255, 0.05) 50%, 
       rgba(0, 48, 59, 0.02) 100%
     );
-  } */
+  } 
   
   .hover-lift {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

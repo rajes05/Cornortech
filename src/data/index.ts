@@ -245,31 +245,43 @@ export const footerSections: FooterSection[] = [
       { title: "Search Engine Optimization", link: "#" }
     ]
   },
+  // {
+  //   title: "Courses",
+  //   links: [
+  //     { title: "Graphic Design", link: "#" },
+  //     { title: "Machine Learning", link: "#" },
+  //     { title: "Data Science", link: "#" },
+  //     { title: "Motion Graphihc", link: "#" },
+  //     { title: "MERN Stack", link: "#" },
+  //     { title: "Spring Boot", link: "#" }
+  //   ]
+  // },
   {
-    title: "Courses",
+    title: "Our Works",
     links: [
-      { title: "Graphic Design", link: "#" },
-      { title: "Machine Learning", link: "#" },
-      { title: "Motion Graphihc", link: "#" },
-      { title: "MERN Stack", link: "#" },
-      { title: "Spring Boot", link: "#" }
-    ]
-  },
-  {
-    title: "Blog",
-    links: [
-      { title: "Features", link: "#" },
-      { title: "Use Cases", link: "#" },
-      { title: "Resources", link: "#" }
+      { title: "Web Development", link: "#" },
+      { title: "Mobile Development", link: "#" },
+      { title: "AI & ML", link: "#" },
+      { title: "Digital Marketing", link: "#" },
+      { title: "Cloud Solutions", link: "#" },
     ]
   },
   {
     title: "Discover",
     links: [
-      { title: "About", link: "#" },
-      { title: "Initiatives", link: "#" },
+      { title: "Blog & Insignts", link: "#" },
+      { title: "Community", link: "#" },
+      { title: "Resources", link: "#" },
+      { title: "News & Update", link: "#" },
       { title: "Help", link: "#" },
-      { title: "Newsroom", link: "#" }
+    ]
+  },
+  {
+    title: "About Us",
+    links:[
+      {title: "Vision & Mission", link:"#"},
+      {title: "Team", link:"#"},
+      {title: "Contact", link:"#"},
     ]
   }
 ];

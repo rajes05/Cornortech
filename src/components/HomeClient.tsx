@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import Courses from '@/components/Courses'
 import Services from '@/components/Services'
 import OurWorks from '@/components/OurWorks'
+import AboutUs from '@/components/AboutUs'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
         <Courses/>
         <OurWorks/>
         <Testimonials />
+        <AboutUs/>
       </main>
       <Footer />
     </div>
