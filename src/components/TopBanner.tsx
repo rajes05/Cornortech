@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { BannerProps } from "@/types";
 
-export default function TopBanner() {
-  const [visible, setVisible] = useState(true);
+export default function TopBanner({visible, setVisible}:BannerProps) {
+  // const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
 
   return (
     <div
-      className="w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-2.5 text-xs sm:text-sm gap-3 sm:gap-4 relative overflow-hidden"
+      className="fixed top-0 left-0 w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-2.5 text-xs sm:text-sm gap-3 sm:gap-4 relative overflow-hidden"
       style={{ background: "#111827", color: "white" }}
     >
       {/* Background decorative elements */}

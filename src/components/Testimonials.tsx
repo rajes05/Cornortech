@@ -373,18 +373,40 @@ const Testimonials = () => {
                 />
 
                 {/* Play Button Overlay */}
-                <div
-                  onClick={() => setShowVideo(true)}
-                  className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    onClick={() => setShowVideo(true)}
+                    className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
                     <svg className="w-10 h-10 text-[#9333EA]" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                     </svg>
                   </div>
                 </div>
+
+                {/* Modal */}
+                {showVideo && (
+                  <div className='fixed inset-0 z-999 bg-black/70 flex items-center justify-center p-4'>
+                    <div className='relaive w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden'>
+                      {/* Close */}
+                      <button
+                        onClick={() => setShowVideo(false)}
+                        className='absolute top-3 right-3 z-10 text-white bg-black/50 rounded-full w-8 h-8 flex items-center justify-center'
+                      >
+                        X
+                      </button>
+
+                      {/* Video iframe  */}
+                      <iframe
+                        src="https://www.youtube.com/embed/mXkmS2asah8?start=1&autoplay=1"
+                        className='w-full h-full'
+                        allow='autoplay; fullscreen'
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
+
               </div>
-
-
 
             </div>
 

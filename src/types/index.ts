@@ -1,3 +1,12 @@
+export interface BannerProps{
+  visible:boolean;
+  setVisible:React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface HeroProps{
+  bannerVisible:boolean;
+}
+
 export interface Feature {
   title: string;
   description: string;
