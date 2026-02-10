@@ -3,12 +3,12 @@ import { HeroProps } from '@/types';
 
 const Hero = ({bannerVisible}:HeroProps) => {
   return (
-    <section 
-      id="hero" 
-      className={`relative overflow-hidden bg-linear-to-br from-white via-[#9333EA]/5 to-white flex items-center ${
-        bannerVisible ? 'h-[calc(100vh-128px)]' : 'h-[calc(100vh-64px)]'
-      }`}
-    >
+   <section 
+  id="hero" 
+  className={`relative overflow-hidden bg-linear-to-br from-white via-[#9333EA]/5 to-white ${
+    bannerVisible ? 'min-h-[calc(100vh-128px)]' : 'min-h-[calc(100vh-64px)]'
+  } py-8 md:py-0 md:flex md:items-center`}
+>
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#9333EA]/20 rounded-full blur-3xl animate-bounce-subtle" />
@@ -16,7 +16,7 @@ const Hero = ({bannerVisible}:HeroProps) => {
       </div>
 
       <div className="container-custom relative z-10 h-full flex items-center">
-        <div className="w-full py-8 lg:py-12 flex flex-col items-center">
+        <div className="w-full py-20 lg:py-12 flex flex-col items-center">
 
           {/* Framer motion */}
           <motion.div
