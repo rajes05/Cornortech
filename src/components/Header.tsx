@@ -35,10 +35,10 @@ const Header = () => {
       }`}>
       <nav className="container-custom">
 
-        <div className="flex items-center justify-start h-16">
+        <div className="flex items-center justify-between h-16">
 
           {/* ===== Logo + Desktop Navigation ===== */}
-          <div className='flex items-center space-x-90'>
+          <div className='flex items-center space-x-77'>
 
             {/* Logo */}
             <div
@@ -49,7 +49,7 @@ const Header = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
               {navigationItems.map((item) => (
                 <button
                   key={item.title}
@@ -65,7 +65,7 @@ const Header = () => {
           {/* ===== End Logo + Desktop Navigation ===== */}
 
 
-          {/* ===== Mobile Menu Button ===== */}
+          {/* ===== Right: Mobile Menu Button ===== */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -76,7 +76,7 @@ const Header = () => {
               <span className={`block h-0.5 w-full bg-foreground transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
-          {/* ===== End Mobile Menu Button ===== */}
+          {/* ===== End Right: Mobile Menu Button ===== */}
 
         </div>
 
@@ -92,15 +92,7 @@ const Header = () => {
                   {item.title}
                 </button>
               </div>
-            ))}
-            <div className="px-4 py-3 space-y-2">
-              <button className="w-full px-4 py-2 text-foreground hover:text-[#9333EA] transition-colors text-sm">
-                Login
-              </button>
-              <button className="w-full px-4 py-2 bg-[#9333EA] text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all">
-                SignUp
-              </button>
-            </div>
+            ))} 
           </div>
         </div>
         {/* ===== End Mobile Menu ===== */}

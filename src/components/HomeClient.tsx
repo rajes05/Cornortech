@@ -10,6 +10,7 @@ import Services from '@/components/Services'
 import OurWorks from '@/components/OurWorks'
 import AboutUs from '@/components/AboutUs'
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+import CTA from '@/components/ui/CTA'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 import { useState } from 'react';
 
@@ -28,6 +29,7 @@ export default function Home() {
         <Hero bannerVisible={bannerVisible}/>
         <Services/>
         <ScrollToTopButton/>
+        <CTA/>
         <Courses/>
         <OurWorks/>
         <Testimonials />

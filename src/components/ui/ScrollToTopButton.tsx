@@ -64,13 +64,13 @@ export default function ScrollToTopButton() {
         }
       `}</style>
 
-      <div className={`fixed bottom-8 right-8 z-[9999] ${!visible ? "pointer-events-none" : ""}`}>
+      <div className={`fixed bottom-8 right-8 z-9999 ${!visible ? "pointer-events-none" : ""}`}>
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
           className={`stt-btn ${!visible ? "out" : ""} ${clicked ? "pop" : ""}
             relative flex items-center justify-center
-            w-[52px] h-[52px] rounded-full border-0 cursor-pointer
+            w-13 h-13 rounded-full border-0 cursor-pointer
             transition-[filter,transform] duration-200
             hover:-translate-y-1 hover:scale-105 hover:brightness-110
             focus:outline-none`}
