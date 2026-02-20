@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "Cornortech",
   description: "Cornortech where idea meet solutions.",
   icons:{
-    icon:"/cornortech_logo.png",
-    shortcut:"/cornortech_logo.png",
-    apple:"/cornortech_logo.png",
+    icon:"/logo.png",
+    shortcut:"/logo.png",
+    apple:"/logo.png",
   }
 };
 

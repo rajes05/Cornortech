@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { BannerProps } from "@/types";
 
 export default function TopBanner({visible, setVisible}:BannerProps) {
-  // const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
 
   return (
     <div
-      className="fixed top-0 left-0 w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-2.5 text-xs sm:text-sm gap-3 sm:gap-4 relative overflow-hidden"
+      className="relative top-0 left-0 w-full flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-2.5 text-xs sm:text-sm gap-3 sm:gap-4 overflow-hidden"
       style={{ background: "#111827", color: "white" }}
     >
       {/* Background decorative elements */}
@@ -35,7 +33,7 @@ export default function TopBanner({visible, setVisible}:BannerProps) {
         {/* Center: Text */}
         <div className="flex-1 text-center sm:text-left px-2">
           <span className="font-semibold">
-            Cornor Tech Academy is now live!{" "}
+            Cornor Academy is now live!{" "}
             <span className="hidden lg:inline font-normal opacity-90">
               Master cutting-edge skills with expert-led courses in Web Development, AI/ML, Digital Marketing, and more.
             </span>
