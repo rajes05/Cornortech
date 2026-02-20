@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const PRIMARY_COLOR = "#6C3FEB";
+const PRIMARY_COLOR = "#9333EA";
 
 export default function ScrollToTopButton() {
   const [visible, setVisible] = useState<boolean>(false);

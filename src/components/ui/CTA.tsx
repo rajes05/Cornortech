@@ -2,14 +2,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import ContactModal from '@/components/modals/ContactModal'
 
-const PRIMARY = "#6C3FEB";
+const PRIMARY = "#9333EA";
 
 export default function CTA() {
   const [visible, setVisible] = useState<boolean>(false);
   const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([]);
   const btnRef = useRef<HTMLButtonElement>(null);
   const rippleId = useRef(0);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,6 +29,8 @@ export default function CTA() {
     const id = rippleId.current++;
     setRipples((prev) => [...prev, { x, y, id }]);
     setTimeout(() => setRipples((prev) => prev.filter((r) => r.id !== id)), 700);
+
+    setModalOpen(true);
   };
 
   return (
@@ -87,7 +91,7 @@ export default function CTA() {
         .cta-live-dot {
           width: 7px; height: 7px;
           border-radius: 50%;
-          background: #fff;
+          background: #66FF01;
           opacity: 0.9;
           animation: cta-dot-ping 2s ease-in-out infinite;
         }
@@ -142,6 +146,13 @@ export default function CTA() {
           <path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
+
+      {/* ===== Contact Modal ===== */}
+      <ContactModal isOpen={modalOpen}
+      onClose={()=>setModalOpen(false)}
+      />
+      {/* ===== End Contact Modal ===== */}
+
     </>
   );
 }

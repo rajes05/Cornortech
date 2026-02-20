@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { HeroProps } from '@/types';
+import Image from 'next/image';
 
 const Hero = ({bannerVisible}:HeroProps) => {
   return (
@@ -41,7 +42,7 @@ const Hero = ({bannerVisible}:HeroProps) => {
                   className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight">
                   <span className="text-transparent bg-clip-text bg-linear-to-r from-[#9333EA] to-[#635DFF]">Cornor Tech</span>
                   <br />
-                  <span className="text-[#111827] text-4xl lg:text-5xl">Where ideas spark tomorrow's technology</span>
+                  <span className="text-[#111827] text-4xl lg:text-5xl">Where ideas spark tomorrow technology</span>
                 </motion.h1>
 
                 <motion.p
@@ -79,10 +80,12 @@ const Hero = ({bannerVisible}:HeroProps) => {
                   <div className="aspect-square bg-linear-to-br from-[#9333EA]/20 to-[#7c3aed]/20 rounded-xl flex items-center justify-center">
                     {/* Cornor Tech Logo */}
                     <div className="w-full h-full flex items-center justify-center p-6">
-                      <img
+                      <Image
                         src="/cornortech_logo.png"
                         alt="Cornor Tech Logo"
-                        className="w-full h-full object-contain transform hover:scale-110 transition-transform duration-300"
+                        height={200}
+                        width={200}
+                        className="w-full h-full object-contain transform hover:scale-120 transition-transform duration-600"
                       />
                     </div>
                   </div>
@@ -90,7 +93,7 @@ const Hero = ({bannerVisible}:HeroProps) => {
 
                 {/* Floating elements */}
                 <div className="absolute -top-3 -right-3 w-12 h-12 bg-white rounded-xl shadow-large flex items-center justify-center animate-bounce-subtle" style={{ animationDelay: '0.5s' }}>
-                  <div className="w-6 h-6 bg-gradient-to-br from-[#9333EA] to-[#7c3aed] rounded-lg" />
+                  <div className="w-6 h-6 bg-linear-to-br from-[#9333EA] to-[#7c3aed] rounded-lg" />
                 </div>
                 <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-[#9333EA] rounded-xl shadow-large flex items-center justify-center animate-bounce-subtle" style={{ animationDelay: '0.8s' }}>
                   <div className="w-5 h-5 bg-white rounded-full" />
