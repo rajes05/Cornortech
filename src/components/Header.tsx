@@ -29,62 +29,43 @@ const Header = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-xs border-b border-gray-200 shadow-soft' 
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-white/95 backdrop-blur-xs border-b border-gray-200 shadow-soft'
         : 'bg-white border-b border-transparent'
-    }`}>
+      }`}>
       <nav className="container-custom">
+
         <div className="flex items-center justify-between h-16">
 
-          {/* Logo */}
-          <div 
-            onClick={() => scrollToSection('hero')}
-            className="flex-shrink-0 cursor-pointer"
-          >
-            <Image src={Logo} alt='Cornor Tech' height={70} width={50}/>
-          </div>
+          {/* ===== Logo + Desktop Navigation ===== */}
+          <div className='flex items-center space-x-77'>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <button
-                key={item.title}
-                onClick={() => scrollToSection(item.id)}
-                className="text-foreground hover:text-[#9333EA] transition-colors font-medium text-sm"
-              >
-                {item.title}
-              </button>
-            ))}
-          </div>
-
-          {/* Right Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-sm text-foreground hover:text-[#9333EA] transition-colors">
-              Login
-            </button>
-            <button className="px-4 py-2 bg-[#9333EA] text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all">
-              SignUp
-            </button>
-            <div className="relative group">
-              <button className="flex items-center text-sm text-foreground hover:text-[#9333EA] transition-colors">
-                English
-                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute top-full right-0 mt-2 w-32 bg-white rounded-lg shadow-large border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="py-2">
-                  <a href="#" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50">English</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50">中文</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50">日本語</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50">한국어</a>
-                </div>
-              </div>
+            {/* Logo */}
+            <div
+              onClick={() => scrollToSection('hero')}
+              className="shrink-0 cursor-pointer"
+            >
+              <Image src={Logo} alt='Cornor Tech' height={70} width={50} />
             </div>
-          </div>
 
-          {/* Mobile Menu Button */}
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.title}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-foreground hover:text-[#9333EA] transition-colors font-medium text-sm"
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+
+          </div>
+          {/* ===== End Logo + Desktop Navigation ===== */}
+
+
+          {/* ===== Right: Mobile Menu Button ===== */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -95,9 +76,11 @@ const Header = () => {
               <span className={`block h-0.5 w-full bg-foreground transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </div>
           </button>
+          {/* ===== End Right: Mobile Menu Button ===== */}
+
         </div>
 
-        {/* Mobile Menu */}
+        {/* ===== Mobile Menu ===== */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
           <div className="pb-4">
             {navigationItems.map((item) => (
@@ -109,17 +92,10 @@ const Header = () => {
                   {item.title}
                 </button>
               </div>
-            ))}
-            <div className="px-4 py-3 space-y-2">
-              <button className="w-full px-4 py-2 text-foreground hover:text-[#9333EA] transition-colors text-sm">
-                Login
-              </button>
-              <button className="w-full px-4 py-2 bg-[#9333EA] text-white rounded-lg text-sm font-medium hover:bg-opacity-90 transition-all">
-                SignUp
-              </button>
-            </div>
+            ))} 
           </div>
         </div>
+        {/* ===== End Mobile Menu ===== */}
       </nav>
     </header>
   );
