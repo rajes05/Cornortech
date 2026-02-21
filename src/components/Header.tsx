@@ -11,7 +11,6 @@ const Header = () => {
   const navigationItems = [
     { title: 'Home', id: 'hero' },
     { title: 'Services', id: 'services' },
-    { title: 'Courses', id: 'courses' },
     { title: 'Our Works', id: 'our-works' },
     { title: 'About Us', id: 'about-us' },
   ];
