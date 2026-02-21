@@ -26,7 +26,20 @@ export interface NavigationItem {
   children?: NavigationItem[];
 }
 
+// ===== Footer Section =====
 export interface FooterSection {
   title: string;
   links: { title: string; link: string }[];
 }
+
+export interface SocialSection {
+  name: string;
+  icon: string;
+  href: string;
+};
+
+export interface LegalLinks {
+  title: string;
+  href: string;
+}
+// ===== End Footer Section =====
