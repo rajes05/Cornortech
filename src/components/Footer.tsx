@@ -187,7 +187,7 @@ const Footer = () => {
             {/* ===== Copyright and Additional Info =====*/}
             <div className="flex flex-col md:flex-row justify-between items-center pt-8 space-y-4 md:space-y-0">
               <p className="text-sm text-foreground-secondary">
-                © {currentYear} <span className="text-[#111827] font-semibold">Cornor Tech</span>. All rights reserved.
+                © {currentYear} <span className="text-[#111827] font-semibold">Cornor Tech Pvt Ltd</span>. All rights reserved.
               </p>
               
               <div className="flex items-center space-x-6 text-sm text-foreground-secondary">
