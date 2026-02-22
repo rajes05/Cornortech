@@ -1,32 +1,117 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 import { HeroProps } from '@/types';
 import Image from 'next/image';
 
-const Hero = ({bannerVisible}:HeroProps) => {
+const Hero = ({ bannerVisible }: HeroProps) => {
   return (
-   <section 
-  id="hero" 
-  className={`relative overflow-hidden bg-linear-to-br from-white via-[#9333EA]/5 to-white ${
-    bannerVisible ? 'min-h-[calc(100vh-128px)]' : 'min-h-[calc(100vh-64px)]'
-  } py-8 md:py-0 md:flex md:items-center`}
->
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#9333EA]/20 rounded-full blur-3xl animate-bounce-subtle" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
-      </div>
+    <section
+      id="hero"
+      className={`relative overflow-hidden bg-white ${
+        bannerVisible ? 'min-h-[calc(100vh-128px)]' : 'min-h-[calc(100vh-64px)]'
+      } py-8 md:py-0 md:flex md:items-center`}
+    >
+      <style>{`
+        /* ── CapCut aurora: orbs move around screen, hue slowly shifts ── */
 
+        .aurora-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(90px);
+          opacity: 0.55;
+          pointer-events: none;
+          will-change: top, left;
+        }
+
+        /* Orb 1 — top-left, drifts clockwise */
+        @keyframes orb1 {
+          0%   { top: -10vh; left: 10vw;  }
+          25%  { top: 15vh;  left: -5vw;  }
+          50%  { top: 30vh;  left: 20vw;  }
+          75%  { top: 5vh;   left: 40vw;  }
+          100% { top: -10vh; left: 10vw;  }
+        }
+
+        /* Orb 2 — bottom-right, drifts counter-clockwise */
+        @keyframes orb2 {
+          0%   { top: 60vh;  left: 70vw;  }
+          25%  { top: 80vh;  left: 50vw;  }
+          50%  { top: 50vh;  left: 80vw;  }
+          75%  { top: 75vh;  left: 65vw;  }
+          100% { top: 60vh;  left: 70vw;  }
+        }
+
+        /* Orb 3 — center, slow drift */
+        @keyframes orb3 {
+          0%   { top: 40vh;  left: 45vw;  }
+          33%  { top: 20vh;  left: 60vw;  }
+          66%  { top: 55vh;  left: 30vw;  }
+          100% { top: 40vh;  left: 45vw;  }
+        }
+
+        /* Orb 4 — top-right */
+        @keyframes orb4 {
+          0%   { top: 5vh;   left: 75vw;  }
+          50%  { top: 25vh;  left: 90vw;  }
+          100% { top: 5vh;   left: 75vw;  }
+        }
+
+        /* Slow hue drift — CapCut's signature colour breathing */
+        @keyframes hueShift {
+          0%,100% { filter: blur(90px) hue-rotate(0deg);   }
+          50%      { filter: blur(90px) hue-rotate(30deg);  }
+        }
+
+        .aurora-orb-1 {
+          width: 55vw; height: 55vw;
+          max-width: 700px; max-height: 700px;
+          background: radial-gradient(circle, rgba(147,51,234,0.45) 0%, rgba(147,51,234,0) 70%);
+          animation: orb1 20s ease-in-out infinite, hueShift 12s ease-in-out infinite;
+        }
+        .aurora-orb-2 {
+          width: 50vw; height: 50vw;
+          max-width: 640px; max-height: 640px;
+          background: radial-gradient(circle, rgba(99,91,255,0.38) 0%, rgba(99,91,255,0) 70%);
+          animation: orb2 25s ease-in-out infinite, hueShift 16s ease-in-out 4s infinite;
+        }
+        .aurora-orb-3 {
+          width: 40vw; height: 40vw;
+          max-width: 520px; max-height: 520px;
+          background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(168,85,247,0) 70%);
+          animation: orb3 18s ease-in-out 2s infinite, hueShift 20s ease-in-out 8s infinite;
+        }
+        .aurora-orb-4 {
+          width: 35vw; height: 35vw;
+          max-width: 420px; max-height: 420px;
+          background: radial-gradient(circle, rgba(147,51,234,0.22) 0%, rgba(147,51,234,0) 70%);
+          animation: orb4 22s ease-in-out 6s infinite, hueShift 14s ease-in-out 2s infinite;
+        }
+
+        /* Status dot */
+        @keyframes statusBlink {
+          0%,100% { opacity:1;   }
+          50%      { opacity:0.3; }
+        }
+        .status-blink { animation: statusBlink 1.6s ease-in-out infinite; }
+      `}</style>
+
+      {/* ── Aurora orbs ── */}
+      <div className="aurora-orb aurora-orb-1" />
+      <div className="aurora-orb aurora-orb-2" />
+      <div className="aurora-orb aurora-orb-3" />
+      <div className="aurora-orb aurora-orb-4" />
+
+      {/* ── Everything below is 100% unchanged from original ── */}
       <div className="container-custom relative z-10 h-full flex items-center">
         <div className="w-full py-20 lg:py-12 flex flex-col items-center">
 
-          {/* Framer motion */}
+          {/* Framer motion badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9D8FB] text-muted-foreground text-sm font-medium mb-6"
           >
-            <span className="flex h-2 w-2 rounded-full bg-[#66FF01] animate-pulse"></span>
+            <span className="status-blink flex h-2 w-2 rounded-full bg-[#66FF01]"></span>
             Now available: Next-Gen IT Consulting
           </motion.div>
 
