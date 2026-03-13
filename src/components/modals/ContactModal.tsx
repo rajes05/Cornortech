@@ -38,9 +38,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         .cm-overlay {
           position: fixed; inset: 0; z-index: 9999;
           display: flex; align-items: center; justify-content: center; padding: 16px;
-          background: rgba(5, 3, 14, 0.82);
-          backdrop-filter: blur(22px);
-          -webkit-backdrop-filter: blur(5px);
+          background: rgba(5, 3, 14, 0.15);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
           opacity: 0; pointer-events: none;
           transition: opacity 0.28s ease;
           font-family: 'Plus Jakarta Sans', sans-serif;
