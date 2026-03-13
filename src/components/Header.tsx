@@ -34,8 +34,8 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
   };
 
   return (
-    <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-soft'
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(isScrolled || isMobileMenuOpen)
+        ? 'top-0 bg-white shadow-soft border-b border-gray-200'
         : `${bannerVisible ? 'top-[40px]' : 'top-0'} bg-transparent border-b border-transparent`
       }`}>
       <nav className="container-custom">
@@ -59,7 +59,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                 <button
                   key={item.title}
                   onClick={() => scrollToSection(item.id)}
-                  className={`transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'}`}
+                  className={`transition-colors font-medium text-sm ${(isScrolled || isMobileMenuOpen) ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'}`}
                 >
                   {item.title}
                 </button>
@@ -79,7 +79,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-9 h-9 flex items-center justify-center rounded-lg hover:scale-110 transition-all duration-200 ${isScrolled ? 'text-[#111827] hover:bg-[#111827]/5' : 'text-white hover:bg-white/10'}`}
+                  className={`w-9 h-9 flex items-center justify-center rounded-lg hover:scale-110 transition-all duration-200 ${(isScrolled || isMobileMenuOpen) ? 'text-[#111827] hover:bg-[#111827]/5' : 'text-white hover:bg-white/10'}`}
                   aria-label={social.name}
                   title={social.name}
                 >
@@ -97,14 +97,14 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden p-2 rounded-lg transition-colors ${isScrolled ? 'hover:bg-[#111827]/5' : 'hover:bg-white/10'}`}
+              className={`md:hidden p-2 rounded-lg transition-colors ${(isScrolled || isMobileMenuOpen) ? 'hover:bg-[#111827]/5' : 'hover:bg-white/10'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${isScrolled ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? '-rotate-45 -translate-y-2.25' : ''}`} />
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'} ${isMobileMenuOpen ? '-rotate-45 -translate-y-2.25' : ''}`} />
               </div>
             </button>
 
