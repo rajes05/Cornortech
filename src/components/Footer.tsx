@@ -52,8 +52,6 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-linear-to-br from-[#111827]/5 via-white to-[#111827]/5 border-t border-[#111827]/10">
-      {/* Decorative top border */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#111827] to-transparent" />
       
       <div className="container-custom">
         <div className="py-16 space-y-12">
@@ -169,8 +167,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Decorative bottom gradient */}
-      <div className="h-2 bg-linear-to-r from-[#111827] via-[#1f2937] to-[#111827]" />
     </footer>
   );
 };

@@ -428,12 +428,6 @@ const Services = () => {
 
       </div>
 
-      {/* ── Bottom wave ── */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg className="w-full h-12 fill-white" viewBox="0 0 1440 48" preserveAspectRatio="none">
-          <path d="M0,48 C320,48 320,0 640,0 C960,0 960,48 1280,48 L1440,48 L1440,0 L1280,0 C960,0 960,48 640,48 C320,48 320,0 0,0 L0,48 Z" />
-        </svg>
-      </div>
     </section>
   );
 };

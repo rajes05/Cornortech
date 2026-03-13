@@ -27,7 +27,7 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             {/* Team Member Image */}
-            <div className={`aspect-[3/4] ${member.gradient} relative overflow-hidden`}>
+            <div className={`aspect-3/4 ${member.gradient} relative overflow-hidden`}>
                 <div className="absolute inset-0 flex items-center justify-center p-8">
                     {/* Placeholder for team member image */}
                     <div className="w-full h-full bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
@@ -192,31 +192,9 @@ const AboutUs = () => {
         }
     ];
 
-    const values = [
-        {
-            icon: '🎯',
-            title: 'Mission-Driven',
-            description: 'We are committed to empowering businesses with innovative technology solutions that drive real results.'
-        },
-        {
-            icon: '💡',
-            title: 'Innovation First',
-            description: 'Constantly pushing boundaries and exploring new technologies to deliver cutting-edge solutions.'
-        },
-        {
-            icon: '🤝',
-            title: 'Client-Focused',
-            description: 'Your success is our success. We build lasting partnerships through trust and exceptional service.'
-        },
-        {
-            icon: '⚡',
-            title: 'Excellence',
-            description: 'Quality in everything we do, from code to customer service. No compromises, just excellence.'
-        }
-    ];
 
     return (
-        <section className="py-20 lg:py-32 bg-gradient-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+        <section className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 right-20 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
@@ -237,13 +215,13 @@ const AboutUs = () => {
                         Behind Cornor Tech
                     </h2>
                     <p className="text-lg lg:text-xl text-foreground-secondary max-w-3xl mx-auto">
-                        We're a passionate team of innovators, designers, and developers dedicated to transforming businesses through technology.
+                        We&apos;re a passionate team of innovators, designers, and developers dedicated to transforming businesses through technology.
                     </p>
                 </div>
 
                 {/* Company Story */}
                 <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                    <div className="bg-gradient-to-br from-[#9333EA]/10 to-white rounded-3xl p-8 lg:p-12 shadow-soft">
+                    <div className="bg-linear-to-br from-[#9333EA]/10 to-white rounded-3xl p-8 lg:p-12 shadow-soft">
                         <div className="space-y-6">
                             <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA]">
                                 Our Story
@@ -253,45 +231,16 @@ const AboutUs = () => {
                                     Founded in 2020, <span className="font-semibold text-[#9333EA]">Cornor Tech</span> started with a simple mission: to bridge the gap between innovative ideas and technological implementation. What began as a small team of passionate developers has grown into a full-service digital agency serving clients worldwide.
                                 </p>
                                 <p>
-                                    Today, we're proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
+                                    Today, we&apos;re proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
                                 </p>
                                 <p>
-                                    With over <span className="font-semibold text-[#9333EA]">150+ successful projects</span> and <span className="font-semibold text-[#9333EA]">120+ satisfied clients</span>, we continue to push the boundaries of what's possible in the digital realm.
+                                    With over <span className="font-semibold text-[#9333EA]">150+ successful projects</span> and <span className="font-semibold text-[#9333EA]">120+ satisfied clients</span>, we continue to push the boundaries of what&apos;s possible in the digital realm.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Core Values */}
-                <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                    <div className="text-center">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
-                            Our Core Values
-                        </h3>
-                        <p className="text-foreground-secondary max-w-2xl mx-auto">
-                            The principles that guide everything we do
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {values.map((value, idx) => (
-                            <div
-                                key={idx}
-                                className="bg-white rounded-2xl p-6 shadow-soft hover:shadow-medium transition-all duration-300 hover-lift"
-                                style={{ animationDelay: `${idx * 0.1}s` }}
-                            >
-                                <div className="text-4xl mb-4">{value.icon}</div>
-                                <h4 className="text-lg font-bold text-[#9333EA] mb-2">
-                                    {value.title}
-                                </h4>
-                                <p className="text-sm text-foreground-secondary leading-relaxed">
-                                    {value.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
 
                 {/* Team Members */}
                 <div className="space-y-8">
@@ -312,7 +261,7 @@ const AboutUs = () => {
                 </div>
 
                 {/* Stats Section */}
-                <div className="bg-gradient-to-br from-[#9333EA] to-[#7c3aed] rounded-3xl p-8 lg:p-12 shadow-large animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                <div className="bg-linear-to-br from-[#9333EA] to-[#7c3aed] rounded-3xl p-8 lg:p-12 shadow-large animate-fade-in" style={{ animationDelay: '0.5s' }}>
                     <div className="text-center mb-8">
                         <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
                             Cornor Tech by the Numbers
@@ -348,7 +297,7 @@ const AboutUs = () => {
                             Want to Join Our Team?
                         </h3>
                         <p className="text-foreground-secondary">
-                            We're always looking for talented individuals who are passionate about technology and innovation. Check out our open positions and become part of our journey.
+                            We&apos;re always looking for talented individuals who are passionate about technology and innovation. Check out our open positions and become part of our journey.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -384,12 +333,6 @@ const AboutUs = () => {
                 </div>
             </div>
 
-            {/* Bottom wave decoration */}
-            <div className="absolute bottom-0 left-0 right-0">
-                <svg className="w-full h-12 fill-white" viewBox="0 0 1440 48" preserveAspectRatio="none">
-                    <path d="M0,48 C320,48 320,0 640,0 C960,0 960,48 1280,48 L1440,48 L1440,0 L1280,0 C960,0 960,48 640,48 C320,48 320,0 0,0 L0,48 Z" />
-                </svg>
-            </div>
         </section>
     );
 };
