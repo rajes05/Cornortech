@@ -188,21 +188,6 @@ const Testimonials = () => {
         </div>
         {/* ── Header ── */}
 
-        {/* ── Stats ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { icon: "🏢", number: "200+", label: "Clients Served" },
-            { icon: "⭐", number: "4.9/5", label: "Client Satisfaction" },
-            { icon: "🚀", number: "500+", label: "Projects Delivered" },
-            { icon: "🛡️", number: "99.9%", label: "Uptime Guaranteed" },
-          ].map((stat, idx) => (
-            <div key={idx} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-[#9333EA]/10 hover:shadow-md transition-shadow duration-300">
-              <div className="text-4xl mb-2">{stat.icon}</div>
-              <div className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-1">{stat.number}</div>
-              <div className="text-sm text-foreground-secondary">{stat.label}</div>
-            </div>
-          ))}
-        </div>
 
         {/* ── Testimonial Grid ── */}
         <div className="space-y-6">
