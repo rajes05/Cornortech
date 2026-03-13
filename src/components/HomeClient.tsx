@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <TopBanner visible={bannerVisible} setVisible={setBannerVisible}/>
-      <Header />
+      <Header bannerVisible={bannerVisible} />
       <main>
         <Hero bannerVisible={bannerVisible}/>
         <Services/>
