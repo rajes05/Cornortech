@@ -32,7 +32,7 @@ const ServiceCard = ({ service, index, isNew }: { service: Service; index: numbe
       )}
 
       {/* Service Header with Gradient */}
-      <div className={`aspect-[16/10] ${service.gradient} relative overflow-hidden`}>
+      <div className={`aspect-16/10 ${service.gradient} relative overflow-hidden`}>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center space-y-4 p-6">
             <div className="w-24 h-24 mx-auto bg-white/90 rounded-2xl flex items-center justify-center shadow-medium transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
@@ -40,7 +40,7 @@ const ServiceCard = ({ service, index, isNew }: { service: Service; index: numbe
             </div>
           </div>
         </div>
-        <div className={`absolute inset-0 bg-gradient-to-t from-[#9333EA]/90 via-[#9333EA]/60 to-transparent transition-opacity duration-300 flex items-end p-6 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 bg-linear-to-t from-[#9333EA]/90 via-[#9333EA]/60 to-transparent transition-opacity duration-300 flex items-end p-6 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
           <button className="w-full px-6 py-3 bg-white text-[#9333EA] rounded-xl font-semibold hover:bg-gray-50 transform hover:scale-105 transition-all duration-200 shadow-medium">
             Get Started
           </button>
@@ -62,7 +62,7 @@ const ServiceCard = ({ service, index, isNew }: { service: Service; index: numbe
         <div className="space-y-2 pt-2">
           {service.features.map((feature, idx) => (
             <div key={idx} className="flex items-start space-x-2">
-              <svg className="w-5 h-5 text-[#9333EA] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 text-[#9333EA] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span className="text-sm text-[#9333EA]/80">{feature}</span>
@@ -179,15 +179,12 @@ const Services = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+    <section className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
       <style>{`
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(16px); }
@@ -286,63 +283,84 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center pt-12 space-y-6 animate-fade-in">
-          <div className="max-w-3xl mx-auto space-y-4">
-            <h3 className="text-2xl lg:text-3xl font-bold text-foreground">
-              Need a Custom Solution?
-            </h3>
-            <p className="text-foreground-secondary">
-              Every business is unique. Let&apos;s discuss how we can create a tailored solution that meets your specific needs and goals.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 transform hover:scale-105 transition-all duration-200 shadow-medium">
-              Schedule Consultation
-            </button>
-            <button className="px-8 py-4 bg-white text-[#9333EA] border-2 border-[#9333EA] rounded-xl font-semibold hover:bg-[#9333EA] hover:text-white transform hover:scale-105 transition-all duration-200"
-            onClick={()=>scrollToSection('our-works')}
-            >
-              View Portfolio
-            </button>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-[#9333EA]/80">
-            {["100+ Projects Delivered","24/7 Support Available","Money-Back Guarantee"].map(label => (
-              <div key={label} className="flex items-center space-x-2">
-                <svg className="w-5 h-5 text-[#9333EA]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="border border-[#111827]/8 rounded-2xl overflow-hidden bg-white mt-4">
+          <div className="grid lg:grid-cols-[1fr_auto] items-stretch">
 
-        {/* Process Section */}
-        <div className="pt-12 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <div className="bg-gradient-to-br from-[#9333EA]/5 to-white rounded-3xl p-8 lg:p-12 shadow-soft">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">Our Process</h3>
-              <p className="text-foreground-secondary">A simple, transparent approach to delivering exceptional results</p>
+            {/* Left: content */}
+            <div className="px-8 py-10 sm:px-12 sm:py-12 space-y-5">
+              <p className="text-xs font-semibold tracking-widest uppercase text-[#9333EA]">
+                Work with us
+              </p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#111827] leading-snug max-w-lg">
+                Have a project in mind?<br />Let&apos;s talk about it.
+              </h3>
+              <p className="text-[#111827]/55 text-base leading-relaxed max-w-md">
+                We work with startups and established businesses to deliver digital products that are fast, beautiful, and built to scale.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9333EA] text-white text-sm font-semibold rounded-lg hover:bg-[#7c3aed] transition-colors duration-150 active:scale-95">
+                  Book a Free Call
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scrollToSection('our-works')}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-transparent text-[#111827] text-sm font-semibold rounded-lg border border-[#111827]/15 hover:border-[#111827]/30 hover:bg-[#111827]/3 transition-all duration-150 active:scale-95"
+                >
+                  See Our Work
+                </button>
+              </div>
             </div>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { step: '01', title: 'Discovery', desc: 'Understand your needs and goals',   icon: '🔍' },
-                { step: '02', title: 'Planning',  desc: 'Create a strategic roadmap',         icon: '📋' },
-                { step: '03', title: 'Execution', desc: 'Bring your vision to life',          icon: '⚡' },
-                { step: '04', title: 'Launch',    desc: 'Deploy and optimize',                icon: '🚀' },
-              ].map((item, idx) => (
-                <div key={idx} className="text-center space-y-3">
-                  <div className="w-16 h-16 mx-auto bg-[#9333EA] text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-medium">
-                    {item.step}
+
+            {/* Right: vertical contact strip */}
+            <div className="hidden lg:flex flex-col justify-between border-l border-[#111827]/8 px-8 py-10 min-w-[220px] bg-[#fafafa]">
+              <div className="space-y-5">
+                <p className="text-xs font-semibold tracking-widest uppercase text-[#111827]/35">
+                  Get in touch
+                </p>
+                <div className="space-y-4">
+                  <a
+                    href="mailto:info@cornortech.com"
+                    className="flex items-center gap-3 group"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#9333EA]/8 flex items-center justify-center shrink-0 group-hover:bg-[#9333EA]/15 transition-colors">
+                      <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-[#111827]/35 uppercase tracking-wider font-medium">Email</p>
+                      <p className="text-sm text-[#111827] font-medium group-hover:text-[#9333EA] transition-colors">info@cornortech.com</p>
+                    </div>
+                  </a>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#9333EA]/8 flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-[#111827]/35 uppercase tracking-wider font-medium">Response time</p>
+                      <p className="text-sm text-[#111827] font-medium">Within 24 hours</p>
+                    </div>
                   </div>
-                  <div className="text-3xl">{item.icon}</div>
-                  <h4 className="font-bold text-[#9333EA]">{item.title}</h4>
-                  <p className="text-sm text-foreground-secondary">{item.desc}</p>
                 </div>
-              ))}
+              </div>
+
+              {/* Availability indicator */}
+              <div className="flex items-center gap-2 pt-6 mt-6 border-t border-[#111827]/8">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-xs text-[#111827]/50 font-medium">Available for new projects</span>
+              </div>
             </div>
+
           </div>
         </div>
+        {/* End CTA Section */}
 
       </div>
 
