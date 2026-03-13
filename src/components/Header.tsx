@@ -80,7 +80,7 @@ const Header = () => {
                   title={social.name}
                 >
                   <svg
-                    className="w-[18px] h-[18px]"
+                    className="w-4.5 h-4.5"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -98,9 +98,9 @@ const Header = () => {
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
                 <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
+                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2.25' : ''}`} />
               </div>
             </button>
 
