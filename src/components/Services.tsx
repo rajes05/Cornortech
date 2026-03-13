@@ -108,7 +108,7 @@ const ServiceCard = ({ service }: { service: Service }) => (
   <div className="group relative w-full
                   rounded-2xl hover:rounded-xl
                   overflow-hidden bg-white
-                  shadow-soft hover:shadow-large
+                  shadow-lg hover:shadow-2xl hover:-translate-y-1
                   border border-transparent hover:border-[#9333EA]/15
                   transition-all duration-300
                   cursor-pointer">
@@ -131,10 +131,9 @@ const ServiceCard = ({ service }: { service: Service }) => (
       <div className="absolute top-8 right-12 w-4 h-4 rounded-full bg-white/25
                       group-hover:-translate-y-1 transition-transform duration-700" />
 
-      {/* Icon tile */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20.5 h-20.5 rounded-2xl bg-white/90 shadow-medium
-                        flex items-center justify-center text-[38px] relative z-10
+      <div className="absolute inset-0 flex items-center justify-center p-2">
+        <div className="w-full h-full rounded-[20px] bg-white/95 shadow-large
+                        flex items-center justify-center text-[84px] relative z-10
                         group-hover:scale-110 group-hover:rotate-3
                         transition-all duration-300">
           {service.icon}
@@ -163,7 +162,7 @@ const ServiceCard = ({ service }: { service: Service }) => (
                       opacity-0 group-hover:opacity-100 transition-opacity duration-300
                       flex items-end p-5">
         <button className="w-full py-2.5 bg-white text-[#7c3aed]
-                           text-sm font-extrabold tracking-wide rounded-xl
+                           text-sm font-semibold tracking-wide rounded-xl
                            hover:bg-[#f5f3ff] transition-colors shadow-medium">
           Get Started →
         </button>
@@ -171,11 +170,11 @@ const ServiceCard = ({ service }: { service: Service }) => (
     </div>
 
     {/* ── Card body: main content + right meta strip ── */}
-    <div className="flex gap-4 p-5">
+    <div className="flex gap-3 p-4">
 
       {/* Main content */}
       <div className="flex-1 min-w-0 space-y-3">
-        <h3 className="text-[17px] font-extrabold text-foreground leading-snug
+        <h3 className="text-[17px] font-bold text-foreground leading-snug
                        group-hover:text-[#7c3aed] transition-colors duration-200">
           {service.title}
         </h3>
@@ -286,7 +285,7 @@ const Services = () => {
             {/* Section label */}
             <div className="flex items-center gap-2">
               <div className="w-7 h-0.5 bg-[#9333EA] rounded-full" />
-              <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#9333EA]">
+              <span className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#9333EA]">
                 What we do
               </span>
             </div>
@@ -381,44 +380,44 @@ const Services = () => {
             </div>
 
             {/* Right: contact strip */}
-            <div className="hidden lg:flex flex-col justify-between border-l border-[#111827]/8 px-8 py-10 min-w-55 bg-[#fafafa]">
+            <div className="hidden lg:flex flex-col justify-between px-8 py-10 min-w-55 bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
               <div className="space-y-5">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[#111827]/35">
+                <p className="text-xs font-semibold tracking-widest uppercase text-white/40">
                   Get in touch
                 </p>
                 <div className="space-y-4">
                   <a href="mailto:info@cornortech.com" className="flex items-center gap-3 group">
-                    <div className="w-8 h-8 rounded-lg bg-[#9333EA]/8 flex items-center justify-center shrink-0 group-hover:bg-[#9333EA]/15 transition-colors">
-                      <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#111827]/35 uppercase tracking-wider font-medium">Email</p>
-                      <p className="text-sm text-[#111827] font-medium group-hover:text-[#9333EA] transition-colors">info@cornortech.com</p>
+                      <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium">Email</p>
+                      <p className="text-sm text-white font-medium group-hover:text-purple-300 transition-colors">info@cornortech.com</p>
                     </div>
                   </a>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#9333EA]/8 flex items-center justify-center shrink-0">
-                      <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#111827]/35 uppercase tracking-wider font-medium">Response time</p>
-                      <p className="text-sm text-[#111827] font-medium">Within 24 hours</p>
+                      <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium">Response time</p>
+                      <p className="text-sm text-white font-medium">Within 24 hours</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Availability */}
-              <div className="flex items-center gap-2 pt-6 mt-6 border-t border-[#111827]/8">
+              <div className="flex items-center gap-2 pt-6 mt-6 border-t border-white/10">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span className="text-xs text-[#111827]/50 font-medium">Available for new projects</span>
+                <span className="text-xs text-white/70 font-medium">Available for new projects</span>
               </div>
             </div>
 
