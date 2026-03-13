@@ -3,6 +3,8 @@ import Logo from '@/../public/cornortech_logo.png'
 import Image from 'next/image';
 import { useState } from 'react';
 import { useHeaderScroll } from '@/hooks/useAnimations';
+import { socialLinks } from '@/data';
+import { SocialSection } from '@/types';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -64,37 +66,87 @@ const Header = () => {
           {/* ===== End Logo + Desktop Navigation ===== */}
 
 
-          {/* ===== Right: Mobile Menu Button ===== */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`block h-0.5 w-full bg-foreground transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 w-full bg-foreground transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 w-full bg-foreground transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          {/* ===== Right: Social Icons (desktop) + Mobile Menu Button ===== */}
+          <div className="flex items-center gap-1">
+
+            {/* ===== Social Links (desktop only) ===== */}
+            <div className="hidden md:flex items-center gap-0.5">
+              {socialLinks.map((social: SocialSection) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg text-[#111827] hover:bg-[#111827]/5 hover:scale-110 transition-all duration-200"
+                  aria-label={social.name}
+                  title={social.name}
+                >
+                  <svg
+                    className="w-[18px] h-[18px]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={social.icon} />
+                  </svg>
+                </a>
+              ))}
             </div>
-          </button>
-          {/* ===== End Right: Mobile Menu Button ===== */}
+            {/* ===== End Social Links ===== */}
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-lg hover:bg-[#111827]/5 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`} />
+                <span className={`block h-0.5 w-full bg-foreground rounded-full transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`} />
+              </div>
+            </button>
+
+          </div>
+          {/* ===== End Right: Social Icons + Mobile Menu Button ===== */}
 
         </div>
 
         {/* ===== Mobile Menu ===== */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
           <div className="pb-4">
+
+            {/* Nav items */}
             {navigationItems.map((item) => (
-              <div key={item.title} className="border-b border-gray-200">
+              <div key={item.title} className="border-b border-gray-100">
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className="w-full text-left px-4 py-3 font-medium text-foreground hover:bg-gray-50"
+                  className="w-full text-left px-4 py-3.5 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors"
                 >
                   {item.title}
                 </button>
               </div>
-            ))} 
+            ))}
+
+            {/* Social icons in mobile menu */}
+            <div className="flex items-center gap-2 px-4 pt-4">
+              <span className="text-xs text-[#111827]/40 font-medium mr-1">Follow us</span>
+              {socialLinks.map((social: SocialSection) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg text-[#111827]/50 hover:text-[#111827] hover:bg-[#111827]/5 transition-all duration-200"
+                  aria-label={social.name}
+                  title={social.name}
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d={social.icon} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+
           </div>
         </div>
         {/* ===== End Mobile Menu ===== */}
+
       </nav>
     </header>
   );
