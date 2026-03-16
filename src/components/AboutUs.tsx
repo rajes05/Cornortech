@@ -35,7 +35,7 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
 
                             <div className="w-56 h-56 mx-auto bg-white/90 rounded-full flex items-center justify-center shadow-medium transform group-hover:scale-110 transition-all duration-300 overflow-hidden">
 
-                            {/* Conditional Render of team image */}
+                                {/* Conditional Render of team image */}
 
                                 {!imageError ? (
 
@@ -47,7 +47,7 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
                                             className='object-cover'
                                             sizes='(max-width: 768px) 100vw, 300px'
                                             priority={index < 2}
-                                            onError={()=>setImageError(true)}
+                                            onError={() => setImageError(true)}
                                         />
                                     </div>
                                 ) : (
@@ -261,34 +261,114 @@ const AboutUs = () => {
                 </div>
 
                 {/* Stats Section */}
-                <div className="bg-linear-to-br from-[#9333EA] to-[#7c3aed] rounded-3xl p-8 lg:p-12 shadow-large animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                    <div className="text-center mb-8">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
-                            Cornor Tech by the Numbers
+                <div className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-14 shadow-large overflow-hidden animate-fade-in" style={{ animationDelay: '0.5s' }}>
+
+                    {/* Decorative background rings */}
+                    <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-purple-500/20 pointer-events-none" />
+                    <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full border border-purple-400/10 pointer-events-none" />
+                    <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full border border-purple-500/15 pointer-events-none" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-purple-600/5 blur-3xl pointer-events-none" />
+
+                    {/* Header */}
+                    <div className="text-center mb-10 relative z-10">
+                        <span className="inline-block px-4 py-1.5 bg-white/10 text-purple-200 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                            By the Numbers
+                        </span>
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+                            Cornor Tech at a Glance
                         </h3>
-                        <p className="text-white/90">
-                            Our achievements speak for themselves
+                        <p className="text-white/50 text-sm max-w-md mx-auto">
+                            Numbers that reflect our commitment to excellence
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {/* Stats grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 relative z-10">
                         {[
-                            { number: '3+', label: 'Years of Excellence' },
-                            { number: '150+', label: 'Projects Delivered' },
-                            { number: '120+', label: 'Happy Clients' },
-                            { number: '25+', label: 'Team Members' }
+                            {
+                                number: '3+',
+                                label: 'Years of Excellence',
+                                sub: 'Since 2024',
+                                icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                ),
+                                accent: 'from-purple-500/30 to-violet-600/20',
+                                ring: 'ring-purple-400/30',
+                            },
+                            {
+                                number: '150+',
+                                label: 'Projects Delivered',
+                                sub: 'Across industries',
+                                icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                    </svg>
+                                ),
+                                accent: 'from-violet-500/30 to-purple-600/20',
+                                ring: 'ring-violet-400/30',
+                            },
+                            {
+                                number: '120+',
+                                label: 'Happy Clients',
+                                sub: 'Worldwide',
+                                icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                ),
+                                accent: 'from-fuchsia-500/30 to-purple-600/20',
+                                ring: 'ring-fuchsia-400/30',
+                            },
+                            {
+                                number: '25+',
+                                label: 'Team Members',
+                                sub: 'Expert engineers',
+                                icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                ),
+                                accent: 'from-purple-600/30 to-fuchsia-500/20',
+                                ring: 'ring-purple-300/30',
+                            },
                         ].map((stat, idx) => (
-                            <div key={idx} className="text-center">
-                                <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
+                            <div
+                                key={idx}
+                                className={`group relative bg-gradient-to-br ${stat.accent} backdrop-blur-sm
+                    rounded-2xl p-5 lg:p-6
+                    ring-1 ${stat.ring}
+                    hover:ring-white/20 hover:bg-white/10
+                    transition-all duration-300 hover:-translate-y-1
+                    flex flex-col items-center text-center gap-3`}
+                            >
+                                {/* Icon circle */}
+                                <div className="w-12 h-12 rounded-xl bg-white/10 ring-1 ring-white/20
+                        flex items-center justify-center text-purple-200
+                        group-hover:bg-white/20 group-hover:scale-110
+                        transition-all duration-300">
+                                    {stat.icon}
+                                </div>
+
+                                {/* Number */}
+                                <div className="text-4xl lg:text-5xl font-black text-white tracking-tight leading-none">
                                     {stat.number}
                                 </div>
-                                <div className="text-sm text-white/80">
-                                    {stat.label}
+
+                                {/* Label + sub */}
+                                <div>
+                                    <p className="text-sm font-semibold text-white/90 leading-snug">{stat.label}</p>
+                                    <p className="text-[11px] text-white/40 mt-0.5 font-medium">{stat.sub}</p>
                                 </div>
+
+                                {/* Bottom accent line */}
+                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-purple-400/40 group-hover:w-16 group-hover:bg-purple-300/60 transition-all duration-300" />
                             </div>
                         ))}
                     </div>
                 </div>
+                {/* ── End Stats Section ── */}
 
                 {/* CTA Section */}
                 <div className="text-center pt-12 space-y-6 animate-fade-in">
@@ -313,26 +393,28 @@ const AboutUs = () => {
                     <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-[#9333EA]/80">
                         <div className="flex items-center space-x-2">
                             <svg className="w-5 h-5 text-[#9333EA]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                                <path d="M2 12h20"/>
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                                <path d="M2 12h20" />
                             </svg>
                             <span className="font-semibold text-[#111827]">Remote-Friendly</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <svg className="w-5 h-5 text-[#9333EA]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                             </svg>
                             <span className="font-semibold text-[#111827]">Competitive Benefits</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <svg className="w-5 h-5 text-[#9333EA]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                             </svg>
                             <span className="font-semibold text-[#111827]">Growth Opportunities</span>
                         </div>
                     </div>
                 </div>
+                {/* End CTA Section */}
+
             </div>
 
         </section>
