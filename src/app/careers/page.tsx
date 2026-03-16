@@ -42,25 +42,27 @@ export default function CareersPage() {
         <main className="min-h-screen bg-white">
 
             {/* ── Hero ── */}
-            <section className="relative bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-20 px-4 overflow-hidden">
+            <section className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-20 px-4 overflow-hidden">
 
-                {/* Decorative rings */}
+                {/* Back to Home — top-left fixed bar */}
+                <div className="absolute top-0 left-0 right-0 z-20 px-6 py-4 flex items-center">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm font-semibold transition-colors group"
+                    >
+                        <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
+                        </svg>
+                        Back to Home
+                    </Link>
+                </div>
+
+            {/* Decorative rings */}
                 <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-purple-500/20 pointer-events-none" />
                 <div className="absolute top-10 right-10 w-48 h-48 rounded-full border border-purple-400/10 pointer-events-none" />
                 <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full border border-purple-500/15 pointer-events-none" />
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-
-                    {/* Back link */}
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-white/50 hover:text-white/80 text-sm font-medium mb-8 transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
-                        </svg>
-                        Back to Cornor Tech
-                    </Link>
 
                     <span className="inline-block px-4 py-1.5 bg-[#a3e635]/20 text-[#a3e635] rounded-full text-xs font-bold uppercase tracking-widest mb-6">
                         We&apos;re Hiring — {OPENINGS.length} open positions
@@ -182,7 +184,7 @@ export default function CareersPage() {
 
                                     {/* Left */}
                                     <div className="flex items-start gap-4">
-                                        <div className="w-11 h-11 bg-[#9333EA]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#9333EA]/20 transition-colors">
+                                        <div className="w-11 h-11 bg-[#9333EA]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#9333EA]/20 transition-colors">
                                             <svg className="w-5 h-5 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                             </svg>
@@ -224,7 +226,7 @@ export default function CareersPage() {
                                     {/* Apply button */}
                                     <a
                                         href={`mailto:careers@cornortech.com?subject=Application — ${job.role}`}
-                                        className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5
+                                        className="shrink-0 flex items-center gap-2 px-5 py-2.5
                                                    bg-[#9333EA] text-white rounded-xl text-sm font-semibold
                                                    hover:bg-[#7c3aed] active:scale-95 transition-all
                                                    self-start lg:self-center"
@@ -256,7 +258,7 @@ export default function CareersPage() {
                     <div className="space-y-4">
                         {PROCESS.map((step, i) => (
                             <div key={i} className="flex items-start gap-5 p-5 bg-[#faf9ff] rounded-2xl border border-[#9333EA]/8">
-                                <div className="w-12 h-12 bg-gradient-to-br from-[#9333EA] to-[#7c3aed] rounded-xl flex items-center justify-center flex-shrink-0 shadow-md shadow-[#9333EA]/25">
+                                <div className="w-12 h-12 bg-linear-to-br from-[#9333EA] to-[#7c3aed] rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-[#9333EA]/25">
                                     <span className="text-white font-black text-sm">{step.step}</span>
                                 </div>
                                 <div>
@@ -272,7 +274,7 @@ export default function CareersPage() {
 
 
             {/* ── General Application CTA ── */}
-            <section className="py-20 px-4 bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
+            <section className="py-20 px-4 bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-2xl lg:text-4xl font-black text-white mb-4">
                         Don&apos;t see your role?
