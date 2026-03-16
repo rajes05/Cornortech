@@ -104,7 +104,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       id="hero"
       className={`relative ${
         bannerVisible ? 'pt-32' : 'pt-28'
-      } w-full min-h-screen bg-gradient-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
+      } w-full min-h-screen bg-linear-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
     >
 
       {/* ==================================================
@@ -123,7 +123,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
       {/* Ambient top-left glow */}
       <div
-        className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        className="absolute -top-32 -left-32 w-125 h-125 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.18) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
@@ -168,7 +168,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
               {/* Pulsing code badge — desktop only, original size */}
               <div
-                className="hidden lg:flex w-32 h-16 bg-[#a855f7] rounded-full items-center justify-center animate-pulse flex-shrink-0"
+                className="hidden lg:flex w-32 h-16 bg-[#a855f7] rounded-full items-center justify-center animate-pulse shrink-0"
                 aria-hidden="true"
               >
                 <svg
@@ -219,11 +219,11 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            className="hidden lg:flex flex-col items-end gap-4 pb-2 flex-shrink-0"
+            className="hidden lg:flex flex-col items-end gap-4 pb-2 shrink-0"
           >
 
             {/* Slogan pill — frosted glass with diamond end-caps */}
-            <div className="flex items-center gap-2 bg-white/[0.08] backdrop-blur-sm border border-purple-400/25 rounded-full px-5 py-2.5">
+            <div className="flex items-center gap-2 bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-5 py-2.5">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                 <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7"/>
               </svg>
@@ -259,8 +259,8 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 ))}
               </motion.div>
               {/* Fade masks top & bottom */}
-              <div className="absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-[#1e003a] to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#2d0a52] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-6 bg-linear-to-b from-[#1e003a] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-[#2d0a52] to-transparent pointer-events-none" />
             </div>
 
             {/* Dot-grid motif */}
@@ -320,7 +320,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-6 relative h-[400px] lg:h-auto rounded-3xl overflow-hidden bg-purple-800 border border-purple-500/30 group"
+          className="lg:col-span-6 relative h-100 lg:h-auto rounded-3xl overflow-hidden bg-purple-800 border border-purple-500/30 group"
         >
           <Image
             src="/hero_workspace.png"
@@ -332,7 +332,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           />
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1e003a] via-transparent to-transparent opacity-70" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#1e003a] via-transparent to-transparent opacity-70" />
 
           {/* Availability badge */}
           <div className="absolute top-5 left-5 flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1.5">
@@ -349,7 +349,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
               <Link
                 href="#contact"
                 aria-label="Start a project with Cornor Tech"
-                className="w-12 h-12 bg-[#a855f7] rounded-full flex items-center justify-center hover:scale-110 hover:bg-[#9333ea] transition-all duration-200 text-white flex-shrink-0 focus-visible:ring-2 focus-visible:ring-[#a3e635] outline-none"
+                className="w-12 h-12 bg-[#a855f7] rounded-full flex items-center justify-center hover:scale-110 hover:bg-[#9333ea] transition-all duration-200 text-white shrink-0 focus-visible:ring-2 focus-visible:ring-[#a3e635] outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -382,7 +382,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           {/* Top: Brand highlight card */}
           <div className="flex-1 bg-[#9333EA] rounded-3xl p-6 flex flex-col justify-end text-white relative overflow-hidden group">
             {/* Shimmer on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
             {/* Watermark number */}
             <span
               className="absolute top-3 right-4 text-[72px] font-black leading-none text-white/10 select-none pointer-events-none"
@@ -413,7 +413,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             href="#contact"
             className="flex-1 focus-visible:ring-2 focus-visible:ring-[#9333EA] outline-none rounded-3xl"
           >
-            <div className="h-full bg-white rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] active:scale-[0.99] transition-transform duration-300 cursor-pointer min-h-[160px] group">
+            <div className="h-full bg-white rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] active:scale-[0.99] transition-transform duration-300 cursor-pointer min-h-40 group">
               <div className="flex justify-between items-center">
                 <span className="text-[#9333EA] font-bold uppercase text-sm tracking-wide">
                   Start a Project
@@ -452,7 +452,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           3. Bottom Ambient Glow Blob
           ================================================== */}
       <div
-        className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
+        className="absolute bottom- left-1/252 -translate-x-1/2 w-150 h-75 bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
         aria-hidden="true"
       />
       {/* === End 3. Bottom Ambient Glow Blob === */}

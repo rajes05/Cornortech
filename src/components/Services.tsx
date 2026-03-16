@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react';
+import Image from 'next/image';
 
 interface Service {
   id: string;
@@ -10,6 +11,7 @@ interface Service {
   badge: string;
   popular?: boolean;
   gradient: string;
+  image?: string;
 }
 
 const services: Service[] = [
@@ -18,6 +20,7 @@ const services: Service[] = [
     title: 'Web Development',
     description: 'Build modern, responsive, and scalable web applications using cutting-edge technologies and best practices.',
     features: ['Custom Website Development', 'Progressive Web Apps (PWA)', 'API Integration & Development'],
+    image: '/services/web_development.jpg',
     icon: '💻',
     badge: 'Development',
     gradient: 'bg-linear-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
@@ -28,6 +31,7 @@ const services: Service[] = [
     title: 'Digital Marketing',
     description: 'Grow your business with data-driven digital marketing strategies that deliver measurable results.',
     features: ['Search Engine Optimization (SEO)', 'Social Media Marketing', 'Analytics & Reporting'],
+    image:'/services/digital_marketing.png',
     icon: '📱',
     badge: 'Marketing',
     gradient: 'bg-linear-to-br from-[#a855f7]/20 to-[#9333EA]/20',
@@ -38,6 +42,7 @@ const services: Service[] = [
     title: 'Graphic Design',
     description: 'Create stunning visual designs that communicate your brand message and captivate your audience.',
     features: ['Brand Identity Design', 'Logo & Visual Assets', 'Social Media Graphics'],
+    image:'/services/graphic_design.webp',
     icon: '🎨',
     badge: 'Design',
     gradient: 'bg-linear-to-br from-[#9333EA]/15 to-[#a855f7]/25',
@@ -99,136 +104,119 @@ const services: Service[] = [
 ];
 
 const ServiceCard = ({ service }: { service: Service }) => (
-  /*
-   * Hover effect:
-   *  - rounded-2xl at rest → rounded-xl on hover (squarer feel, still soft)
-   *  - deeper shadow for lift
-   *  - purple border appears on hover
-   */
-  <div className="group relative w-full
-                  rounded-2xl hover:rounded-xl
-                  overflow-hidden bg-white
-                  shadow-lg hover:shadow-2xl hover:-translate-y-1
-                  border border-transparent hover:border-[#9333EA]/15
-                  transition-all duration-300
-                  cursor-pointer">
+  // ==== Service Card — full overlay layout ====
+  // Image fills entire card. Title always visible at bottom.
+  // Frosted glass details panel slides up on hover.
+  <div className="group relative w-full h-120
+                  rounded-2xl overflow-hidden cursor-pointer
+                  shadow-lg hover:shadow-[0_16px_48px_rgba(147,51,234,.22)]
+                  border border-transparent hover:border-[#9333EA]/20
+                  transition-all duration-300 hover:-translate-y-1">
 
-    {/* ── Card top: gradient banner with icon ── */}
-    <div className={`relative h-52 ${service.gradient} overflow-hidden`}>
-
-      {/* Ambient glow behind icon */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-40 h-40 rounded-full bg-white/12 blur-2xl" />
-      </div>
-
-      {/* Decorative rotating square */}
-      <div className="absolute top-5 left-5 w-10 h-10 rounded-lg bg-white/30
-                      rotate-12 group-hover:rotate-45 transition-transform duration-500" />
-      {/* Decorative circle */}
-      <div className="absolute bottom-5 right-6 w-14 h-14 rounded-full bg-white/20
-                      group-hover:scale-125 transition-transform duration-500" />
-      {/* Small floating dot */}
-      <div className="absolute top-8 right-12 w-4 h-4 rounded-full bg-white/25
-                      group-hover:-translate-y-1 transition-transform duration-700" />
-
-      <div className="absolute inset-0 flex items-center justify-center p-2">
-        <div className="w-full h-full rounded-[20px] bg-white/95 shadow-large
-                        flex items-center justify-center text-[84px] relative z-10
-                        group-hover:scale-110 group-hover:rotate-3
-                        transition-all duration-300">
+    {/* ── Full-card image (clear at rest) OR icon background ── */}
+    {service.image ? (
+      <>
+        {/* Normal state: crisp, no scale, no blur. Hover: gentle zoom only. */}
+        <Image
+          src={service.image}
+          alt={service.title}
+          fill
+          className="object-cover group-hover:scale-105
+                     transition-transform duration-700 ease-out"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+        {/* Bottom gradient dim — keeps title readable, lightens on hover */}
+        <div className="absolute inset-0
+                        bg-linear-to-t from-[#0f001e]/80 via-[#0f001e]/20 to-transparent
+                        transition-all duration-500" />
+      </>
+    ) : (
+      /* ── No image: icon fills the card ── */
+      <div className={`absolute inset-0 ${service.gradient} flex items-center justify-center`}>
+        <div className="w-[calc(100%-24px)] h-[calc(100%-24px)] rounded-2xl bg-white/95
+                        flex items-center justify-center text-[80px]
+                        transition-transform duration-300
+                        group-hover:scale-105 group-hover:rotate-2">
           {service.icon}
         </div>
+        <div className="absolute inset-0 bg-linear-to-t from-[#0f001e]/85 via-[#0f001e]/30 to-transparent" />
       </div>
+    )}
 
-      {/* Category badge */}
-      <span className="absolute top-3 left-3 z-20
-                       px-2.5 py-1 text-[10px] font-black uppercase tracking-widest
-                       text-[#7c3aed] bg-white/95 backdrop-blur-sm rounded-full shadow-sm">
-        {service.badge}
+    {/* ── Badges — always on top ── */}
+    <span className="absolute top-3 left-3 z-10
+                     px-2.5 py-1 text-[10px] font-black uppercase tracking-widest
+                     text-[#7c3aed] bg-white/95 backdrop-blur-sm rounded-full">
+      {service.badge}
+    </span>
+    {service.popular && (
+      <span className="absolute top-3 right-3 z-10
+                       px-2.5 py-1 text-[10px] font-black uppercase tracking-wide
+                       text-white bg-[#9333EA] rounded-full">
+        Popular
       </span>
+    )}
 
-      {/* Popular badge */}
-      {service.popular && (
-        <span className="absolute top-3 right-3 z-20
-                         px-2.5 py-1 text-[10px] font-black uppercase tracking-wide
-                         text-white bg-[#9333EA] rounded-full shadow-sm">
-          Popular
-        </span>
-      )}
+    {/* ── Static title strip — always visible, fades out when details panel opens ── */}
+    <div className="absolute bottom-0 inset-x-0 z-5 px-4 pb-4 pt-10
+                    transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+      <h3 className="text-[16px] font-bold text-white leading-snug">{service.title}</h3>
+      <span className="text-[10px] text-white/50 font-medium">Hover to explore</span>
+    </div>
 
-      {/* Hover CTA overlay */}
-      <div className="absolute inset-0 z-10
-                      bg-linear-to-t from-[#6d28d9]/92 via-[#9333EA]/55 to-transparent
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                      flex items-end p-5">
-        <button className="w-full py-2.5 bg-white text-[#7c3aed]
-                           text-sm font-semibold tracking-wide rounded-xl
-                           hover:bg-[#f5f3ff] transition-colors shadow-medium">
-          Get Started →
+    {/* ── Details panel — slides up from bottom on hover ── */}
+    <div className="absolute inset-x-0 bottom-0 z-8
+                    bg-[rgba(15,0,35,0.85)] backdrop-blur-xl
+                    border-t border-[#a855f7]/20
+                    px-4 pt-4 pb-4
+                    translate-y-full group-hover:translate-y-0
+                    transition-transform duration-300 ease-in-out">
+
+      <h3 className="text-[15px] font-bold text-white mb-1.5">{service.title}</h3>
+      <p className="text-[11px] text-white/60 leading-[1.55] mb-3">{service.description}</p>
+
+      {/* Features list */}
+      <ul className="flex flex-col gap-1.5 mb-3">
+        {service.features.map((f) => (
+          <li key={f} className="flex items-center gap-2 text-[10.5px] text-purple-200/85 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a855f7] shrink-0" />
+            {f}
+          </li>
+        ))}
+      </ul>
+
+      {/* Meta row + CTA */}
+      <div className="flex items-center justify-between pt-2.5 border-t border-[#a855f7]/15">
+        <div className="flex items-center gap-3">
+          {/* Fast delivery */}
+          <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Fast
+          </span>
+          {/* Quality */}
+          <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Quality
+          </span>
+        </div>
+        <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full
+                           bg-[#9333ea]/80 border border-[#a855f7]/40
+                           text-white text-[10px] font-semibold
+                           hover:bg-[#9333ea] transition-colors duration-200 group/btn">
+          Get Started
+          <svg className="w-2.5 h-2.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
+               viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 8h10M9 4l4 4-4 4"/>
+          </svg>
         </button>
       </div>
     </div>
-
-    {/* ── Card body: main content + right meta strip ── */}
-    <div className="flex gap-3 p-4">
-
-      {/* Main content */}
-      <div className="flex-1 min-w-0 space-y-3">
-        <h3 className="text-[17px] font-bold text-foreground leading-snug
-                       group-hover:text-[#7c3aed] transition-colors duration-200">
-          {service.title}
-        </h3>
-        <p className="text-[12.5px] text-foreground-secondary leading-relaxed">
-          {service.description}
-        </p>
-
-        {/* Features list */}
-        <ul className="space-y-1.5 pt-0.5">
-          {service.features.map((f) => (
-            <li key={f} className="flex items-center gap-2 text-[12px] text-[#7c3aed]/75 font-medium">
-              <svg className="w-3.5 h-3.5 text-[#9333EA] shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              {f}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Right meta column */}
-      <div className="flex flex-col items-center justify-center gap-3
-                      border-l border-[#9333EA]/10 pl-4 min-w-17">
-
-        {/* Fast Delivery */}
-        <div className="flex flex-col items-center gap-1.5">
-          <div className="w-8 h-8 rounded-xl bg-[#f5f3ff] flex items-center justify-center
-                          group-hover:bg-[#ede9fe] transition-colors">
-            <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#9333EA]/55 text-center leading-tight">
-            Fast<br/>Delivery
-          </span>
-        </div>
-
-        <div className="w-px h-4 bg-[#9333EA]/10" />
-
-        {/* Quality */}
-        <div className="flex flex-col items-center gap-1.5">
-          <div className="w-8 h-8 rounded-xl bg-[#f5f3ff] flex items-center justify-center
-                          group-hover:bg-[#ede9fe] transition-colors">
-            <svg className="w-4 h-4 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#9333EA]/55 text-center leading-tight">
-            Quality<br/>Work
-          </span>
-        </div>
-      </div>
-
-    </div>
+    {/* ==== End Service Card ==== */}
   </div>
 );
 
@@ -246,13 +234,13 @@ const Services = () => {
     setSlideWidth(w);
   }, []);
 
-  // ── Measure slide width on mount (useLayoutEffect avoids setState-in-effect lint warning) ──
+  // ── Measure on mount ──
   useLayoutEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     computeLayout();
   }, [computeLayout]);
 
-  // ── Re-measure on window resize ──
+  // ── Re-measure on resize ──
   useEffect(() => {
     window.addEventListener('resize', computeLayout);
     return () => window.removeEventListener('resize', computeLayout);
@@ -260,6 +248,14 @@ const Services = () => {
 
   const goTo = useCallback((idx: number) => {
     setCurrent(Math.max(0, Math.min(idx, total - 1)));
+  }, [total]);
+
+  // ===== Auto-slide every 10 seconds =====
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % total);
+    }, 10000);
+    return () => clearInterval(timer);
   }, [total]);
 
   const offset = current * slideWidth;
@@ -276,10 +272,10 @@ const Services = () => {
 
       <div className="container-custom relative z-10 space-y-16">
 
-        {/* ── Layout: impactful left, carousel right ── */}
+        {/* ── Layout: content left, carousel right ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
 
-          {/* ── Left: effective content block ── */}
+          {/* ── Left: content block ── */}
           <div className="space-y-7 animate-fade-in">
 
             {/* Section label */}
@@ -304,10 +300,10 @@ const Services = () => {
 
           </div>
 
-          {/* ── Right: single-card carousel + dots below ── */}
+          {/* ── Right: carousel + dots ── */}
           <div className="lg:col-span-2 flex flex-col gap-5">
 
-            {/* Carousel — one card at a time */}
+            {/* Carousel */}
             <div
               className="overflow-hidden"
               onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -332,7 +328,7 @@ const Services = () => {
               </div>
             </div>
 
-            {/* ── Dot navigation — below the card ── */}
+            {/* Dot navigation */}
             <div className="flex items-center justify-center gap-2">
               {services.map((_, i) => (
                 <button
@@ -380,7 +376,7 @@ const Services = () => {
             </div>
 
             {/* Right: contact strip */}
-            <div className="hidden lg:flex flex-col justify-between px-8 py-10 min-w-55 bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
+            <div className="hidden lg:flex flex-col justify-between px-8 py-10 min-w-55 bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
               <div className="space-y-5">
                 <p className="text-xs font-semibold tracking-widest uppercase text-white/40">
                   Get in touch
