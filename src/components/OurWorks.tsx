@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 interface Project {
   id: string;
   index: string;
   title: string;
+  image?: string;
   client: string;
   year: string;
   type: string;
@@ -25,31 +27,31 @@ const Ico = ({ d }: { d: string }) => (
 );
 
 const ALL_PROJECTS: Project[] = [
-  { id:"p1", index:"01", title:"Enterprise E-Commerce Platform",    client:"Retail Solutions Ltd",     year:"2024", type:"Web Development",     shortInfo:"Headless e-commerce with real-time inventory sync, multi-currency checkout, and performance-optimized storefront.",         tags:["Next.js","Node.js","Stripe","Redis","PostgreSQL"],        link:"https://example.com/1", tabBg:"#F5F0FF", accentColor:"#9333EA", imgBg:"from-purple-100 to-violet-200",   icon:<Ico d='<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>' /> },
-  { id:"p2", index:"02", title:"AI-Powered Analytics Dashboard",    client:"DataTech Corp",             year:"2024", type:"AI & Machine Learning", shortInfo:"ML-driven BI platform with natural language queries, anomaly detection, and predictive forecasting across 12 data sources.", tags:["Python","TensorFlow","FastAPI","React","D3.js"],           link:"https://example.com/2", tabBg:"#EDEAFF", accentColor:"#7c3aed", imgBg:"from-violet-100 to-indigo-200",  icon:<Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' /> },
-  { id:"p3", index:"03", title:"Mobile Banking Application",        client:"FinanceFirst Bank",         year:"2023", type:"Mobile Development",    shortInfo:"Biometric-secured banking app with Open Banking transfers, robo-advisor investments, and offline-capable architecture.",     tags:["React Native","Node.js","Plaid API","Firebase"],          link:"https://example.com/3", tabBg:"#E8FFF6", accentColor:"#059669", imgBg:"from-emerald-100 to-teal-200",  icon:<Ico d='<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>' /> },
-  { id:"p4", index:"04", title:"AWS Cloud Migration",               client:"Enterprise Systems Corp",   year:"2023", type:"Cloud & DevOps",         shortInfo:"Full AWS migration with multi-region failover, Kubernetes orchestration, CI/CD pipelines, and zero-downtime cutover.",      tags:["AWS","Terraform","Kubernetes","Docker","Grafana"],        link:"https://example.com/4", tabBg:"#E8F4FF", accentColor:"#0ea5e9", imgBg:"from-sky-100 to-blue-200",      icon:<Ico d='<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>' /> },
-  { id:"p5", index:"05", title:"Healthcare Patient Portal",         client:"HealthCare Plus Network",   year:"2024", type:"Web Development",        shortInfo:"HIPAA-compliant portal with smart scheduling, WebRTC telemedicine, EHR integration, and automated prescription management.", tags:["Vue.js","Laravel","WebRTC","MySQL","AWS HIPAA"],           link:"https://example.com/5", tabBg:"#FFF0FA", accentColor:"#db2777", imgBg:"from-pink-100 to-rose-200",     icon:<Ico d='<path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="10"/>' /> },
-  { id:"p6", index:"06", title:"Restaurant Chain POS System",       client:"Culinary Delights Group",   year:"2023", type:"Software Development",   shortInfo:"Real-time POS with kitchen display, auto-reorder inventory, franchise analytics, and offline-first mobile ordering.",       tags:["React","Express","MySQL","Socket.io","PWA"],              link:"https://example.com/6", tabBg:"#FFF8E8", accentColor:"#d97706", imgBg:"from-amber-100 to-orange-200",  icon:<Ico d='<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>' /> },
-  { id:"p7", index:"07", title:"Learning Management System",        client:"EduTech Academy",           year:"2024", type:"Web Development",        shortInfo:"Custom LMS with adaptive learning paths, live streaming, interactive assessments, certificate generation, and creator marketplace.", tags:["Next.js","Node.js","PostgreSQL","AWS","Stripe"],          link:"https://example.com/7", tabBg:"#F0EEFF", accentColor:"#6366f1", imgBg:"from-indigo-100 to-purple-200", icon:<Ico d='<path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>' /> },
-  { id:"p8", index:"08", title:"Digital Marketing Campaign",        client:"Global Brands Inc",         year:"2024", type:"Digital Marketing",      shortInfo:"Multi-channel campaign with programmatic SEO, influencer partnerships, 400+ creative variants tested, and full marketing automation.", tags:["Google Ads","Meta Ads","HubSpot","SEMrush"],              link:"https://example.com/8", tabBg:"#FFF0FA", accentColor:"#ec4899", imgBg:"from-pink-100 to-fuchsia-200",  icon:<Ico d='<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' /> },
-  { id:"p9", index:"09", title:"Brand Identity & Design System",    client:"NovaTech Startup",          year:"2024", type:"Brand & Design",          shortInfo:"Full brand system: logo suite, design tokens, 200+ Figma components, motion guidelines, and a public-facing brand portal.",    tags:["Figma","Storybook","Tailwind","Motion Design","React"],   link:"https://example.com/9", tabBg:"#FFF8E8", accentColor:"#f59e0b", imgBg:"from-yellow-100 to-amber-200",  icon:<Ico d='<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' /> },
+  { id: "p1", index: "01", title: "Enterprise E-Commerce Platform",image:'/projects/ecommerce.jpg', client: "Retail Solutions Ltd", year: "2024", type: "Web Development", shortInfo: "Headless e-commerce with real-time inventory sync, multi-currency checkout, and performance-optimized storefront.", tags: ["Next.js", "Node.js", "Stripe", "Redis", "PostgreSQL"], link: "https://example.com/1", tabBg: "#F5F0FF", accentColor: "#9333EA", imgBg: "from-purple-100 to-violet-200", icon: <Ico d='<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>' /> },
+  { id: "p2", index: "02", title: "AI-Powered Analytics Dashboard",image:'/projects/ai_dashboard.webp', client: "DataTech Corp", year: "2024", type: "AI & Machine Learning", shortInfo: "ML-driven BI platform with natural language queries, anomaly detection, and predictive forecasting across 12 data sources.", tags: ["Python", "TensorFlow", "FastAPI", "React", "D3.js"], link: "https://example.com/2", tabBg: "#EDEAFF", accentColor: "#7c3aed", imgBg: "from-violet-100 to-indigo-200", icon: <Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' /> },
+  { id: "p3", index: "03", title: "Mobile Banking Application",image:'/projects/mobile_banking.webp', client: "FinanceFirst Bank", year: "2023", type: "Mobile Development", shortInfo: "Biometric-secured banking app with Open Banking transfers, robo-advisor investments, and offline-capable architecture.", tags: ["React Native", "Node.js", "Plaid API", "Firebase"], link: "https://example.com/3", tabBg: "#E8FFF6", accentColor: "#059669", imgBg: "from-emerald-100 to-teal-200", icon: <Ico d='<rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>' /> },
+  { id: "p4", index: "04", title: "AWS Cloud Migration", client: "Enterprise Systems Corp", year: "2023", type: "Cloud & DevOps", shortInfo: "Full AWS migration with multi-region failover, Kubernetes orchestration, CI/CD pipelines, and zero-downtime cutover.", tags: ["AWS", "Terraform", "Kubernetes", "Docker", "Grafana"], link: "https://example.com/4", tabBg: "#E8F4FF", accentColor: "#0ea5e9", imgBg: "from-sky-100 to-blue-200", icon: <Ico d='<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>' /> },
+  { id: "p5", index: "05", title: "Healthcare Patient Portal", client: "HealthCare Plus Network", year: "2024", type: "Web Development", shortInfo: "HIPAA-compliant portal with smart scheduling, WebRTC telemedicine, EHR integration, and automated prescription management.", tags: ["Vue.js", "Laravel", "WebRTC", "MySQL", "AWS HIPAA"], link: "https://example.com/5", tabBg: "#FFF0FA", accentColor: "#db2777", imgBg: "from-pink-100 to-rose-200", icon: <Ico d='<path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="10"/>' /> },
+  { id: "p6", index: "06", title: "Restaurant Chain POS System", client: "Culinary Delights Group", year: "2023", type: "Software Development", shortInfo: "Real-time POS with kitchen display, auto-reorder inventory, franchise analytics, and offline-first mobile ordering.", tags: ["React", "Express", "MySQL", "Socket.io", "PWA"], link: "https://example.com/6", tabBg: "#FFF8E8", accentColor: "#d97706", imgBg: "from-amber-100 to-orange-200", icon: <Ico d='<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>' /> },
+  { id: "p7", index: "07", title: "Learning Management System", client: "EduTech Academy", year: "2024", type: "Web Development", shortInfo: "Custom LMS with adaptive learning paths, live streaming, interactive assessments, certificate generation, and creator marketplace.", tags: ["Next.js", "Node.js", "PostgreSQL", "AWS", "Stripe"], link: "https://example.com/7", tabBg: "#F0EEFF", accentColor: "#6366f1", imgBg: "from-indigo-100 to-purple-200", icon: <Ico d='<path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>' /> },
+  { id: "p8", index: "08", title: "Digital Marketing Campaign", client: "Global Brands Inc", year: "2024", type: "Digital Marketing", shortInfo: "Multi-channel campaign with programmatic SEO, influencer partnerships, 400+ creative variants tested, and full marketing automation.", tags: ["Google Ads", "Meta Ads", "HubSpot", "SEMrush"], link: "https://example.com/8", tabBg: "#FFF0FA", accentColor: "#ec4899", imgBg: "from-pink-100 to-fuchsia-200", icon: <Ico d='<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>' /> },
+  { id: "p9", index: "09", title: "Brand Identity & Design System", client: "NovaTech Startup", year: "2024", type: "Brand & Design", shortInfo: "Full brand system: logo suite, design tokens, 200+ Figma components, motion guidelines, and a public-facing brand portal.", tags: ["Figma", "Storybook", "Tailwind", "Motion Design", "React"], link: "https://example.com/9", tabBg: "#FFF8E8", accentColor: "#f59e0b", imgBg: "from-yellow-100 to-amber-200", icon: <Ico d='<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' /> },
 ];
 
 const INITIAL = 4;
-const STEP    = 2;
+const STEP = 2;
 
 const OurWorks = () => {
-  const [visible,   setVisible]   = useState(INITIAL);
+  const [visible, setVisible] = useState(INITIAL);
   const [activeTab, setActiveTab] = useState(0);
-  const [prevTab,   setPrevTab]   = useState(-1);
-  const controlsRef               = useRef<HTMLDivElement>(null);
+  const [prevTab, setPrevTab] = useState(-1);
+  const controlsRef = useRef<HTMLDivElement>(null);
 
-  const shown    = ALL_PROJECTS.slice(0, visible);
-  const total    = ALL_PROJECTS.length;
+  const shown = ALL_PROJECTS.slice(0, visible);
+  const total = ALL_PROJECTS.length;
   const allShown = visible >= total;
-  const chunks   = Math.ceil(total / STEP);
-  const filled   = Math.ceil(visible / STEP);
+  const chunks = Math.ceil(total / STEP);
+  const filled = Math.ceil(visible / STEP);
 
   const openTab = (i: number) => { setPrevTab(activeTab); setActiveTab(i); };
   const showMore = () => setVisible(v => Math.min(v + STEP, total));
@@ -57,7 +59,7 @@ const OurWorks = () => {
     const next = Math.max(visible - STEP, INITIAL);
     setVisible(next);
     if (activeTab >= next) setActiveTab(next - 1);
-    setTimeout(() => controlsRef.current?.scrollIntoView({ behavior:"smooth", block:"center" }), 50);
+    setTimeout(() => controlsRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
   };
 
   const bodyAnim = (i: number) => {
@@ -201,20 +203,30 @@ const OurWorks = () => {
                     <div className="flex-1 px-5 py-5 flex items-center justify-center">
                       <div className={`proj-img-wrap w-full aspect-4/3 rounded-xl bg-linear-to-br ${p.imgBg} relative overflow-hidden cursor-pointer`}>
 
-                        {/* Image placeholder — replace with <img> */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                          <div
-                            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-md"
-                            style={{ background: `linear-gradient(135deg,${p.accentColor},${p.accentColor}cc)` }}>
-                            {p.icon}
+                        {/* ── Project image or icon fallback ── */}
+                        {p.image ? (
+                          <Image
+                            src={p.image}
+                            alt={p.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                            <div
+                              className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-md"
+                              style={{ background: `linear-gradient(135deg,${p.accentColor},${p.accentColor}cc)` }}>
+                              {p.icon}
+                            </div>
+                            <span
+                              className="text-[10px] font-bold opacity-40 text-center leading-relaxed"
+                              style={{ color: p.accentColor }}>
+                              Project Screenshot
+                            </span>
                           </div>
-                          <span
-                            className="text-[10px] font-bold opacity-40 text-center leading-relaxed"
-                            style={{ color: p.accentColor }}>
-                            Project Screenshot
-                          </span>
-                        </div>
-                        {/* End Image placeholder — replace with <img> */}
+                        )}
+                        {/* ── End project image or icon fallback ── */}
 
                         {/* Watermark */}
                         <span
@@ -243,12 +255,12 @@ const OurWorks = () => {
 
                       </div>
                     </div>
-                     {/* ===== End RIGHT: 1/3 — image with hover demo button ===== */}
+                    {/* ===== End RIGHT: 1/3 — image with hover demo button ===== */}
 
                   </div>
                 )}
                 {/* ── End Expanded body — pastel bg, compact 2-col layout ── */}
-                
+
               </li>
             );
           })}
@@ -294,20 +306,6 @@ const OurWorks = () => {
         {allShown && <p className="text-xs text-foreground-secondary italic">You&apos;ve seen all our projects! 🎉</p>}
       </div>
       {/* ── End Show More / Collapse Controls ── */}
-
-      {/* ── CTA Section ── */}
-      <div className="pt-12 px-8">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 text-center sm:text-left">
-            Have a Project in Mind?
-          </h3>
-          <button className="px-8 py-4 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 transform hover:scale-105 transition-all duration-200 shadow-lg shadow-[#9333EA]/25 whitespace-nowrap">
-            Start a Project
-          </button>
-        </div>
-      </div>
-      {/* ── End CTA Section ── */}
-
 
       {/* ── Bottom Wave — fixed with pb-16 buffer and animated ── */}
       <div className="relative mt-12 h-12">
