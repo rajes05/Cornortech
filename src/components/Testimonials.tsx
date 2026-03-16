@@ -1,18 +1,55 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 interface Testimonial {
   id: string;
   name: string;
   role: string;
   company: string;
-  image: string;
+  image?: string;
   rating: number;
   text: string;
   course?: string;
   gradient: string;
 }
+
+// ===== Avatar — shows image if available, initials fallback if not =====
+const AvatarImage = ({ name, src }: { name: string; src: string }) => {
+  const [failed, setFailed] = useState(false);
+
+  const initials = name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((n) => n[0].toUpperCase())
+    .join('');
+
+  if (failed || !src) {
+    return (
+      <div className="w-12 h-12 rounded-full ring-2 ring-[#9333EA]/20 group-hover:ring-[#9333EA] transition-all duration-300
+                      bg-linear-to-br from-[#9333EA] to-[#7c3aed]
+                      flex items-center justify-center
+                      text-white font-bold text-sm select-none">
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#9333EA]/20 group-hover:ring-[#9333EA] transition-all duration-300">
+      <img
+        src={src}
+        alt={name}
+        className="w-full h-full object-cover"
+        onError={() => setFailed(true)}
+      />
+    </div>
+  );
+};
+// ===== End Avatar =====
+
 
 // ===== Testimonial Card =====
 const TestimonialCard = ({
@@ -54,7 +91,7 @@ const TestimonialCard = ({
 
         {/* Quote text */}
         <div className="space-y-3">
-          <p className="text-foreground-secondary leading-relaxed italic text-sm group-hover:text-shadow-foreground-secondary transition-colors duration-300">
+          <p className="text-foreground-secondary leading-relaxed italic text-sm transition-colors duration-300">
             &ldquo;{testimonial.text}&rdquo;
           </p>
           {testimonial.course && (
@@ -67,24 +104,13 @@ const TestimonialCard = ({
 
         {/* User info */}
         <div className="flex items-center space-x-3 pt-4 border-t border-[#9333EA]/10">
+
+          {/* Avatar with initials fallback */}
           <div className="relative shrink-0">
-            <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#9333EA]/20 group-hover:ring-[#9333EA] transition-all duration-300">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = "none";
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="w-full h-full bg-linear-to-br from-[#9333EA] to-[#7c3aed] flex items-center justify-center text-white font-bold text-base">${testimonial.name.split(" ").map((n) => n[0]).join("")}</div>`;
-                  }
-                }}
-              />
-            </div>
+            <AvatarImage name={testimonial.name} src={testimonial.image} />
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#9333EA] rounded-full border-2 border-white" />
           </div>
+          {/* End Avatar */}
 
           <div className="flex-1 min-w-0">
             <h4 className="font-bold text-gray-800 text-sm group-hover:text-[#9333EA] transition-colors truncate">
@@ -102,33 +128,47 @@ const TestimonialCard = ({
         </div>
         {/* End User info */}
 
-
       </div>
     </div>
   );
 };
 // ===== End Testimonial Card =====
 
+
 const CARDS_PER_ROW = 3;
-const INITIAL_ROWS = 1; // show 1 row (3 cards) to start
+const INITIAL_ROWS = 1;
+
+// ===== Client logos data =====
+const CLIENT_LOGOS = [
+  { alt: 'Career Guide', src: '/clients/caareer.webp' },
+  { alt: 'Debai', src: '/clients/debai.webp' },
+  { alt: 'Dynamic Education', src: '/clients/dynamic.webp' },
+  { alt: 'Web Surfer', src: '/clients/neplo.webp' },
+  { alt: 'Learn Nepal', src: '/clients/ln.webp' },
+  { alt: 'Shine Education Hub', src: '/clients/shine.webp' },
+  { alt: 'Writeeasy', src: '/clients/we.svg' },
+  { alt: 'Hotel Green Peace', src: '/clients/pz.webp' },
+];
+// ===== End Client logos data =====
+
 
 const Testimonials = () => {
+
   const testimonials: Testimonial[] = [
-    { id: "1", name: "Sarah Johnson", role: "Full Stack Developer", company: "Tech Solutions Inc.", image: "/testimonials/sarah.jpg", rating: 5, text: "The MERN Stack course completely transformed my career. The instructors are knowledgeable and the hands-on projects gave me real-world experience. I landed my dream job within 3 months!", course: "MERN Stack Development", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
-    { id: "2", name: "Michael Chen", role: "UI/UX Designer", company: "Creative Studios", image: "/testimonials/michael.jpg", rating: 5, text: "Best design course I have ever taken! The UI/UX program at Cornor Tech is comprehensive and practical. I learned everything from user research to prototyping. Highly recommend!", course: "UI/UX Design", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
-    { id: "3", name: "Emily Rodriguez", role: "Digital Marketing Specialist", company: "Growth Marketing Co.", image: "/testimonials/emily.jpg", rating: 5, text: "The digital marketing course exceeded my expectations. I learned SEO, social media strategies, and analytics. The real-world case studies were invaluable. My campaigns now generate 3x more leads!", course: "Digital Marketing Pro", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
-    { id: "4", name: "David Kumar", role: "Python Developer", company: "DataTech Solutions", image: "/testimonials/david.jpg", rating: 5, text: "Outstanding Python course! The curriculum is well-structured, starting from basics to advanced topics like machine learning. The support from instructors was amazing. Worth every penny!", course: "Python Programming", gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
-    { id: "5", name: "Jessica Taylor", role: "Graphic Designer", company: "Design Hub", image: "/testimonials/jessica.jpg", rating: 5, text: "The graphic design masterclass is phenomenal! I learned Adobe Creative Suite inside out and developed a strong portfolio. The feedback on my work helped me grow tremendously.", course: "Graphic Design Masterclass", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
-    { id: "6", name: "Alex Martinez", role: "Cybersecurity Analyst", company: "SecureNet Systems", image: "/testimonials/alex.jpg", rating: 5, text: "The cybersecurity course is comprehensive and up-to-date. I gained practical skills in ethical hacking and network security. The hands-on labs were incredibly valuable.", course: "Cybersecurity Specialist", gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
-    { id: "7", name: "Priya Sharma", role: "AI Engineer", company: "AI Innovations Ltd.", image: "/testimonials/priya.jpg", rating: 5, text: "Incredible AI & ML course! The projects were challenging yet rewarding. I built real machine learning models and deployed them. The knowledge I gained has been instrumental in my current role.", course: "AI & Machine Learning", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
-    { id: "8", name: "James Wilson", role: "Business Owner", company: "Wilson Enterprises", image: "/testimonials/james.jpg", rating: 5, text: "Cornor Tech helped me build a professional website for my business. The web development service was top-notch — delivered on time, within budget, and exceeded expectations. Highly professional team!", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
-    { id: "9", name: "Lisa Anderson", role: "Data Scientist", company: "Analytics Pro", image: "/testimonials/lisa.jpg", rating: 5, text: "The Data Science course was exactly what I needed. From Python to advanced analytics and visualization, everything was covered in depth. The instructors genuinely care about student success.", course: "Data Science & Analytics", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
+    { id: "1", name: "Sarah Johnson", role: "Full Stack Developer", company: "Tech Solutions Inc.", rating: 5, text: "The MERN Stack course completely transformed my career. The instructors are knowledgeable and the hands-on projects gave me real-world experience. I landed my dream job within 3 months!", course: "MERN Stack Development", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
+    { id: "2", name: "Michael Chen", role: "UI/UX Designer", company: "Creative Studios", rating: 5, text: "Best design course I have ever taken! The UI/UX program at Cornor Tech is comprehensive and practical. I learned everything from user research to prototyping. Highly recommend!", course: "UI/UX Design", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
+    { id: "3", name: "Emily Rodriguez", role: "Digital Marketing Specialist", company: "Growth Marketing Co.", rating: 5, text: "The digital marketing course exceeded my expectations. I learned SEO, social media strategies, and analytics. The real-world case studies were invaluable. My campaigns now generate 3x more leads!", course: "Digital Marketing Pro", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
+    { id: "4", name: "David Kumar", role: "Python Developer", company: "DataTech Solutions", rating: 5, text: "Outstanding Python course! The curriculum is well-structured, starting from basics to advanced topics like machine learning. The support from instructors was amazing. Worth every penny!", course: "Python Programming", gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
+    { id: "5", name: "Jessica Taylor", role: "Graphic Designer", company: "Design Hub", rating: 5, text: "The graphic design masterclass is phenomenal! I learned Adobe Creative Suite inside out and developed a strong portfolio. The feedback on my work helped me grow tremendously.", course: "Graphic Design Masterclass", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
+    { id: "6", name: "Alex Martinez", role: "Cybersecurity Analyst", company: "SecureNet Systems", rating: 5, text: "The cybersecurity course is comprehensive and up-to-date. I gained practical skills in ethical hacking and network security. The hands-on labs were incredibly valuable.", course: "Cybersecurity Specialist", gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
+    { id: "7", name: "Priya Sharma", role: "AI Engineer", company: "AI Innovations Ltd.", rating: 5, text: "Incredible AI & ML course! The projects were challenging yet rewarding. I built real machine learning models and deployed them. The knowledge I gained has been instrumental in my current role.", course: "AI & Machine Learning", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
+    { id: "8", name: "James Wilson", role: "Business Owner", company: "Wilson Enterprises", rating: 5, text: "Cornor Tech helped me build a professional website for my business. The web development service was top-notch — delivered on time, within budget, and exceeded expectations. Highly professional team!", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
+    { id: "9", name: "Lisa Anderson", role: "Data Scientist", company: "Analytics Pro", rating: 5, text: "The Data Science course was exactly what I needed. From Python to advanced analytics and visualization, everything was covered in depth. The instructors genuinely care about student success.", course: "Data Science & Analytics", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
   ];
 
-  // How many rows are currently visible
   const [visibleRows, setVisibleRows] = useState(INITIAL_ROWS);
-  // Track which cards are "new" (just revealed) for animation
   const [newRowStart, setNewRowStart] = useState<number | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
 
   const totalRows = Math.ceil(testimonials.length / CARDS_PER_ROW);
   const visibleCount = visibleRows * CARDS_PER_ROW;
@@ -141,7 +181,6 @@ const Testimonials = () => {
     const nextRowStart = visibleRows * CARDS_PER_ROW;
     setNewRowStart(nextRowStart);
     setVisibleRows((r) => Math.min(r + 1, totalRows));
-    // Clear "new" flag after animation finishes
     setTimeout(() => setNewRowStart(null), 600);
   };
 
@@ -149,21 +188,23 @@ const Testimonials = () => {
     if (visibleRows <= INITIAL_ROWS) return;
     setNewRowStart(null);
     setVisibleRows((r) => r - 1);
-    // Smooth scroll to button so user isn't stranded
     setTimeout(() => {
       expandBtnRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 50);
   };
 
-  const [showVideo, setShowVideo] = useState(false);
-
   return (
     <section id="testimonials" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
-      {/* keyframes injected once */}
+
+      {/* keyframes */}
       <style>{`
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(16px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
       `}</style>
 
@@ -173,7 +214,7 @@ const Testimonials = () => {
         <div className="absolute bottom-20 left-20 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 xl:px-8 max-w-7xl relative z-10 space-y-12">
+      <div className="container mx-auto max-w-7xl relative z-10 space-y-10">
 
         {/* ── Header ── */}
         <div className="text-center space-y-6">
@@ -182,11 +223,10 @@ const Testimonials = () => {
             <br />& Partners Say
           </h2>
           <p className="text-lg text-foreground-secondary max-w-3xl mx-auto">
-            Trusted by businesses across industries hear from the teams we have helped build, scale, and secure their IT infrastructure.
+            Trusted by businesses across industries — hear from the teams we have helped build, scale, and secure their IT infrastructure.
           </p>
-
         </div>
-        {/* ── Header ── */}
+        {/* ── End Header ── */}
 
 
         {/* ── Testimonial Grid ── */}
@@ -202,29 +242,28 @@ const Testimonials = () => {
             ))}
           </div>
 
-          {/* ── Show More / Collapse Row buttons ── */}
+          {/* Show More / Collapse */}
           <div className="flex flex-col items-center gap-3 pt-2">
 
-            {/* Progress indicator */}
             <p className="text-sm text-foreground-secondary font-medium">
-              Showing <span className="text-[#9333EA] font-semibold">{Math.min(visibleCount, testimonials.length)}</span> of <span className="text-[#9333EA] font-semibold">{testimonials.length}</span> reviews
+              Showing{" "}
+              <span className="text-[#9333EA] font-semibold">{Math.min(visibleCount, testimonials.length)}</span>
+              {" "}of{" "}
+              <span className="text-[#9333EA] font-semibold">{testimonials.length}</span> reviews
             </p>
 
-            {/* Row dots */}
+            {/* Row progress dots */}
             <div className="flex items-center gap-2">
               {Array.from({ length: totalRows }).map((_, i) => (
                 <div
                   key={i}
-                  className={`rounded-full transition-all duration-300 ${i < visibleRows
-                    ? "w-6 h-2 bg-[#9333EA]"
-                    : "w-2 h-2 bg-[#9333EA]/20"
+                  className={`rounded-full transition-all duration-300 ${i < visibleRows ? "w-6 h-2 bg-[#9333EA]" : "w-2 h-2 bg-[#9333EA]/20"
                     }`}
                 />
               ))}
             </div>
 
             <div className="flex items-center gap-3 pt-1">
-              {/* Show More */}
               {!allShown && (
                 <button
                   ref={expandBtnRef}
@@ -238,7 +277,6 @@ const Testimonials = () => {
                 </button>
               )}
 
-              {/* Collapse last row — only visible when more than initial rows shown */}
               {visibleRows > INITIAL_ROWS && (
                 <button
                   onClick={collapseLastRow}
@@ -252,20 +290,23 @@ const Testimonials = () => {
               )}
             </div>
 
-            {/* All shown message */}
             {allShown && (
-              <p className="text-xs text-shadow-foreground-secondary italic">You&apos;ve seen all our reviews!</p>
+              <p className="text-xs text-foreground-secondary italic">You&apos;ve seen all our reviews!</p>
             )}
           </div>
         </div>
         {/* ── End Testimonial Grid ── */}
 
+
         {/* ── Video Testimonial ── */}
         <div className="mt-12 p-8 lg:p-12 bg-linear-to-br from-[#9333EA]/10 to-white rounded-3xl shadow-sm border border-[#9333EA]/10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
+
             <div className="space-y-4">
               <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA]">Watch Video Testimonials</h3>
-              <p className="text-foreground-secondary">Hear directly from our students and clients about their experiences and success stories with Cornor Tech.</p>
+              <p className="text-foreground-secondary">
+                Hear directly from our students and clients about their experiences and success stories with Cornor Tech.
+              </p>
               <button
                 onClick={() => setShowVideo(true)}
                 className="px-6 py-3 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 hover:scale-105 transition-all duration-200 inline-flex items-center space-x-2"
@@ -277,8 +318,15 @@ const Testimonials = () => {
               </button>
             </div>
 
-            <div className="relative aspect-video rounded-xl overflow-hidden shadow-md cursor-pointer" onClick={() => setShowVideo(true)}>
-              <img src="https://img.youtube.com/vi/mXkmS2asah8/hqdefault.jpg" alt="Video Thumbnail" className="w-full h-full object-cover" />
+            <div
+              className="relative aspect-video rounded-xl overflow-hidden shadow-md cursor-pointer"
+              onClick={() => setShowVideo(true)}
+            >
+              <img
+                src="https://img.youtube.com/vi/mXkmS2asah8/hqdefault.jpg"
+                alt="Video Thumbnail"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors duration-200">
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
                   <svg className="w-10 h-10 text-[#9333EA]" fill="currentColor" viewBox="0 0 20 20">
@@ -287,14 +335,22 @@ const Testimonials = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         {/* ── End Video Testimonial ── */}
 
+
         {/* ===== Video Modal ===== */}
         {showVideo && (
-          <div className="fixed inset-0 z-999 bg-black/70 flex items-center justify-center p-4" onClick={() => setShowVideo(false)}>
-            <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="fixed inset-0 z-999 bg-black/70 flex items-center justify-center p-4"
+            onClick={() => setShowVideo(false)}
+          >
+            <div
+              className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setShowVideo(false)}
                 className="absolute top-3 right-3 z-10 text-white bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
@@ -312,8 +368,56 @@ const Testimonials = () => {
         )}
         {/* ===== End Video Modal ===== */}
 
+
+        {/* ===== Trusted Clients — infinite horizontal marquee ===== */}
+        <div className="pt-4 pb-0">
+
+          {/* Section label */}
+          <div className="text-center mb-5">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#9333EA]/70">
+              Trusted by leading companies
+            </p>
+          </div>
+
+          {/* Marquee wrapper — overflow hidden + fade edges */}
+          <div className="relative overflow-hidden">
+
+            {/* Left fade edge */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-white to-transparent pointer-events-none" />
+            {/* Right fade edge */}
+            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-white to-transparent pointer-events-none" />
+
+            {/* Scrolling track — duplicated for seamless infinite loop */}
+            <div className="flex gap-12 w-max animate-[marquee_28s_linear_infinite]">
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-center
+                             w-45 h-25 shrink-0
+                             bg-white rounded-xl
+                             border border-[#9333EA]/10
+                             px-5 py-3 shadow-sm
+                             hover:border-[#9333EA]/30 hover:shadow-md
+                             transition-all duration-300"
+                >
+                  <Image
+                    src={client.src}
+                    alt={client.alt}
+                    width={160}
+                    height={80}
+                    className="object-contain w-full h-full"
+                  />
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+        {/* ===== End Trusted Clients ===== */}
+
+
       </div>
-      
+
     </section>
   );
 };
