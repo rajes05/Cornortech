@@ -19,12 +19,12 @@ interface TeamMember {
 
 // ── Shared openings data (used in CTA count + modal) ──────────
 const OPENINGS = [
-    { role: 'Senior Full Stack Developer',      type: 'Full-time', location: 'Remote',            tags: ['React', 'Node.js', 'PostgreSQL'],          hot: true  },
-    { role: 'UI/UX Designer',                   type: 'Full-time', location: 'Hybrid · Butwal',    tags: ['Figma', 'Prototyping', 'Design Systems'],   hot: true  },
-    { role: 'DevOps Engineer',                  type: 'Full-time', location: 'Remote',             tags: ['AWS', 'Docker', 'Kubernetes'],              hot: false },
-    { role: 'Digital Marketing Specialist',     type: 'Full-time', location: 'On-site · Butwal',   tags: ['SEO', 'Meta Ads', 'Analytics'],             hot: false },
-    { role: 'React Native Developer',           type: 'Contract',  location: 'Remote',             tags: ['React Native', 'iOS', 'Android'],           hot: false },
-    { role: 'Business Development Executive',   type: 'Full-time', location: 'On-site · Butwal',   tags: ['Sales', 'CRM', 'Strategy'],                 hot: false },
+    { role: 'Senior Full Stack Developer', type: 'Full-time', location: 'Remote', tags: ['React', 'Node.js', 'PostgreSQL'], hot: true },
+    { role: 'UI/UX Designer', type: 'Full-time', location: 'Hybrid · Butwal', tags: ['Figma', 'Prototyping', 'Design Systems'], hot: true },
+    { role: 'DevOps Engineer', type: 'Full-time', location: 'Remote', tags: ['AWS', 'Docker', 'Kubernetes'], hot: false },
+    { role: 'Digital Marketing Specialist', type: 'Full-time', location: 'On-site · Butwal', tags: ['SEO', 'Meta Ads', 'Analytics'], hot: false },
+    { role: 'React Native Developer', type: 'Contract', location: 'Remote', tags: ['React Native', 'iOS', 'Android'], hot: false },
+    { role: 'Business Development Executive', type: 'Full-time', location: 'On-site · Butwal', tags: ['Sales', 'CRM', 'Strategy'], hot: false },
 ];
 
 // ===== Hiring Modal =====
@@ -305,10 +305,10 @@ const AboutUs = () => {
             id: '1',
             name: 'Ramit Neupane',
             role: 'Founder & CEO',
-            bio: 'Visionary leader with 4+ years of experience in tech innovation. Passionate about empowering businesses through cutting-edge digital solutions.',
-            image: '/team/ceo.webp',
+            bio: 'Visionary leader passionate about driving innovation and building impactful digital solutions. Focused on guiding the company’s strategy, growth, and long-term vision.',
+            image: '/teams/ceo.jpeg',
             gradient: 'bg-gradient-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
-            skills: ['Leadership', 'Strategy', 'Innovation'],
+            skills: ['Leadership', 'Business Strategy', 'Innovation'],
             social: { linkedin: '#', twitter: '#' }
         },
         {
@@ -316,7 +316,7 @@ const AboutUs = () => {
             name: 'Santosh Kunwar',
             role: 'Chief Operational Officer',
             bio: 'Tech enthusiast leading our engineering team. Expert in full-stack development, AI/ML, and cloud architecture with a proven track record.',
-            image: '/team/coo.webp',
+            image: '/teams/coo.jpeg',
             gradient: 'bg-gradient-to-br from-[#7c3aed]/20 to-[#9333EA]/20',
             skills: ['Full-Stack', 'AI/ML', 'Cloud'],
             social: { linkedin: '#', github: '#' }
@@ -325,22 +325,33 @@ const AboutUs = () => {
             id: '3',
             name: 'Laxman Neupane',
             role: 'Chief Financial Officer',
-            bio: 'Digital marketing expert driving growth strategies. Specialized in SEO, content marketing, and building powerful brand narratives.',
-            image: '/team/cfo.webp',
+            bio: 'Financial strategist responsible for managing company finances, budgeting, and investment planning. Focused on maintaining financial stability and supporting sustainable business growth.',
+            image: '/teams/cfo.jpeg',
             gradient: 'bg-gradient-to-br from-[#a855f7]/20 to-[#9333EA]/20',
-            skills: ['SEO', 'Content', 'Strategy'],
+            skills: ['Financial Planning', 'Budget Management', 'Risk Analysis'],
             social: { linkedin: '#', twitter: '#' }
         },
         {
             id: '4',
             name: 'Aman Pokhrel',
-            role: 'Product Manager',
-            bio: 'Strategic product leader turning ideas into reality. Expert in agile methodologies, user research, and product development lifecycle.',
-            image: '/team/om.webp',
+            role: 'Organizational Manager',
+            bio: 'Experienced organizational manager responsible for coordinating team operations and ensuring smooth workflow across departments. Focused on efficient planning, communication, and team collaboration.',
+            image: '/teams/om.jpeg',
             gradient: 'bg-gradient-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
-            skills: ['Product', 'Agile', 'Strategy'],
+            skills: ['Team Management', 'Operations', 'Coordination'],
+            social: { linkedin: '#', twitter: '#' }
+        },
+        {
+            id: '5',
+            name: 'Rubi Ale',
+            role: 'Marketing Head',
+            bio: 'Creative marketing leader focused on building brand presence and driving growth. Skilled in digital marketing, campaign strategy, market research, and audience engagement.',
+            image: '/teams/mh.jpeg',
+            gradient: 'bg-gradient-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
+            skills: ['Digital Marketing', 'Brand Strategy', 'Market Research'],
             social: { linkedin: '#', twitter: '#' }
         }
+
     ];
 
     return (
@@ -403,7 +414,7 @@ const AboutUs = () => {
                             Meet the talented individuals driving innovation at Cornor Tech
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
                         {teamMembers.map((member, index) => (
                             <TeamCard key={member.id} member={member} index={index} />
                         ))}
@@ -433,10 +444,10 @@ const AboutUs = () => {
                     {/* Stats grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 relative z-10">
                         {[
-                            { number: '3+',   label: 'Years of Excellence', sub: 'Since 2024',       accent: 'from-purple-500/30 to-violet-600/20',   ring: 'ring-purple-400/30',  icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-                            { number: '150+', label: 'Projects Delivered',  sub: 'Across industries', accent: 'from-violet-500/30 to-purple-600/20',  ring: 'ring-violet-400/30',  icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg> },
-                            { number: '120+', label: 'Happy Clients',       sub: 'Worldwide',         accent: 'from-fuchsia-500/30 to-purple-600/20',  ring: 'ring-fuchsia-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg> },
-                            { number: '25+',  label: 'Team Members',        sub: 'Expert engineers',  accent: 'from-purple-600/30 to-fuchsia-500/20',  ring: 'ring-purple-300/30',  icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
+                            { number: '3+', label: 'Years of Excellence', sub: 'Since 2024', accent: 'from-purple-500/30 to-violet-600/20', ring: 'ring-purple-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+                            { number: '150+', label: 'Projects Delivered', sub: 'Across industries', accent: 'from-violet-500/30 to-purple-600/20', ring: 'ring-violet-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg> },
+                            { number: '120+', label: 'Happy Clients', sub: 'Worldwide', accent: 'from-fuchsia-500/30 to-purple-600/20', ring: 'ring-fuchsia-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg> },
+                            { number: '25+', label: 'Team Members', sub: 'Expert engineers', accent: 'from-purple-600/30 to-fuchsia-500/20', ring: 'ring-purple-300/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
                         ].map((stat, idx) => (
                             <div
                                 key={idx}
