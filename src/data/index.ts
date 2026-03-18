@@ -6,7 +6,7 @@ export const footerSections: FooterSection[] = [
   {
     title: "Services",
     links: [
-      { title: "Degital Marketing", link: "#" },
+      { title: "Digital Marketing", link: "#" },
       { title: "Web Development", link: "#" },
       { title: "App Development", link: "#" },
       { title: "Search Engine Optimization", link: "#" }
