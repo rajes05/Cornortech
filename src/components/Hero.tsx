@@ -292,7 +292,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
         >
           <div className="flex justify-between items-start">
             <span className="w-2 h-2 bg-[#a3e635] rounded-full" />
-            <span className="text-purple-200 text-xs uppercase tracking-widest">Est. 2024</span>
+            <span className="text-purple-200 text-xs uppercase tracking-widest">Est. 2023</span>
           </div>
 
           {/* Logo area — taller now that stats are gone */}
