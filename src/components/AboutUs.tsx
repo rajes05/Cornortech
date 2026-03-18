@@ -27,168 +27,6 @@ const OPENINGS = [
     { role: 'Business Development Executive', type: 'Full-time', location: 'On-site · Butwal', tags: ['Sales', 'CRM', 'Strategy'], hot: false },
 ];
 
-// ===== Hiring Modal =====
-const HiringModal = ({ onClose }: { onClose: () => void }) => {
-
-    const perks = [
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>, label: 'Competitive Salary' },
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" /></svg>, label: 'Remote Friendly' },
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>, label: 'Learning Budget' },
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>, label: 'Health Insurance' },
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>, label: 'Fast Growth' },
-        { icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>, label: 'Great Team' },
-    ];
-
-    return (
-        <div
-            className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={onClose}
-        >
-            <div
-                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-            >
-                {/* ── Modal Header ── */}
-                <div className="sticky top-0 z-10 bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] px-8 py-8 rounded-t-3xl">
-                    <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-[#9333EA] rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className="px-2.5 py-0.5 bg-[#a3e635]/20 text-[#a3e635] rounded-full text-xs font-bold uppercase tracking-wide">
-                                    Careers
-                                </span>
-                                <span className="text-white/40 text-xs">{OPENINGS.length} open positions</span>
-                            </div>
-                            <h2 className="text-2xl lg:text-3xl font-black text-white leading-tight">
-                                Build the future with<br />
-                                <span className="text-[#a855f7]">Cornor Tech</span>
-                            </h2>
-                            <p className="text-white/60 text-sm mt-2 max-w-lg">
-                                Join a team of passionate engineers, designers, and strategists working on products that matter. We move fast, grow together, and celebrate wins.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* ── End Modal Header ── */}
-
-                <div className="px-8 py-6 space-y-8">
-
-                    {/* ── Perks strip ── */}
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-[#9333EA]/60 mb-4">Why Cornor Tech</p>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                            {perks.map((perk, i) => (
-                                <div key={i} className="flex items-center gap-3 p-3 bg-[#9333EA]/5 rounded-xl border border-[#9333EA]/10">
-                                    <div className="w-8 h-8 bg-[#9333EA]/10 rounded-lg flex items-center justify-center text-[#9333EA] flex-shrink-0">
-                                        {perk.icon}
-                                    </div>
-                                    <span className="text-sm font-semibold text-gray-700">{perk.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    {/* ── End Perks strip ── */}
-
-                    {/* ── Open Positions ── */}
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-widest text-[#9333EA]/60 mb-4">Open Positions</p>
-                        <div className="space-y-3">
-                            {OPENINGS.map((job, i) => (
-                                <div
-                                    key={i}
-                                    className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3
-                                               p-4 rounded-2xl border border-gray-100
-                                               hover:border-[#9333EA]/25 hover:bg-[#9333EA]/3
-                                               transition-all duration-200 cursor-pointer"
-                                >
-                                    <div className="flex items-start gap-3">
-                                        <div className="w-10 h-10 bg-[#9333EA]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#9333EA]/20 transition-colors">
-                                            <svg className="w-5 h-5 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-2 flex-wrap">
-                                                <h4 className="font-bold text-gray-900 text-sm group-hover:text-[#9333EA] transition-colors">
-                                                    {job.role}
-                                                </h4>
-                                                {job.hot && (
-                                                    <span className="px-2 py-0.5 bg-orange-100 text-orange-600 rounded-full text-[10px] font-bold uppercase tracking-wide">
-                                                        Hot
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <div className="flex items-center gap-2 mt-1 flex-wrap">
-                                                <span className="text-xs text-gray-400 flex items-center gap-1">
-                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    </svg>
-                                                    {job.location}
-                                                </span>
-                                                <span className="text-gray-200">·</span>
-                                                <span className="text-xs text-gray-400">{job.type}</span>
-                                            </div>
-                                            <div className="flex flex-wrap gap-1.5 mt-2">
-                                                {job.tags.map((tag, t) => (
-                                                    <span key={t} className="px-2 py-0.5 bg-gray-100 text-gray-500 rounded-md text-[10px] font-semibold">
-                                                        {tag}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 bg-[#9333EA] text-white rounded-xl text-xs font-semibold hover:bg-[#7c3aed] active:scale-95 transition-all self-start sm:self-center">
-                                        Apply Now
-                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    {/* ── End Open Positions ── */}
-
-                    {/* ── General application CTA ── */}
-                    <div className="bg-gradient-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div>
-                            <p className="font-bold text-white text-sm">Don&apos;t see your role?</p>
-                            <p className="text-white/50 text-xs mt-0.5">Send us your CV and we&apos;ll reach out when something fits.</p>
-                        </div>
-                        <a
-                            href="mailto:careers@cornortech.com"
-                            className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 bg-[#9333EA] text-white rounded-xl text-sm font-semibold hover:bg-[#7c3aed] transition-colors"
-                        >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            Send CV
-                        </a>
-                    </div>
-                    {/* ── End General application CTA ── */}
-
-                </div>
-            </div>
-        </div>
-    );
-};
-// ===== End Hiring Modal =====
-
-
 // ===== Team Card =====
 const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -408,17 +246,30 @@ const AboutUs = () => {
 
                 {/* ── Team Members ── */}
                 <div className="space-y-8">
+
                     <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">Leadership Team</h3>
+                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
+                            Leadership Team
+                        </h3>
                         <p className="text-foreground-secondary max-w-2xl mx-auto">
                             Meet the talented individuals driving innovation at Cornor Tech
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-                        {teamMembers.map((member, index) => (
+
+                    {/* First Row */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {teamMembers.slice(0, 4).map((member, index) => (
                             <TeamCard key={member.id} member={member} index={index} />
                         ))}
                     </div>
+
+                    {/* Second Row (Centered Card) */}
+                    <div className="flex justify-center">
+                        <div className="w-full md:w-1/2 lg:w-1/4">
+                            <TeamCard member={teamMembers[4]} index={4} />
+                        </div>
+                    </div>
+
                 </div>
                 {/* ── End Team Members ── */}
 
