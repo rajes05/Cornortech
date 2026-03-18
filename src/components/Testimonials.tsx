@@ -149,7 +149,7 @@ const CLIENT_LOGOS = [
   { alt: 'Writeeasy',           src: '/clients/we.svg'       },
   { alt: 'Hotel Green Peace',   src: '/clients/pz.webp'      },
   { alt: 'Sulav Kharel',   src: '/clients/Sulav_kharel.jpeg'      },
-  { alt: 'Hotel Green Peace',   src: '/clients/Siddhartha_hospitality.jpeg'      },
+  { alt: 'Siddhartha Hospitality',   src: '/clients/Siddhartha_hospitality.jpeg'      },
 ];
 // ===== End Client logos data =====
 
