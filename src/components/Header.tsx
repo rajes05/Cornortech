@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useHeaderScroll } from '@/hooks/useAnimations';
 import { socialLinks } from '@/data';
 import { SocialSection } from '@/types';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   bannerVisible?: boolean;
@@ -13,13 +14,14 @@ interface HeaderProps {
 const Header = ({ bannerVisible = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isScrolled = useHeaderScroll();
+  const router = useRouter();
 
   const navigationItems = [
-    { title: 'Home', id: 'hero' },
-    { title: 'Services', id: 'services' },
-    { title: 'Our Works', id: 'our-works' },
-    { title: 'Career', id: 'career' },
-    { title: 'About Us', id: 'about-us' },
+    { title: 'Home', id: 'hero', type:'scroll' },
+    { title: 'Services', id: 'services', type:'scroll' },
+    { title: 'Our Works', id: 'our-works', type:'scroll' },
+    { title: 'Career', path: '/careers', type:'page' },
+    { title: 'About Us', id: 'about-us', type:'scroll' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -33,6 +35,20 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
       setIsMobileMenuOpen(false);
     }
   };
+
+  const handleNavClick = (item: any) =>{
+    if(item.type === 'scroll'){
+      const element = document.getElementById(item.id);
+      if(element){
+        element.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    }  else if(item.type === 'page'){
+        router.push(item.path);
+      }
+
+      // Close mobile menu after clicking
+      setIsMobileMenuOpen(false);
+  }
 
   return (
     <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(isScrolled || isMobileMenuOpen)
@@ -59,7 +75,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               {navigationItems.map((item) => (
                 <button
                   key={item.title}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className={`transition-colors font-medium text-sm ${(isScrolled || isMobileMenuOpen) ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'}`}
                 >
                   {item.title}
@@ -122,7 +138,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
             {navigationItems.map((item) => (
               <div key={item.title} className="border-b border-gray-100">
                 <button
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className="w-full text-left px-4 py-3.5 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors"
                 >
                   {item.title}
