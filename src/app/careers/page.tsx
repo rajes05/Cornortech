@@ -32,7 +32,7 @@ const PROCESS = [
 
 export default function CareersPage() {
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-white" id='career'>
 
             {/* ── Hero ── */}
             <section className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-20 px-4 overflow-hidden">

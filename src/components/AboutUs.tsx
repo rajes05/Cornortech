@@ -144,7 +144,7 @@ const AboutUs = () => {
             name: 'Ramit Neupane',
             role: 'Founder & CEO',
             bio: 'Visionary leader passionate about driving innovation and building impactful digital solutions. Focused on guiding the company’s strategy, growth, and long-term vision.',
-            image: '/teams/ceo.jpeg',
+            image: '/teams/founder.jpeg',
             gradient: 'bg-gradient-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
             skills: ['Leadership', 'Business Strategy', 'Innovation'],
             social: { linkedin: '#', twitter: '#' }
@@ -325,7 +325,7 @@ const AboutUs = () => {
 
 
                 {/* ===== CTA Section ===== */}
-                <div className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
+                <div id='career' className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
 
                     {/* Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />

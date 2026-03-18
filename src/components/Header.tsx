@@ -18,6 +18,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
     { title: 'Home', id: 'hero' },
     { title: 'Services', id: 'services' },
     { title: 'Our Works', id: 'our-works' },
+    { title: 'Career', id: 'career' },
     { title: 'About Us', id: 'about-us' },
   ];
 
@@ -36,7 +37,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
   return (
     <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(isScrolled || isMobileMenuOpen)
         ? 'top-0 bg-white shadow-soft border-b border-gray-200'
-        : `${bannerVisible ? 'top-[40px]' : 'top-0'} bg-transparent border-b border-transparent`
+        : `${bannerVisible ? 'top-10' : 'top-0'} bg-transparent border-b border-transparent`
       }`}>
       <nav className="container-custom">
 

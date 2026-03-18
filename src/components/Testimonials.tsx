@@ -150,6 +150,7 @@ const CLIENT_LOGOS = [
   { alt: 'Hotel Green Peace',   src: '/clients/pz.webp'      },
   { alt: 'Sulav Kharel',   src: '/clients/Sulav_kharel.jpeg'      },
   { alt: 'Siddhartha Hospitality',   src: '/clients/Siddhartha_hospitality.jpeg'      },
+  { alt: 'Kalika Manavgyan Secondary School',   src: '/clients/kalika.jpg'      },
 ];
 // ===== End Client logos data =====
 
