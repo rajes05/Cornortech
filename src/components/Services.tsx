@@ -20,7 +20,7 @@ const services: Service[] = [
     title: 'Web Development',
     description: 'Build modern, responsive, and scalable web applications using cutting-edge technologies and best practices.',
     features: ['Custom Website Development', 'Progressive Web Apps (PWA)', 'API Integration & Development'],
-    image: '/services/web_development.jpg',
+    image: '/services/web_dev.jpeg',
     icon: '💻',
     badge: 'Development',
     gradient: 'bg-linear-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
