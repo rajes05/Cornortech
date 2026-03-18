@@ -229,7 +229,7 @@ const AboutUs = () => {
                             <h3 className="text-2xl lg:text-3xl font-bold text-white">Our Story</h3>
                             <div className="space-y-4 text-white/80 leading-relaxed">
                                 <p>
-                                    Founded in 2024, <span className="font-semibold text-purple-300">Cornor Tech</span> started with a simple mission: to bridge the gap between innovative ideas and technological implementation. What began as a small team of passionate developers has grown into a full-service digital agency serving clients worldwide.
+                                    Founded in 2023, <span className="font-semibold text-purple-300">Cornor Tech</span> started with a simple mission: to bridge the gap between innovative ideas and technological implementation. What began as a small team of passionate developers has grown into a full-service digital agency serving clients worldwide.
                                 </p>
                                 <p>
                                     Today, we&apos;re proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
