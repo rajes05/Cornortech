@@ -29,7 +29,7 @@ const AvatarImage = ({ name, src }: { name: string; src?: string }) => {
   if (failed || !src) {
     return (
       <div className="w-12 h-12 rounded-full ring-2 ring-[#9333EA]/20 group-hover:ring-[#9333EA] transition-all duration-300
-                      bg-gradient-to-br from-[#9333EA] to-[#7c3aed]
+                      bg-linear-to-br from-[#9333EA] to-[#7c3aed]
                       flex items-center justify-center
                       text-white font-bold text-sm select-none">
         {initials}
@@ -148,6 +148,8 @@ const CLIENT_LOGOS = [
   { alt: 'Shine Education Hub', src: '/clients/shine.webp'   },
   { alt: 'Writeeasy',           src: '/clients/we.svg'       },
   { alt: 'Hotel Green Peace',   src: '/clients/pz.webp'      },
+  { alt: 'Sulav Kharel',   src: '/clients/Sulav_kharel.jpeg'      },
+  { alt: 'Hotel Green Peace',   src: '/clients/Siddhartha_hospitality.jpeg'      },
 ];
 // ===== End Client logos data =====
 
@@ -161,9 +163,6 @@ const Testimonials = () => {
     { id: "4", name: "David Kumar",     role: "Python Developer",            company: "DataTech Solutions",   rating: 5, text: "Outstanding Python course! The curriculum is well-structured, starting from basics to advanced topics like machine learning. The support from instructors was amazing. Worth every penny!",                                                                    course: "Python Programming",         gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
     { id: "5", name: "Jessica Taylor",  role: "Graphic Designer",            company: "Design Hub",           rating: 5, text: "The graphic design masterclass is phenomenal! I learned Adobe Creative Suite inside out and developed a strong portfolio. The feedback on my work helped me grow tremendously.",                                                                                  course: "Graphic Design Masterclass", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
     { id: "6", name: "Alex Martinez",   role: "Cybersecurity Analyst",       company: "SecureNet Systems",    rating: 5, text: "The cybersecurity course is comprehensive and up-to-date. I gained practical skills in ethical hacking and network security. The hands-on labs were incredibly valuable.",                                                                                      course: "Cybersecurity Specialist",   gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
-    { id: "7", name: "Priya Sharma",    role: "AI Engineer",                 company: "AI Innovations Ltd.",  rating: 5, text: "Incredible AI & ML course! The projects were challenging yet rewarding. I built real machine learning models and deployed them. The knowledge I gained has been instrumental in my current role.",                                                                course: "AI & Machine Learning",      gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
-    { id: "8", name: "James Wilson",    role: "Business Owner",              company: "Wilson Enterprises",   rating: 5, text: "Cornor Tech helped me build a professional website for my business. The web development service was top-notch — delivered on time, within budget, and exceeded expectations. Highly professional team!",                                                            gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
-    { id: "9", name: "Lisa Anderson",   role: "Data Scientist",              company: "Analytics Pro",        rating: 5, text: "The Data Science course was exactly what I needed. From Python to advanced analytics and visualization, everything was covered in depth. The instructors genuinely care about student success.",                                                                  course: "Data Science & Analytics",   gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
   ];
 
   const [visibleRows, setVisibleRows] = useState(INITIAL_ROWS);
@@ -194,7 +193,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 lg:py-32 bg-gradient-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+    <section id="testimonials" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
 
       {/* keyframes */}
       <style>{`
@@ -300,7 +299,7 @@ const Testimonials = () => {
 
 
         {/* ── Video Testimonial ── */}
-        <div className="mt-12 p-8 lg:p-12 bg-gradient-to-br from-[#9333EA]/10 to-white rounded-3xl shadow-sm border border-[#9333EA]/10">
+        <div className="mt-12 p-8 lg:p-12 bg-linear-to-br from-[#9333EA]/10 to-white rounded-3xl shadow-sm border border-[#9333EA]/10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
 
             <div className="space-y-4">
@@ -345,7 +344,7 @@ const Testimonials = () => {
         {/* ===== Video Modal ===== */}
         {showVideo && (
           <div
-            className="fixed inset-0 z-[999] bg-black/70 flex items-center justify-center p-4"
+            className="fixed inset-0 z-999 bg-black/70 flex items-center justify-center p-4"
             onClick={() => setShowVideo(false)}
           >
             <div
@@ -384,9 +383,9 @@ const Testimonials = () => {
           <div className="relative overflow-hidden">
 
             {/* Left fade edge */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-white to-transparent pointer-events-none" />
             {/* Right fade edge */}
-            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-white to-transparent pointer-events-none" />
 
             {/* Scrolling track — duplicated for seamless infinite loop */}
             <div className="flex gap-12 w-max animate-[marquee_28s_linear_infinite]">
@@ -394,7 +393,7 @@ const Testimonials = () => {
                 <div
                   key={i}
                   className="flex items-center justify-center
-                             w-[180px] h-[100px] flex-shrink-0
+                             w-45 h-25 shrink-0
                              bg-white rounded-xl
                              border border-[#9333EA]/10
                              px-5 py-3 shadow-sm
