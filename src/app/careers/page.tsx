@@ -22,13 +22,6 @@ const PERKS = [
     { icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>, label: 'Cutting-edge Stack', desc: 'Latest tools, no legacy mess' },
 ];
 
-const VALUES = [
-    { emoji: '🚀', title: 'Move Fast',       desc: 'We ship weekly. Ideas go from concept to production quickly. No bureaucracy, no red tape.' },
-    { emoji: '🤝', title: 'Own It',           desc: 'Every team member owns their work end-to-end. We trust you to make decisions and learn from them.' },
-    { emoji: '💡', title: 'Stay Curious',     desc: 'We invest in learning. New tech, new ideas, new approaches — we embrace them all.' },
-    { emoji: '❤️', title: 'Care Deeply',      desc: 'About the product, the team, and the clients. We build things we are proud of.' },
-];
-
 const PROCESS = [
     { step: '01', title: 'Apply Online',        desc: 'Submit your CV and a short note on why you want to join Cornor Tech. No cover letter needed.' },
     { step: '02', title: 'Intro Call',           desc: '30-min video call with our team. We talk about your experience, what you are looking for, and answer your questions.' },
@@ -115,28 +108,6 @@ export default function CareersPage() {
                 </div>
             </section>
             {/* ── End Hero ── */}
-
-
-            {/* ── Values ── */}
-            <section className="py-20 px-4 bg-[#faf9ff]">
-                <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-12">
-                        <p className="text-xs font-bold uppercase tracking-widest text-[#9333EA]/60 mb-3">How we work</p>
-                        <h2 className="text-2xl lg:text-3xl font-black text-gray-900">Our Values</h2>
-                    </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {VALUES.map((v, i) => (
-                            <div key={i} className="bg-white rounded-2xl p-6 border border-[#9333EA]/10 hover:border-[#9333EA]/25 hover:shadow-md transition-all duration-200">
-                                <div className="text-3xl mb-4">{v.emoji}</div>
-                                <h3 className="font-black text-gray-900 text-base mb-2">{v.title}</h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">{v.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-            {/* ── End Values ── */}
-
 
             {/* ── Perks ── */}
             <section className="py-20 px-4 bg-white">
