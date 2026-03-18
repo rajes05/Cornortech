@@ -31,7 +31,7 @@ const services: Service[] = [
     title: 'Digital Marketing',
     description: 'Grow your business with data-driven digital marketing strategies that deliver measurable results.',
     features: ['Search Engine Optimization (SEO)', 'Social Media Marketing', 'Analytics & Reporting'],
-    image:'/services/digital_marketing.png',
+    image: '/services/digital_marketing.png',
     icon: '📱',
     badge: 'Marketing',
     gradient: 'bg-linear-to-br from-[#a855f7]/20 to-[#9333EA]/20',
@@ -42,7 +42,7 @@ const services: Service[] = [
     title: 'Graphic Design',
     description: 'Create stunning visual designs that communicate your brand message and captivate your audience.',
     features: ['Brand Identity Design', 'Logo & Visual Assets', 'Social Media Graphics'],
-    image:'/services/graphic_design.webp',
+    image: '/services/graphic.png',
     icon: '🎨',
     badge: 'Design',
     gradient: 'bg-linear-to-br from-[#9333EA]/15 to-[#a855f7]/25',
@@ -52,6 +52,7 @@ const services: Service[] = [
     title: 'Mobile App Development',
     description: 'Develop powerful mobile applications for iOS and Android that engage users and drive growth.',
     features: ['Native iOS & Android Apps', 'Cross-Platform Development', 'App Store Optimization'],
+    image: '/services/mobile_dev.png',
     icon: '📲',
     badge: 'Mobile',
     gradient: 'bg-linear-to-br from-[#7c3aed]/20 to-[#9333EA]/20',
@@ -61,6 +62,7 @@ const services: Service[] = [
     title: 'UI/UX Design',
     description: 'Design intuitive and beautiful user experiences that keep your customers engaged and satisfied.',
     features: ['User Research & Testing', 'Wireframing & Prototyping', 'Design System Creation'],
+    image: '/services/ui.png',
     icon: '✨',
     badge: 'Design',
     gradient: 'bg-linear-to-br from-[#9333EA]/25 to-[#7e22ce]/15',
@@ -70,6 +72,7 @@ const services: Service[] = [
     title: 'Cloud Solutions',
     description: 'Leverage cloud technology to scale your infrastructure and optimize your business operations.',
     features: ['AWS / Azure / GCP Setup', 'DevOps & CI/CD', 'Cost Optimization'],
+    image: '/services/cloud.png',
     icon: '☁️',
     badge: 'Cloud',
     gradient: 'bg-linear-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
@@ -79,24 +82,17 @@ const services: Service[] = [
     title: 'E-commerce Solutions',
     description: 'Build powerful online stores that convert visitors into customers and drive revenue growth.',
     features: ['Custom E-commerce Platforms', 'Payment Gateway Integration', 'Order Management Systems'],
+    image: '/services/e_com.png',
     icon: '🛒',
     badge: 'E-commerce',
     gradient: 'bg-linear-to-br from-[#9333EA]/20 to-[#a855f7]/20',
-  },
-  {
-    id: '8',
-    title: 'Branding & Strategy',
-    description: 'Develop a compelling brand identity and strategic roadmap to stand out in your market.',
-    features: ['Brand Strategy Development', 'Market Research & Analysis', 'Competitive Analysis'],
-    icon: '🎯',
-    badge: 'Strategy',
-    gradient: 'bg-linear-to-br from-[#a855f7]/15 to-[#9333EA]/25',
   },
   {
     id: '9',
     title: 'Content Creation',
     description: 'Engage your audience with high-quality content that tells your story and builds trust.',
     features: ['Blog Writing & Articles', 'Video Production', 'Content Strategy Planning'],
+    image: '/services/content.png',
     icon: '✍️',
     badge: 'Content',
     gradient: 'bg-linear-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
@@ -191,14 +187,14 @@ const ServiceCard = ({ service }: { service: Service }) => (
           {/* Fast delivery */}
           <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             Fast
           </span>
           {/* Quality */}
           <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Quality
           </span>
@@ -209,9 +205,9 @@ const ServiceCard = ({ service }: { service: Service }) => (
                            hover:bg-[#9333ea] transition-colors duration-200 group/btn">
           Get Started
           <svg className="w-2.5 h-2.5 transition-transform duration-200 group-hover/btn:translate-x-0.5"
-               viewBox="0 0 16 16" fill="none" stroke="currentColor"
-               strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
+            viewBox="0 0 16 16" fill="none" stroke="currentColor"
+            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 8h10M9 4l4 4-4 4" />
           </svg>
         </button>
       </div>
@@ -334,11 +330,10 @@ const Services = () => {
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current
-                      ? 'w-6 bg-[#9333EA]'
-                      : 'w-2 bg-[#9333EA]/20 hover:bg-[#9333EA]/40'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === current
+                    ? 'w-6 bg-[#9333EA]'
+                    : 'w-2 bg-[#9333EA]/20 hover:bg-[#9333EA]/40'
+                    }`}
                   aria-label={`Go to service ${i + 1}`}
                 />
               ))}
