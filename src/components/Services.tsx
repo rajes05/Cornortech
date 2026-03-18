@@ -31,7 +31,7 @@ const services: Service[] = [
     title: 'Digital Marketing',
     description: 'Grow your business with data-driven digital marketing strategies that deliver measurable results.',
     features: ['Search Engine Optimization (SEO)', 'Social Media Marketing', 'Analytics & Reporting'],
-    image: '/services/digital_marketing.png',
+    image: '/services/digital.png',
     icon: '📱',
     badge: 'Marketing',
     gradient: 'bg-linear-to-br from-[#a855f7]/20 to-[#9333EA]/20',
