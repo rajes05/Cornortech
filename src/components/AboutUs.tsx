@@ -184,7 +184,7 @@ const AboutUs = () => {
             name: 'Rubi Ale',
             role: 'Marketing Head',
             bio: 'Creative marketing leader focused on building brand presence and driving growth. Skilled in digital marketing, campaign strategy, market research, and audience engagement.',
-            image: '/teams/mh.jpeg',
+            image: '/teams/rubi_ale.jpg',
             gradient: 'bg-gradient-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
             skills: ['Digital Marketing', 'Brand Strategy', 'Market Research'],
             social: { linkedin: '#', twitter: '#' }

@@ -94,6 +94,16 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     }))
   ).current;
 
+  // ── Service tags (shared between mobile & desktop) ───────
+  const serviceTags = [
+    'Web Development', 'Digital Marketing', 'Graphic Design',
+    'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
+    'E-commerce', 'Branding & Strategy', 'Content Creation',
+    'Web Development', 'Digital Marketing', 'Graphic Design',
+    'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
+    'E-commerce', 'Branding & Strategy', 'Content Creation',
+  ];
+
 
   // ============================================================
   // Render
@@ -153,17 +163,19 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           {/* Left: headline block — w-fit keeps subline flush with heading edge */}
           <div className="flex flex-col w-fit">
 
-            {/* Line 1: "Cornor" */}
+            {/* Line 1: "Cornor"
+                CHANGE: text-[8vw] on desktop (unchanged), text-[13vw] on mobile (was 8vw → too large) */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-[8vw] leading-[0.9] font-bold tracking-tighter text-white uppercase"
+              className="text-[13vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white uppercase"
             >
               Cornor
             </motion.h1>
 
-            {/* Line 2: badge + "Tech Pvt. Ltd" — nowrap keeps badge on same line always */}
+            {/* Line 2: badge + "Tech Pvt. Ltd"
+                CHANGE: same responsive font size as line 1 */}
             <div className="flex items-center gap-3 lg:-mt-4 flex-nowrap">
 
               {/* Pulsing code badge — desktop only, original size */}
@@ -187,34 +199,65 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-[8vw] leading-[0.9] font-bold tracking-tighter text-white/90 uppercase whitespace-nowrap"
+                className="text-[13vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white/90 uppercase whitespace-nowrap"
               >
                 Tech{' '}
                 <span className="text-[#a855f7]">Pvt. Ltd</span>
               </motion.h1>
             </div>
 
-            {/* Typewriter: cycles through 9 service names */}
-            {/* <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mt-3 text-purple-300 text-base lg:text-lg font-mono tracking-wide min-h-[1.5rem]"
-              aria-live="polite"
-            >
-              We build{' '}
-              <span className="text-[#a3e635] border-r-2 border-[#a3e635] pr-0.5">
-                {typedText}
-              </span>
-            </motion.p> */}
-
           </div>
 
 
-          {/* ── Right decorative accent column ──────────────
-              Slogan pill (frosted glass + diamond accents),
-              vertical scrolling service keywords, dot-grid motif
-          ── */}
+          {/* ────────────────────────────────────────────────
+              MOBILE ONLY: Slogan pill + horizontal scrolling services
+              Shown below headline on small screens.
+              Hidden on lg+ (desktop has its own right column).
+          ──────────────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="flex lg:hidden flex-col gap-3 w-full"
+          >
+            {/* Slogan pill */}
+            <div className="flex items-center gap-2 self-start bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-5 py-2.5">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7"/>
+              </svg>
+              <span className="text-white/80 text-sm font-medium tracking-wide italic">
+                Where tech meets solution!
+              </span>
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M5 0L10 5L5 10L0 5Z" fill="#a3e635"/>
+              </svg>
+            </div>
+
+            {/* Horizontal auto-scrolling service tags */}
+            <div className="relative h-5 overflow-hidden w-full" aria-hidden="true">
+              <motion.div
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+                className="flex items-center gap-6 w-max"
+              >
+                {serviceTags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-mono tracking-widest uppercase text-purple-300/50 whitespace-nowrap"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </motion.div>
+              {/* Left + right fade masks */}
+              <div className="absolute inset-y-0 left-0 w-8 bg-linear-to-r from-[#1e003a] to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-8 bg-linear-to-l from-[#2d0a52] to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
+          {/* === End Mobile pill + services === */}
+
+
+          {/* ── Desktop: right decorative accent column (UNCHANGED) ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -242,14 +285,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
                 className="flex flex-col items-end gap-2.5"
               >
-                {[
-                  'Web Development', 'Digital Marketing', 'Graphic Design',
-                  'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
-                  'E-commerce', 'Branding & Strategy', 'Content Creation',
-                  'Web Development', 'Digital Marketing', 'Graphic Design',
-                  'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
-                  'E-commerce', 'Branding & Strategy', 'Content Creation',
-                ].map((tag, i) => (
+                {serviceTags.map((tag, i) => (
                   <span
                     key={i}
                     className="text-[10px] font-mono tracking-widest uppercase text-purple-300/50"
@@ -274,15 +310,14 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             />
 
           </motion.div>
-          {/* === End right decorative accent column === */}
+          {/* === End Desktop right decorative accent column === */}
 
         </div>
         {/* === End 2a. Giant Stacked Headline === */}
 
 
         {/* ================================================
-            2b. Logo / Mascot Card  (col-span-3)
-            Stats strip removed — cleaner, logo breathes more
+            2b. Logo / Mascot Card  (col-span-3) — UNCHANGED
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -314,7 +349,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ================================================
-            2c. Workspace Image Card  (col-span-6)
+            2c. Workspace Image Card  (col-span-6) — UNCHANGED
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
@@ -370,7 +405,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ================================================
-            2d. Right Column — Two Stacked Action Cards  (col-span-3)
+            2d. Right Column — Two Stacked Action Cards  (col-span-3) — UNCHANGED
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -449,7 +484,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
       {/* ==================================================
-          3. Bottom Ambient Glow Blob
+          3. Bottom Ambient Glow Blob — UNCHANGED
           ================================================== */}
       <div
         className="absolute bottom- left-1/252 -translate-x-1/2 w-150 h-75 bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
