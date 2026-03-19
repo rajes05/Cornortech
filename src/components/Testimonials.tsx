@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Testimonial {
   id: string;
@@ -14,6 +15,16 @@ interface Testimonial {
   course?: string;
   gradient: string;
 }
+
+// ── Shared openings positions ──────────
+const OPENINGS = [
+  { role: 'Senior Full Stack Developer', type: 'Full-time', location: 'Remote', tags: ['React', 'Node.js', 'PostgreSQL'], hot: true },
+  { role: 'UI/UX Designer', type: 'Full-time', location: 'Hybrid · Butwal', tags: ['Figma', 'Prototyping', 'Design Systems'], hot: true },
+  { role: 'DevOps Engineer', type: 'Full-time', location: 'Remote', tags: ['AWS', 'Docker', 'Kubernetes'], hot: false },
+  { role: 'Digital Marketing Specialist', type: 'Full-time', location: 'On-site · Butwal', tags: ['SEO', 'Meta Ads', 'Analytics'], hot: false },
+  { role: 'React Native Developer', type: 'Contract', location: 'Remote', tags: ['React Native', 'iOS', 'Android'], hot: false },
+  { role: 'Business Development Executive', type: 'Full-time', location: 'On-site · Butwal', tags: ['Sales', 'CRM', 'Strategy'], hot: false },
+];
 
 // ===== Avatar — shows image if available, initials fallback if not =====
 const AvatarImage = ({ name, src }: { name: string; src?: string }) => {
@@ -136,21 +147,21 @@ const TestimonialCard = ({
 
 
 const CARDS_PER_ROW = 3;
-const INITIAL_ROWS  = 1;
+const INITIAL_ROWS = 1;
 
 // ===== Client logos data =====
 const CLIENT_LOGOS = [
-  { alt: 'Career Guide',        src: '/clients/caareer.webp' },
-  { alt: 'Debai',               src: '/clients/debai.webp'   },
-  { alt: 'Dynamic Education',   src: '/clients/dynamic.webp' },
-  { alt: 'Web Surfer',          src: '/clients/neplo.webp'   },
-  { alt: 'Learn Nepal',         src: '/clients/ln.webp'      },
-  { alt: 'Shine Education Hub', src: '/clients/shine.webp'   },
-  { alt: 'Writeeasy',           src: '/clients/we.svg'       },
-  { alt: 'Hotel Green Peace',   src: '/clients/pz.webp'      },
-  { alt: 'Sulav Kharel',   src: '/clients/Sulav_kharel.jpeg'      },
-  { alt: 'Siddhartha Hospitality',   src: '/clients/Siddhartha_hospitality.jpeg'      },
-  { alt: 'Kalika Manavgyan Secondary School',   src: '/clients/kalika.jpg'      },
+  { alt: 'Career Guide', src: '/clients/caareer.webp' },
+  { alt: 'Debai', src: '/clients/debai.webp' },
+  { alt: 'Dynamic Education', src: '/clients/dynamic.webp' },
+  { alt: 'Web Surfer', src: '/clients/neplo.webp' },
+  { alt: 'Learn Nepal', src: '/clients/ln.webp' },
+  { alt: 'Shine Education Hub', src: '/clients/shine.webp' },
+  { alt: 'Writeeasy', src: '/clients/we.svg' },
+  { alt: 'Hotel Green Peace', src: '/clients/pz.webp' },
+  { alt: 'Sulav Kharel', src: '/clients/Sulav_kharel.jpeg' },
+  { alt: 'Siddhartha Hospitality', src: '/clients/Siddhartha_hospitality.jpeg' },
+  { alt: 'Kalika Manavgyan Secondary School', src: '/clients/kalika.jpg' },
 ];
 // ===== End Client logos data =====
 
@@ -158,22 +169,22 @@ const CLIENT_LOGOS = [
 const Testimonials = () => {
 
   const testimonials: Testimonial[] = [
-    { id: "1", name: "Sarah Johnson",   role: "Full Stack Developer",        company: "Tech Solutions Inc.",  rating: 5, text: "The MERN Stack course completely transformed my career. The instructors are knowledgeable and the hands-on projects gave me real-world experience. I landed my dream job within 3 months!",                                                                    course: "MERN Stack Development",     gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
-    { id: "2", name: "Michael Chen",    role: "UI/UX Designer",              company: "Creative Studios",     rating: 5, text: "Best design course I have ever taken! The UI/UX program at Cornor Tech is comprehensive and practical. I learned everything from user research to prototyping. Highly recommend!",                                                                           course: "UI/UX Design",               gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
-    { id: "3", name: "Emily Rodriguez", role: "Digital Marketing Specialist", company: "Growth Marketing Co.", rating: 5, text: "The digital marketing course exceeded my expectations. I learned SEO, social media strategies, and analytics. The real-world case studies were invaluable. My campaigns now generate 3x more leads!",                                                            course: "Digital Marketing Pro",      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
-    { id: "4", name: "David Kumar",     role: "Python Developer",            company: "DataTech Solutions",   rating: 5, text: "Outstanding Python course! The curriculum is well-structured, starting from basics to advanced topics like machine learning. The support from instructors was amazing. Worth every penny!",                                                                    course: "Python Programming",         gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
-    { id: "5", name: "Jessica Taylor",  role: "Graphic Designer",            company: "Design Hub",           rating: 5, text: "The graphic design masterclass is phenomenal! I learned Adobe Creative Suite inside out and developed a strong portfolio. The feedback on my work helped me grow tremendously.",                                                                                  course: "Graphic Design Masterclass", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
-    { id: "6", name: "Alex Martinez",   role: "Cybersecurity Analyst",       company: "SecureNet Systems",    rating: 5, text: "The cybersecurity course is comprehensive and up-to-date. I gained practical skills in ethical hacking and network security. The hands-on labs were incredibly valuable.",                                                                                      course: "Cybersecurity Specialist",   gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
+    { id: "1", name: "Sarah Johnson", role: "Full Stack Developer", company: "Tech Solutions Inc.", rating: 5, text: "The MERN Stack course completely transformed my career. The instructors are knowledgeable and the hands-on projects gave me real-world experience. I landed my dream job within 3 months!", course: "MERN Stack Development", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
+    { id: "2", name: "Michael Chen", role: "UI/UX Designer", company: "Creative Studios", rating: 5, text: "Best design course I have ever taken! The UI/UX program at Cornor Tech is comprehensive and practical. I learned everything from user research to prototyping. Highly recommend!", course: "UI/UX Design", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
+    { id: "3", name: "Emily Rodriguez", role: "Digital Marketing Specialist", company: "Growth Marketing Co.", rating: 5, text: "The digital marketing course exceeded my expectations. I learned SEO, social media strategies, and analytics. The real-world case studies were invaluable. My campaigns now generate 3x more leads!", course: "Digital Marketing Pro", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
+    { id: "4", name: "David Kumar", role: "Python Developer", company: "DataTech Solutions", rating: 5, text: "Outstanding Python course! The curriculum is well-structured, starting from basics to advanced topics like machine learning. The support from instructors was amazing. Worth every penny!", course: "Python Programming", gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
+    { id: "5", name: "Jessica Taylor", role: "Graphic Designer", company: "Design Hub", rating: 5, text: "The graphic design masterclass is phenomenal! I learned Adobe Creative Suite inside out and developed a strong portfolio. The feedback on my work helped me grow tremendously.", course: "Graphic Design Masterclass", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
+    { id: "6", name: "Alex Martinez", role: "Cybersecurity Analyst", company: "SecureNet Systems", rating: 5, text: "The cybersecurity course is comprehensive and up-to-date. I gained practical skills in ethical hacking and network security. The hands-on labs were incredibly valuable.", course: "Cybersecurity Specialist", gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
   ];
 
   const [visibleRows, setVisibleRows] = useState(INITIAL_ROWS);
   const [newRowStart, setNewRowStart] = useState<number | null>(null);
-  const [showVideo,   setShowVideo]   = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
-  const totalRows    = Math.ceil(testimonials.length / CARDS_PER_ROW);
+  const totalRows = Math.ceil(testimonials.length / CARDS_PER_ROW);
   const visibleCount = visibleRows * CARDS_PER_ROW;
   const visibleCards = testimonials.slice(0, visibleCount);
-  const allShown     = visibleRows >= totalRows;
+  const allShown = visibleRows >= totalRows;
 
   const expandBtnRef = useRef<HTMLButtonElement>(null);
 
@@ -257,9 +268,8 @@ const Testimonials = () => {
               {Array.from({ length: totalRows }).map((_, i) => (
                 <div
                   key={i}
-                  className={`rounded-full transition-all duration-300 ${
-                    i < visibleRows ? "w-6 h-2 bg-[#9333EA]" : "w-2 h-2 bg-[#9333EA]/20"
-                  }`}
+                  className={`rounded-full transition-all duration-300 ${i < visibleRows ? "w-6 h-2 bg-[#9333EA]" : "w-2 h-2 bg-[#9333EA]/20"
+                    }`}
                 />
               ))}
             </div>
@@ -415,6 +425,121 @@ const Testimonials = () => {
           </div>
         </div>
         {/* ===== End Trusted Clients ===== */}
+
+        {/* ── Stats Section ── */}
+        <div className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-14 shadow-large overflow-hidden animate-fade-in" style={{ animationDelay: '0.5s' }}>
+
+          {/* Decorative rings */}
+          <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-purple-500/20 pointer-events-none" />
+          <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full border border-purple-400/10 pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full border border-purple-500/15 pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full bg-purple-600/5 blur-3xl pointer-events-none" />
+
+          {/* Header */}
+          <div className="text-center mb-10 relative z-10">
+            <span className="inline-block px-4 py-1.5 bg-white/10 text-purple-200 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+              By the Numbers
+            </span>
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Cornor Tech at a Glance</h3>
+            <p className="text-white/50 text-sm max-w-md mx-auto">Numbers that reflect our commitment to excellence</p>
+          </div>
+
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 relative z-10">
+            {[
+              { number: '3+', label: 'Years of Excellence', sub: 'Since 2024', accent: 'from-purple-500/30 to-violet-600/20', ring: 'ring-purple-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+              { number: '150+', label: 'Projects Delivered', sub: 'Across industries', accent: 'from-violet-500/30 to-purple-600/20', ring: 'ring-violet-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg> },
+              { number: '120+', label: 'Happy Clients', sub: 'Worldwide', accent: 'from-fuchsia-500/30 to-purple-600/20', ring: 'ring-fuchsia-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg> },
+              { number: '25+', label: 'Team Members', sub: 'Expert engineers', accent: 'from-purple-600/30 to-fuchsia-500/20', ring: 'ring-purple-300/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
+            ].map((stat, idx) => (
+              <div
+                key={idx}
+                className={`group relative bg-linear-to-br ${stat.accent} backdrop-blur-sm
+                                            rounded-2xl p-5 lg:p-6 ring-1 ${stat.ring}
+                                            hover:ring-white/20 hover:bg-white/10
+                                            transition-all duration-300 hover:-translate-y-1
+                                            flex flex-col items-center text-center gap-3`}
+              >
+                <div className="w-12 h-12 rounded-xl bg-white/10 ring-1 ring-white/20 flex items-center justify-center text-purple-200 group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
+                  {stat.icon}
+                </div>
+                <div className="text-4xl lg:text-5xl font-black text-white tracking-tight leading-none">{stat.number}</div>
+                <div>
+                  <p className="text-sm font-semibold text-white/90 leading-snug">{stat.label}</p>
+                  <p className="text-[11px] text-white/40 mt-0.5 font-medium">{stat.sub}</p>
+                </div>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 rounded-full bg-purple-400/40 group-hover:w-16 group-hover:bg-purple-300/60 transition-all duration-300" />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* ── End Stats Section ── */}
+
+
+        {/* ===== View career Section ===== */}
+        <div id='career' className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
+
+          {/* Background */}
+          <div className="absolute inset-0 bg-linear-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />
+          <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
+          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
+
+          <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
+
+            {/* Left content */}
+            <div className="flex-1 space-y-4 text-center lg:text-left">
+              <span className="inline-block px-3 py-1 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-xs font-bold uppercase tracking-widest">
+                Careers
+              </span>
+              <h3 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">
+                Ready to build something
+                <span className="text-[#9333EA]"> great together?</span>
+              </h3>
+              <p className="text-gray-500 text-sm lg:text-base max-w-lg leading-relaxed">
+                We&apos;re growing fast and looking for talented people who love building products that make a real difference. Competitive pay, great culture, remote options.
+              </p>
+              {/* Trust pills */}
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                {[
+                  { icon: '🌍', label: 'Remote Friendly' },
+                  { icon: '⚡', label: 'Fast Growth' },
+                  { icon: '💜', label: 'Great Culture' },
+                ].map((pill, i) => (
+                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#9333EA]/15 rounded-full text-xs font-semibold text-gray-600 shadow-sm">
+                    <span>{pill.icon}</span>
+                    {pill.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: single CTA button */}
+            <div className="flex flex-col items-center gap-3 shrink-0">
+              <Link
+                href="/careers"
+                className="group relative flex items-center gap-3
+                                           px-8 py-4 bg-[#9333EA] text-white rounded-2xl
+                                           font-bold text-base
+                                           hover:bg-[#7c3aed] active:scale-95
+                                           transition-all duration-200
+                                           shadow-lg shadow-[#9333EA]/30
+                                           hover:shadow-xl hover:shadow-[#9333EA]/40"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                View Career Options
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <p className="text-xs text-gray-400 font-medium">{OPENINGS.length} positions open right now</p>
+            </div>
+
+          </div>
+        </div>
+        {/* ===== End View career Section ===== */}
 
 
       </div>
