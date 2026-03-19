@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface TeamMember {
     id: string;
@@ -188,105 +189,103 @@ const AboutUsPage = () => {
     ];
 
     return (
-        <section className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+        <main className="min-h-screen">
 
-            {/* Back to Home */}
-            <div className="absolute top-0 left-0 right-0 z-20 px-6 py-4 flex items-center">
-                <Link
-                    href="/"
-                    className="inline-flex items-center gap-2 text-[#9333EA]/60 hover:text-[#9333EA] text-sm font-semibold transition-colors group"
-                >
-                    <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
-                    </svg>
-                    Back to Home
-                </Link>
-            </div>
-            {/* End Back to Home */}
+            <Header/>
 
+            {/* ── Dark top band so header nav items are visible ── */}
+            <div className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-16 px-4 overflow-hidden">
 
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-20 right-20 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-20 left-20 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
-            </div>
+                {/* Decorative rings */}
+                <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-purple-500/20 pointer-events-none" />
+                <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full border border-purple-500/15 pointer-events-none" />
 
-            <div className="container-custom relative z-10 space-y-16">
-
-                {/* ── Header ── */}
-                <div className="text-center space-y-6 animate-fade-in">
-                    <div className="inline-block">
-                        <span className="px-4 py-2 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-sm font-semibold">
-                            About Us
-                        </span>
-                    </div>
-                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground">
-                        <span className="text-[#9333EA]">Meet the Team</span>
+                <div className="container-custom relative z-10 text-center space-y-4">
+                    <span className="px-4 py-2 bg-[#9333EA]/30 text-purple-200 rounded-full text-sm font-semibold">
+                        About Us
+                    </span>
+                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+                        <span className="text-[#a855f7]">Meet the Team</span>
                         <br />
                         Behind Cornor Tech
                     </h2>
-                    <p className="text-lg lg:text-xl text-foreground-secondary max-w-3xl mx-auto">
+                    <p className="text-lg text-white/60 max-w-3xl mx-auto">
                         We&apos;re a passionate team of innovators, designers, and developers dedicated to transforming businesses through technology.
                     </p>
                 </div>
-                {/* ── End Header ── */}
+            </div>
+            {/* ── End dark top band ── */}
+
+            <section className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+
+                {/* Background decorative elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-20 right-20 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
+                    <div className="absolute bottom-20 left-20 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
+                </div>
+                {/* End Background decorative elements */}
 
 
-                {/* ── Company Story ── */}
-                <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                    <div className="bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-12 shadow-large border border-purple-500/30">
-                        <div className="space-y-6">
-                            <h3 className="text-2xl lg:text-3xl font-bold text-white">Our Story</h3>
-                            <div className="space-y-4 text-white/80 leading-relaxed">
-                                <p>
-                                    Founded in 2023, <span className="font-semibold text-purple-300">Cornor Tech</span> started with a simple mission: to bridge the gap between innovative ideas and technological implementation. What began as a small team of passionate developers has grown into a full-service digital agency serving clients worldwide.
-                                </p>
-                                <p>
-                                    Today, we&apos;re proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
-                                </p>
-                                <p>
-                                    With over <span className="font-semibold text-purple-300">150+ successful projects</span> and <span className="font-semibold text-purple-300">120+ satisfied clients</span>, we continue to push the boundaries of what&apos;s possible in the digital realm.
-                                </p>
+                <div className="container-custom relative z-10 space-y-16">
+
+                    {/* ── Company Story ── */}
+                    <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                        <div className="bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-12 shadow-large border border-purple-500/30">
+                            <div className="space-y-6">
+                                <h3 className="text-2xl lg:text-3xl font-bold text-white">Our Story</h3>
+                                <div className="space-y-4 text-white/80 leading-relaxed">
+                                    <p>
+                                        Founded in 2023, <span className="font-semibold text-purple-300">Cornor Tech</span> started with a simple mission: to bridge the gap between innovative ideas and technological implementation. What began as a small team of passionate developers has grown into a full-service digital agency serving clients worldwide.
+                                    </p>
+                                    <p>
+                                        Today, we&apos;re proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
+                                    </p>
+                                    <p>
+                                        With over <span className="font-semibold text-purple-300">150+ successful projects</span> and <span className="font-semibold text-purple-300">120+ satisfied clients</span>, we continue to push the boundaries of what&apos;s possible in the digital realm.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {/* ── End Company Story ── */}
+                    {/* ── End Company Story ── */}
 
 
-                {/* ── Team Members ── */}
-                <div className="space-y-8">
+                    {/* ── Team Members ── */}
+                    <div className="space-y-8">
 
-                    <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
-                            Leadership Team
-                        </h3>
-                        <p className="text-foreground-secondary max-w-2xl mx-auto">
-                            Meet the talented individuals driving innovation at Cornor Tech
-                        </p>
-                    </div>
-
-                    {/* First Row */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {teamMembers.slice(0, 4).map((member, index) => (
-                            <TeamCard key={member.id} member={member} index={index} />
-                        ))}
-                    </div>
-
-                    {/* Second Row (Centered Card) */}
-                    <div className="flex justify-center">
-                        <div className="w-full md:w-1/2 lg:w-1/4">
-                            <TeamCard member={teamMembers[4]} index={4} />
+                        <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
+                                Leadership Team
+                            </h3>
+                            <p className="text-foreground-secondary max-w-2xl mx-auto">
+                                Meet the talented individuals driving innovation at Cornor Tech
+                            </p>
                         </div>
+
+                        {/* First Row */}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {teamMembers.slice(0, 4).map((member, index) => (
+                                <TeamCard key={member.id} member={member} index={index} />
+                            ))}
+                        </div>
+
+                        {/* Second Row (Centered Card) */}
+                        <div className="flex justify-center">
+                            <div className="w-full md:w-1/2 lg:w-1/4">
+                                <TeamCard member={teamMembers[4]} index={4} />
+                            </div>
+                        </div>
+
                     </div>
+                    {/* ── End Team Members ── */}
 
                 </div>
-                {/* ── End Team Members ── */}
 
-            </div>
+            </section>
 
+            <Footer/>
 
-        </section>
+        </main>
     );
 };
 // ===== End About Us Section =====
