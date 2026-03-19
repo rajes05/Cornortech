@@ -1,7 +1,7 @@
 'use client';
 import Logo from '@/../public/cornortech_logo.png'
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useHeaderScroll } from '@/hooks/useAnimations';
 import { socialLinks } from '@/data';
 import { SocialSection } from '@/types';
@@ -15,13 +15,23 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isScrolled = useHeaderScroll();
   const router = useRouter();
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigationItems = [
-    { title: 'Home', id: 'hero', type:'scroll' },
-    { title: 'Services', id: 'services', type:'scroll' },
-    { title: 'Our Works', id: 'our-works', type:'scroll' },
-    { title: 'Career', path: '/careers', type:'page' },
-    { title: 'About Us', id: 'about-us', type:'scroll' },
+    { title: 'Home', id: 'hero', type: 'scroll' },
+    { title: 'Services', id: 'services', type: 'scroll' },
+    { title: 'Our Works', id: 'our-works', type: 'scroll' },
+    { title: 'Career', path: '/careers', type: 'page' },
+    { title: 'About Us', id: 'about-us', type: 'scroll' },
+    {
+      title: 'More',
+      type: 'dropdown',
+      children: [
+        { title: 'Blogs', path: '/blogs' },
+        { title: 'Updates', path: '/updates' }
+      ]
+    }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -36,24 +46,28 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
     }
   };
 
-  const handleNavClick = (item: any) =>{
-    if(item.type === 'scroll'){
+  const handleNavClick = (item: any) => {
+    if (item.type === 'scroll') {
       const element = document.getElementById(item.id);
-      if(element){
-        element.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    }  else if(item.type === 'page'){
-        router.push(item.path);
-      }
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // Close mobile menu after clicking
+        // Close mobile menu after clicking
+        setIsMobileMenuOpen(false);
+      }
+    } else if (item.type === 'page') {
+      router.push(item.path);
       setIsMobileMenuOpen(false);
+    } else if (item.type === 'dropdown') {
+      // toggle - handled inline, not here
+    }
+
   }
 
   return (
     <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(isScrolled || isMobileMenuOpen)
-        ? 'top-0 bg-white shadow-soft border-b border-gray-200'
-        : `${bannerVisible ? 'top-10' : 'top-0'} bg-transparent border-b border-transparent`
+      ? 'top-0 bg-white shadow-soft border-b border-gray-200'
+      : `${bannerVisible ? 'top-10' : 'top-0'} bg-transparent border-b border-transparent`
       }`}>
       <nav className="container-custom">
 
@@ -71,16 +85,90 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.title}
-                  onClick={() => handleNavClick(item)}
-                  className={`transition-colors font-medium text-sm ${(isScrolled || isMobileMenuOpen) ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'}`}
-                >
-                  {item.title}
-                </button>
-              ))}
+            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
+              {navigationItems.map((item) =>
+                item.type === 'dropdown' ? (
+
+                  /* ── Dropdown button ── */
+                  <div
+                    key={item.title}
+                    className="relative"
+                    onMouseEnter={() => {
+                      // Cancel any pending close
+                      if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+                      setOpenDropdown(item.title);
+                    }}
+                    onMouseLeave={() => {
+                      // Delay close so mouse can travel to panel
+                      dropdownTimer.current = setTimeout(() => {
+                        setOpenDropdown(null);
+                      }, 100);
+                    }}
+                  >
+                    {/* Trigger */}
+                    <button
+                      className={`flex items-center gap-1 transition-colors font-medium text-sm ${(isScrolled || isMobileMenuOpen)
+                        ? 'text-foreground hover:text-[#9333EA]'
+                        : 'text-white hover:text-purple-300'
+                        }`}
+                    >
+                      {item.title}
+                      {/* Chevron icon */}
+                      <svg
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === item.title ? 'rotate-180' : ''
+                          }`}
+                        fill="none" stroke="currentColor" strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Dropdown panel */}
+                    {openDropdown === item.title && (
+                      <div
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
+                        onMouseEnter={() => {
+                          if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+                        }}
+                        onMouseLeave={() => {
+                          dropdownTimer.current = setTimeout(() => {
+                            setOpenDropdown(null);
+                          }, 100);
+                        }}
+                      >
+                        {item.children?.map((child: any) => (
+                          <button
+                            key={child.title}
+                            onClick={() => {
+                              router.push(child.path);
+                              setOpenDropdown(null);
+                            }}
+                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-[#9333EA] transition-colors"
+                          >
+                            {child.title}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                ) : (
+
+                  /* ── Regular button (unchanged) ── */
+                  <button
+                    key={item.title}
+                    onClick={() => handleNavClick(item)}
+                    className={`transition-colors font-medium text-sm ${(isScrolled || isMobileMenuOpen)
+                      ? 'text-foreground hover:text-[#9333EA]'
+                      : 'text-white hover:text-purple-300'
+                      }`}
+                  >
+                    {item.title}
+                  </button>
+
+                )
+              )}
             </div>
 
           </div>
@@ -135,16 +223,42 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
           <div className="pb-4">
 
             {/* Nav items */}
-            {navigationItems.map((item) => (
-              <div key={item.title} className="border-b border-gray-100">
-                <button
-                  onClick={() => handleNavClick(item)}
-                  className="w-full text-left px-4 py-3.5 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors"
-                >
-                  {item.title}
-                </button>
-              </div>
-            ))}
+            {navigationItems.map((item) =>
+              item.type === 'dropdown' ? (
+
+                <div key={item.title}>
+                  {/* "More" section header */}
+                  <div className="px-4 pt-3 pb-1">
+                    <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
+                      {item.title}
+                    </span>
+                  </div>
+                  {/* Children as indented items */}
+                  {item.children?.map((child: any) => (
+                    <div key={child.title} className="border-b border-gray-100">
+                      <button
+                        onClick={() => { router.push(child.path); setIsMobileMenuOpen(false); }}
+                        className="w-full text-left px-6 py-3 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors"
+                      >
+                        {child.title}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+              ) : (
+
+                <div key={item.title} className="border-b border-gray-100">
+                  <button
+                    onClick={() => handleNavClick(item)}
+                    className="w-full text-left px-4 py-3.5 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors"
+                  >
+                    {item.title}
+                  </button>
+                </div>
+
+              )
+            )}
 
             {/* Social icons in mobile menu */}
             <div className="flex items-center gap-2 px-4 pt-4">
