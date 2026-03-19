@@ -9,6 +9,7 @@ import Services from '@/components/Services'
 import OurWorks from '@/components/OurWorks'
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
+import TechStack from '@/components/TechStack'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 import { useState } from 'react';
 
@@ -28,6 +29,7 @@ export default function Home() {
         <Services/>
         <ScrollToTopButton/>
         <CTA/>
+        <TechStack/>
         <OurWorks/>
         <Testimonials />
       </main>
