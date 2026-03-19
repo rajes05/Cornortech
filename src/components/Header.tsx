@@ -23,7 +23,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
     { title: 'Services', id: 'services', type: 'scroll' },
     { title: 'Our Works', id: 'our-works', type: 'scroll' },
     { title: 'Career', path: '/careers', type: 'page' },
-    { title: 'About Us', id: 'about-us', type: 'scroll' },
+    { title: 'About Us', path: '/about-us', type: 'page' },
     {
       title: 'More',
       type: 'dropdown',
