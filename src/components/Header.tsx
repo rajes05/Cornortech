@@ -41,14 +41,6 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
   const nonDropdownItems = navigationItems.filter((item) => item.type !== 'dropdown');
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   const handleNavClick = (item: any) => {
     if (item.type === 'scroll') {
       
@@ -81,7 +73,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
           {/* Logo */}
           <div
-            onClick={() => scrollToSection('hero')}
+            onClick={() => router.push('/')}
             className="shrink-0 cursor-pointer"
           >
             <Image src={Logo} alt="Cornor Tech" height={70} width={50} />
@@ -149,7 +141,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
           {/* End Desktop nav */}
 
 
-          {/* End Mobile: centered pill strip — hidden when hamburger is open */}
+          {/* NavItems */}
           {!isMobileMenuOpen && (
             <div className="md:hidden flex-1 flex items-center overflow-x-auto scrollbar-none px-1">
               <div className="flex items-center gap-0.5 mx-auto">
@@ -168,7 +160,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               </div>
             </div>
           )}
-          {/* End Mobile: centered pill strip — hidden when hamburger is open */}
+          {/* End NavItems */}
 
 
           {/* Right: desktop social + hamburger */}

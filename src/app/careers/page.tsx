@@ -1,5 +1,6 @@
 // app/careers/page.tsx
 
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
 
@@ -264,6 +265,8 @@ export default function CareersPage() {
                 </div>
             </section>
             {/* ── End General Application CTA ── */}
+
+            <Footer/>
 
         </main>
     );
