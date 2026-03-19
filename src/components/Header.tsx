@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useHeaderScroll } from '@/hooks/useAnimations';
 import { socialLinks } from '@/data';
 import { SocialSection } from '@/types';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface HeaderProps {
   bannerVisible?: boolean;
@@ -17,6 +17,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
   const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname();
 
   const navigationItems = [
     { title: 'Home', id: 'hero', type: 'scroll' },
@@ -50,9 +51,16 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
   const handleNavClick = (item: any) => {
     if (item.type === 'scroll') {
-      const element = document.getElementById(item.id);
-      if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setIsMobileMenuOpen(false);
+      
+      //To handleNavClick from another page
+      if (pathname !== '/') {
+        router.push(`/#${item.id}`);
+      } else {
+        const element = document.getElementById(item.id);
+        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setIsMobileMenuOpen(false);
+      }
+
     } else if (item.type === 'page') {
       router.push(item.path);
       setIsMobileMenuOpen(false);

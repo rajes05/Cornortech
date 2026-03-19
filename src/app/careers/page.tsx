@@ -1,5 +1,6 @@
 // app/careers/page.tsx
 
+import Header from '@/components/Header';
 import Link from 'next/link';
 
 const OPENINGS = [
@@ -34,21 +35,10 @@ export default function CareersPage() {
     return (
         <main className="min-h-screen bg-white" id='career'>
 
+            <Header/>
+
             {/* ── Hero ── */}
             <section className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-20 px-4 overflow-hidden">
-
-                {/* Back to Home — top-left fixed bar */}
-                <div className="absolute top-0 left-0 right-0 z-20 px-6 py-4 flex items-center">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm font-semibold transition-colors group"
-                    >
-                        <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
-                        </svg>
-                        Back to Home
-                    </Link>
-                </div>
 
             {/* Decorative rings */}
                 <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-purple-500/20 pointer-events-none" />
