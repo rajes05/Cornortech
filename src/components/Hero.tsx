@@ -10,6 +10,7 @@ import { useRef, useEffect, useState } from 'react';
 // Hero Section
 // Top-of-funnel landing section for Cornor Tech Pvt. Ltd.
 // Layout: Bento-grid, 12-col at lg+, stacked on mobile
+// iPhone SE (375px) responsive
 // ============================================================
 
 // ── Floating particle (decorative, aria-hidden) ──────────────
@@ -94,7 +95,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     }))
   ).current;
 
-  // ── Service tags (shared between mobile & desktop) ───────
+  // ── Service tags ─────────────────────────────────────────
   const serviceTags = [
     'Web Development', 'Digital Marketing', 'Graphic Design',
     'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
@@ -113,16 +114,14 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       ref={sectionRef}
       id="hero"
       className={`relative ${
-        bannerVisible ? 'pt-32' : 'pt-28'
+        bannerVisible ? 'pt-16 lg:pt-32' : 'pt-12 lg:pt-28'
       } w-full min-h-screen bg-linear-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
     >
 
       {/* ==================================================
           1. Background Layer
-          Noise texture + ambient glow + floating particles
           ================================================== */}
 
-      {/* Scrolling noise texture overlay */}
       <motion.div
         className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
         style={{
@@ -131,54 +130,56 @@ const Hero = ({ bannerVisible }: HeroProps) => {
         }}
       />
 
-      {/* Ambient top-left glow */}
       <div
         className="absolute -top-32 -left-32 w-125 h-125 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.18) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
 
-      {/* Floating ambient particles */}
       {particles.map((p, i) => (
         <Particle key={i} {...p} />
       ))}
 
-      {/* === End 1. Background Layer === */}
-
 
       {/* ==================================================
           2. Main Bento Grid
-          12-col on lg, single-col on mobile
           ================================================== */}
       <div className="flex-1 container mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 pb-8 relative z-10">
 
 
         {/* ================================================
             2a. Giant Stacked Headline  (col-span-12)
-            Left:  "Cornor Tech Pvt. Ltd" + typewriter
-            Right: slogan pill + scrolling keywords + dot grid
-            ================================================ */}
-        <div className="lg:col-span-12 flex flex-col lg:flex-row lg:items-end lg:justify-between relative gap-4 lg:gap-0">
 
-          {/* Left: headline block — w-fit keeps subline flush with heading edge */}
+            Mobile (iPhone SE 375px):
+              - flex-row always so decorative col stays right
+              - font shrinks to 7.5vw (~28px) so "TECH PVT. LTD"
+                fits alongside the right column
+              - right column uses compact sizes (pill text smaller,
+                scroll area narrower, dot grid smaller)
+
+            Desktop (lg+): completely unchanged
+            ================================================ */}
+        <div className="lg:col-span-12 flex flex-row items-center lg:items-end justify-between relative gap-2 lg:gap-0">
+
+          {/* ── Left: headline block ── */}
           <div className="flex flex-col w-fit">
 
             {/* Line 1: "Cornor"
-                CHANGE: text-[8vw] on desktop (unchanged), text-[13vw] on mobile (was 8vw → too large) */}
+                7.5vw on mobile = ~28px on 375px → fits with right col
+                8vw  on desktop = unchanged */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-[13vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white uppercase"
+              className="text-[7.5vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white uppercase"
             >
               Cornor
             </motion.h1>
 
-            {/* Line 2: badge + "Tech Pvt. Ltd"
-                CHANGE: same responsive font size as line 1 */}
+            {/* Line 2: badge + "Tech Pvt. Ltd" */}
             <div className="flex items-center gap-3 lg:-mt-4 flex-nowrap">
 
-              {/* Pulsing code badge — desktop only, original size */}
+              {/* Pulsing code badge — desktop only */}
               <div
                 className="hidden lg:flex w-32 h-16 bg-[#a855f7] rounded-full items-center justify-center animate-pulse shrink-0"
                 aria-hidden="true"
@@ -199,7 +200,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="text-[13vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white/90 uppercase whitespace-nowrap"
+                className="text-[7.5vw] lg:text-[8vw] leading-[0.9] font-bold tracking-tighter text-white/90 uppercase whitespace-nowrap"
               >
                 Tech{' '}
                 <span className="text-[#a855f7]">Pvt. Ltd</span>
@@ -207,101 +208,64 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             </div>
 
           </div>
+          {/* === End left headline block === */}
 
 
-          {/* ────────────────────────────────────────────────
-              MOBILE ONLY: Slogan pill + horizontal scrolling services
-              Shown below headline on small screens.
-              Hidden on lg+ (desktop has its own right column).
-          ──────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="flex lg:hidden flex-col gap-3 w-full"
-          >
-            {/* Slogan pill */}
-            <div className="flex items-center gap-2 self-start bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-5 py-2.5">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7"/>
-              </svg>
-              <span className="text-white/80 text-sm font-medium tracking-wide italic">
-                Where tech meets solution!
-              </span>
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M5 0L10 5L5 10L0 5Z" fill="#a3e635"/>
-              </svg>
-            </div>
-
-            {/* Horizontal auto-scrolling service tags */}
-            <div className="relative h-5 overflow-hidden w-full" aria-hidden="true">
-              <motion.div
-                animate={{ x: ['0%', '-50%'] }}
-                transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-                className="flex items-center gap-6 w-max"
-              >
-                {serviceTags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-[10px] font-mono tracking-widest uppercase text-purple-300/50 whitespace-nowrap"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-              {/* Left + right fade masks */}
-              <div className="absolute inset-y-0 left-0 w-8 bg-linear-to-r from-[#1e003a] to-transparent pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-8 bg-linear-to-l from-[#2d0a52] to-transparent pointer-events-none" />
-            </div>
-          </motion.div>
-          {/* === End Mobile pill + services === */}
-
-
-          {/* ── Desktop: right decorative accent column (UNCHANGED) ── */}
+          {/* ── Right decorative accent column ──────────────────
+              Visible on ALL screen sizes.
+              Mobile: compact sizing (pill, scroll, dots scale down)
+              Desktop: original sizing (unchanged)
+          ──────────────────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            className="hidden lg:flex flex-col items-end gap-4 pb-2 shrink-0"
+            className="flex flex-col items-end gap-2 lg:gap-4 pb-2 shrink-0"
           >
 
-            {/* Slogan pill — frosted glass with diamond end-caps */}
-            <div className="flex items-center gap-2 bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-5 py-2.5">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            {/* Slogan pill
+                Mobile:  compact padding + smaller text
+                         "Where" hidden on mobile to shorten the label
+                Desktop: original size + full label */}
+            <div className="flex items-center gap-1.5 lg:gap-2 bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-2.5 py-1.5 lg:px-5 lg:py-2.5">
+              <svg width="8" height="8" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="shrink-0">
                 <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7"/>
               </svg>
-              <span className="text-white/80 text-sm font-medium tracking-wide italic">
-                Where tech meets solution!
+              <span className="text-white/80 text-[8px] lg:text-sm font-medium tracking-wide italic whitespace-nowrap">
+                <span className="hidden lg:inline">Where </span>tech meets solution!
               </span>
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+              <svg width="8" height="8" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="shrink-0">
                 <path d="M5 0L10 5L5 10L0 5Z" fill="#a3e635"/>
               </svg>
             </div>
 
-            {/* Vertical scrolling service keywords */}
-            <div className="relative h-24 overflow-hidden w-52" aria-hidden="true">
+            {/* Vertical scrolling service keywords
+                Mobile:  w-20 h-16  (80px wide, 64px tall)
+                Desktop: w-52 h-24  (208px wide, 96px tall) — unchanged */}
+            <div className="relative h-16 lg:h-24 overflow-hidden w-20 lg:w-52" aria-hidden="true">
               <motion.div
                 animate={{ y: ['0%', '-50%'] }}
                 transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-                className="flex flex-col items-end gap-2.5"
+                className="flex flex-col items-end gap-2 lg:gap-2.5"
               >
                 {serviceTags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-[10px] font-mono tracking-widest uppercase text-purple-300/50"
+                    className="text-[7px] lg:text-[10px] font-mono tracking-widest uppercase text-purple-300/50"
                   >
                     {tag}
                   </span>
                 ))}
               </motion.div>
-              {/* Fade masks top & bottom */}
-              <div className="absolute inset-x-0 top-0 h-6 bg-linear-to-b from-[#1e003a] to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-6 bg-linear-to-t from-[#2d0a52] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-4 lg:h-6 bg-linear-to-b from-[#1e003a] to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-4 lg:h-6 bg-linear-to-t from-[#2d0a52] to-transparent pointer-events-none" />
             </div>
 
-            {/* Dot-grid motif */}
+            {/* Dot-grid motif
+                Mobile:  w-14 h-8   (56×32px)
+                Desktop: w-28 h-16  (112×64px) — unchanged */}
             <div
-              className="w-28 h-16 opacity-20"
+              className="w-14 h-8 lg:w-28 lg:h-16 opacity-20"
               style={{
                 backgroundImage: 'radial-gradient(circle, #a855f7 1px, transparent 1px)',
                 backgroundSize: '12px 12px',
@@ -310,33 +274,35 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             />
 
           </motion.div>
-          {/* === End Desktop right decorative accent column === */}
+          {/* === End right decorative accent column === */}
 
         </div>
         {/* === End 2a. Giant Stacked Headline === */}
 
 
         {/* ================================================
-            2b. Logo / Mascot Card  (col-span-3) — UNCHANGED
+            2b. Logo / Mascot Card  (col-span-3)
+            Mobile: constrain max height so the full-width
+                    aspect-square logo doesn't eat the whole screen
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="lg:col-span-3 bg-purple-500/30 backdrop-blur-sm border border-purple-400/30 rounded-3xl p-6 flex flex-col justify-between hover:bg-purple-500/50 transition-all duration-300 group"
+          className="lg:col-span-3 bg-purple-500/30 backdrop-blur-sm border border-purple-400/30 rounded-3xl p-5 lg:p-6 flex flex-col justify-between hover:bg-purple-500/50 transition-all duration-300 group"
         >
           <div className="flex justify-between items-start">
             <span className="w-2 h-2 bg-[#a3e635] rounded-full" />
             <span className="text-purple-200 text-xs uppercase tracking-widest">Est. 2023</span>
           </div>
 
-          {/* Logo area — taller now that stats are gone */}
-          <div className="relative w-full aspect-square my-4 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500 bg-purple-900/40 flex items-center justify-center">
+          {/* Logo — cap square size on mobile so it doesn't dominate */}
+          <div className="relative w-full max-h-52 lg:max-h-none aspect-square my-3 lg:my-4 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500 bg-purple-900/40 flex items-center justify-center">
             <Image
               src="/cornortech_logo.png"
               alt="Cornor Tech Pvt. Ltd Logo"
               fill
-              className="object-contain p-8"
+              className="object-contain p-6 lg:p-8"
               sizes="(max-width: 1024px) 100vw, 25vw"
             />
           </div>
@@ -349,13 +315,16 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ================================================
-            2c. Workspace Image Card  (col-span-6) — UNCHANGED
+            2c. Workspace Image Card  (col-span-6)
+            Mobile: h-100 (400px) → h-56 (224px) — much more
+                    manageable on a 667px-tall iPhone SE screen
+            Desktop: h-auto — unchanged
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-6 relative h-100 lg:h-auto rounded-3xl overflow-hidden bg-purple-800 border border-purple-500/30 group"
+          className="lg:col-span-6 relative h-56 lg:h-auto rounded-3xl overflow-hidden bg-purple-800 border border-purple-500/30 group"
         >
           <Image
             src="/hero_workspace.png"
@@ -366,29 +335,28 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             priority
           />
 
-          {/* Gradient overlay */}
           <div className="absolute inset-0 bg-linear-to-t from-[#1e003a] via-transparent to-transparent opacity-70" />
 
           {/* Availability badge */}
-          <div className="absolute top-5 left-5 flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1.5">
+          <div className="absolute top-4 left-4 lg:top-5 lg:left-5 flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1.5">
             <span className="w-2 h-2 bg-[#a3e635] rounded-full animate-pulse" aria-hidden="true" />
             <span className="text-white text-xs font-medium">Available for new projects</span>
           </div>
 
-          {/* Bottom caption row */}
-          <div className="absolute bottom-6 left-6 right-6">
-            <div className="flex items-end justify-between gap-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-white max-w-lg leading-tight">
+          {/* Bottom caption */}
+          <div className="absolute bottom-4 left-4 right-4 lg:bottom-6 lg:left-6 lg:right-6">
+            <div className="flex items-end justify-between gap-3 lg:gap-4">
+              <h2 className="text-lg lg:text-3xl font-bold text-white max-w-lg leading-tight">
                 We help businesses scale delivery with accountable, structured tech teams.
               </h2>
               <Link
                 href="#contact"
                 aria-label="Start a project with Cornor Tech"
-                className="w-12 h-12 bg-[#a855f7] rounded-full flex items-center justify-center hover:scale-110 hover:bg-[#9333ea] transition-all duration-200 text-white shrink-0 focus-visible:ring-2 focus-visible:ring-[#a3e635] outline-none"
+                className="w-10 h-10 lg:w-12 lg:h-12 bg-[#a855f7] rounded-full flex items-center justify-center hover:scale-110 hover:bg-[#9333ea] transition-all duration-200 text-white shrink-0 focus-visible:ring-2 focus-visible:ring-[#a3e635] outline-none"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24" height="24" viewBox="0 0 24 24"
+                  width="20" height="20" viewBox="0 0 24 24"
                   fill="none" stroke="white" strokeWidth="2"
                   strokeLinecap="round" strokeLinejoin="round"
                   className="-rotate-45"
@@ -405,52 +373,51 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ================================================
-            2d. Right Column — Two Stacked Action Cards  (col-span-3) — UNCHANGED
+            2d. Right Column — Two Stacked Action Cards (col-span-3)
+            Mobile: side-by-side (grid-cols-2) so they don't
+                    take up too much vertical space
+            Desktop: stacked flex-col — unchanged
             ================================================ */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="lg:col-span-3 flex flex-col gap-4"
+          className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 lg:flex lg:flex-col gap-4"
         >
 
-          {/* Top: Brand highlight card */}
-          <div className="flex-1 bg-[#9333EA] rounded-3xl p-6 flex flex-col justify-end text-white relative overflow-hidden group">
-            {/* Shimmer on hover */}
+          {/* Top / Left: Brand highlight card */}
+          <div className="bg-[#9333EA] rounded-3xl p-4 lg:p-6 flex flex-col justify-end text-white relative overflow-hidden group min-h-36 lg:min-h-0 lg:flex-1">
             <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-            {/* Watermark number */}
             <span
-              className="absolute top-3 right-4 text-[72px] font-black leading-none text-white/10 select-none pointer-events-none"
+              className="absolute top-2 right-3 lg:top-3 lg:right-4 text-[52px] lg:text-[72px] font-black leading-none text-white/10 select-none pointer-events-none"
               aria-hidden="true"
             >
               01
             </span>
-            {/* Tightly stacked label block */}
             <div className="flex flex-col gap-0.5">
-              <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">
+              <span className="text-[9px] lg:text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">
                 Service model
               </span>
-              <span className="text-4xl font-black tracking-tighter leading-none">Fully</span>
-              <span className="text-4xl font-black tracking-tighter leading-none text-white/80">Managed</span>
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-white/50 mt-1">
+              <span className="text-2xl lg:text-4xl font-black tracking-tighter leading-none">Fully</span>
+              <span className="text-2xl lg:text-4xl font-black tracking-tighter leading-none text-white/80">Managed</span>
+              <span className="text-[9px] lg:text-[11px] font-semibold uppercase tracking-widest text-white/50 mt-1">
                 Projects
               </span>
             </div>
-            {/* Decorative ring */}
             <div
-              className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full border border-white/20 pointer-events-none"
+              className="absolute -bottom-6 -right-6 w-20 h-20 lg:w-24 lg:h-24 rounded-full border border-white/20 pointer-events-none"
               aria-hidden="true"
             />
           </div>
 
-          {/* Bottom: CTA card */}
+          {/* Bottom / Right: CTA card */}
           <Link
             href="#contact"
-            className="flex-1 focus-visible:ring-2 focus-visible:ring-[#9333EA] outline-none rounded-3xl"
+            className="focus-visible:ring-2 focus-visible:ring-[#9333EA] outline-none rounded-3xl lg:flex-1"
           >
-            <div className="h-full bg-white rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] active:scale-[0.99] transition-transform duration-300 cursor-pointer min-h-40 group">
+            <div className="h-full bg-white rounded-3xl p-4 lg:p-6 flex flex-col justify-between hover:scale-[1.02] active:scale-[0.99] transition-transform duration-300 cursor-pointer min-h-36 lg:min-h-40 group">
               <div className="flex justify-between items-center">
-                <span className="text-[#9333EA] font-bold uppercase text-sm tracking-wide">
+                <span className="text-[#9333EA] font-bold uppercase text-xs lg:text-sm tracking-wide">
                   Start a Project
                 </span>
                 <motion.div
@@ -460,7 +427,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20" height="20" viewBox="0 0 24 24"
+                    width="16" height="16" viewBox="0 0 24 24"
                     fill="none" stroke="#9333EA" strokeWidth="2"
                     strokeLinecap="round" strokeLinejoin="round"
                   >
@@ -469,7 +436,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                   </svg>
                 </motion.div>
               </div>
-              <span className="text-2xl font-bold text-[#1e003a] leading-none mt-4">
+              <span className="text-xl lg:text-2xl font-bold text-[#1e003a] leading-none mt-3 lg:mt-4">
                 Deploy <br /> Engineers.
               </span>
             </div>
@@ -484,14 +451,12 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
       {/* ==================================================
-          3. Bottom Ambient Glow Blob — UNCHANGED
+          3. Bottom Ambient Glow Blob
           ================================================== */}
       <div
-        className="absolute bottom- left-1/252 -translate-x-1/2 w-150 h-75 bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
         aria-hidden="true"
       />
-      {/* === End 3. Bottom Ambient Glow Blob === */}
-
 
     </section>
   );
