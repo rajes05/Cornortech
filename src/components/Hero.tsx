@@ -143,8 +143,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       <div className="flex-1 container mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 pb-8 relative z-10">
 
 
-        {/* ==== 2a. Giant Stacked Headline ==== */}
-
+        {/* ==== Giant Stacked Headline ==== */}
         {/*     Mobile (iPhone SE 375px):
               - flex-row always so decorative col stays right
               - font shrinks to 7.5vw (~28px) so "TECH PVT. LTD"
@@ -153,7 +152,6 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 scroll area narrower, dot grid smaller)
 
             Desktop (lg+): completely unchanged */}
-
         <div className="lg:col-span-12 flex flex-row items-center lg:items-end justify-between relative gap-2 lg:gap-0">
 
           {/* === Left: headline block === */}
@@ -268,14 +266,12 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           {/* === End right decorative accent column === */}
 
         </div>
-        {/* === End 2a. Giant Stacked Headline === */}
+        {/* === End Giant Stacked Headline === */}
 
 
-        {/* ================================================
-            2b. Logo / Mascot Card  (col-span-3)
-            Mobile: constrain max height so the full-width
-                    aspect-square logo doesn't eat the whole screen
-            ================================================ */}
+        {/* ===== Logo / Mascot Card ===== */}
+        {/*  Mobile: constrain max height so the full-width
+                    aspect-square logo doesn't eat the whole screen */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -302,15 +298,13 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             Not freelancers. Not outsourcing. PM-led teams that work like your own.
           </p>
         </motion.div>
-        {/* === End 2b. Logo / Mascot Card === */}
+        {/* === End Logo / Mascot Card === */}
 
 
-        {/* ================================================
-            2c. Workspace Image Card  (col-span-6)
-            Mobile: h-100 (400px) → h-56 (224px) — much more
+        {/* ===== Workspace Image Card ===== */}
+        {/* Mobile: h-100 (400px) → h-56 (224px) — much more
                     manageable on a 667px-tall iPhone SE screen
-            Desktop: h-auto — unchanged
-            ================================================ */}
+            Desktop: h-auto — unchanged */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -360,15 +354,13 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             </div>
           </div>
         </motion.div>
-        {/* === End 2c. Workspace Image Card === */}
+        {/* === End Workspace Image Card === */}
 
 
-        {/* ================================================
-            2d. Right Column — Two Stacked Action Cards (col-span-3)
-            Mobile: side-by-side (grid-cols-2) so they don't
+        {/* ===== Right Column — Two Stacked Action Cards ===== */}
+        {/* Mobile: side-by-side (grid-cols-2) so they don't
                     take up too much vertical space
-            Desktop: stacked flex-col — unchanged
-            ================================================ */}
+            Desktop: stacked flex-col — unchanged */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -376,7 +368,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-1 lg:flex lg:flex-col gap-4"
         >
 
-          {/* Top / Left: Brand highlight card */}
+          {/* Brand highlight card: Fully Managed Porject */}
           <div className="bg-[#9333EA] rounded-3xl p-4 lg:p-6 flex flex-col justify-end text-white relative overflow-hidden group min-h-36 lg:min-h-0 lg:flex-1">
             <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
             <span
@@ -400,8 +392,10 @@ const Hero = ({ bannerVisible }: HeroProps) => {
               aria-hidden="true"
             />
           </div>
+          {/* End Brand highlight card: Fully Managed Porject */}
 
-          {/* Bottom / Right: CTA card */}
+
+          {/* CTA card */}
           <Link
             href="#contact"
             className="focus-visible:ring-2 focus-visible:ring-[#9333EA] outline-none rounded-3xl lg:flex-1"
@@ -428,13 +422,15 @@ const Hero = ({ bannerVisible }: HeroProps) => {
                 </motion.div>
               </div>
               <span className="text-xl lg:text-2xl font-bold text-[#1e003a] leading-none mt-3 lg:mt-4">
-                Deploy <br /> Engineers.
+                Digitalize<br />Your Business
               </span>
             </div>
           </Link>
+          {/* End CTA card */}
+
 
         </motion.div>
-        {/* === End 2d. Right Column === */}
+        {/* === End Right Column === */}
 
 
       </div>
