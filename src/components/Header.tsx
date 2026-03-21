@@ -43,7 +43,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
   const handleNavClick = (item: any) => {
     if (item.type === 'scroll') {
-      
+
       //To handleNavClick from another page
       if (pathname !== '/') {
         router.push(`/#${item.id}`);
@@ -81,9 +81,11 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
           {/* End Logo */}
 
 
-          {/* Desktop nav */}
+          {/* Desktop Nav with Dropdown */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-8 items-center">
             {navigationItems.map((item) =>
+
+              // Dropdown navItem
               item.type === 'dropdown' ? (
                 <div
                   key={item.title}
@@ -96,8 +98,9 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                     dropdownTimer.current = setTimeout(() => setOpenDropdown(null), 100);
                   }}
                 >
+                  {/* More Button */}
                   <button
-                    className={`flex items-center gap-1 transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
+                    className={`cursor-pointer flex items-center gap-1 transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
                       }`}
                   >
                     {item.title}
@@ -108,6 +111,10 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
+                  {/* End More Button */}
+
+
+                  {/* Dropdown Open */}
                   {openDropdown === item.title && (
                     <div
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
@@ -118,19 +125,24 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                         <button
                           key={child.title}
                           onClick={() => { router.push(child.path); setOpenDropdown(null); }}
-                          className="w-full text-left px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-[#9333EA] transition-colors"
+                          className="cursor-pointer w-full text-left px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-[#9333EA] transition-colors"
                         >
                           {child.title}
                         </button>
                       ))}
                     </div>
                   )}
+                  {/* End Dropdown Open */}
+
+
                 </div>
               ) : (
+
+                // Non-Dropdown navItem
                 <button
                   key={item.title}
                   onClick={() => handleNavClick(item)}
-                  className={`transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
+                  className={`cursor-pointer transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
                     }`}
                 >
                   {item.title}
@@ -138,7 +150,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               )
             )}
           </div>
-          {/* End Desktop nav */}
+          {/* End Desktop Nav with Dropdown */}
 
 
           {/* NavItems */}
@@ -149,7 +161,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                   <button
                     key={item.title}
                     onClick={() => handleNavClick(item)}
-                    className={`shrink-0 px-1.5 py-0.5 rounded-full text-[10px] font-medium whitespace-nowrap transition-colors ${isScrolled
+                    className={`cursor-pointer shrink-0 px-1.5 py-0.5 rounded-full text-[10px] font-medium whitespace-nowrap transition-colors ${isScrolled
                       ? 'text-gray-600 hover:text-[#9333EA] hover:bg-purple-50'
                       : 'text-white/75 hover:text-white hover:bg-white/10'
                       }`}
