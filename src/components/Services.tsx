@@ -256,15 +256,26 @@ const Services = () => {
 
   const offset = current * slideWidth;
 
+  const scrollIntoSection = (id:string) =>{
+    const element = document.getElementById(id);
+    if(element){
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
+
   return (
     <section id="services" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
 
-      {/* ── Background blobs ── */}
+      {/* === Background blobs === */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#9333EA]/5 rounded-full blur-3xl" style={{ animationDelay: '0.5s' }} />
       </div>
+      {/* === End Background blobs === */}
 
       <div className="container-custom relative z-10 space-y-16">
 
@@ -296,7 +307,7 @@ const Services = () => {
 
           </div>
 
-          {/* ── Right: carousel + dots ── */}
+          {/* === Right: carousel + dots === */}
           <div className="lg:col-span-2 flex flex-col gap-5">
 
             {/* Carousel */}
@@ -338,15 +349,19 @@ const Services = () => {
                 />
               ))}
             </div>
+            {/* End Dot navigation */}
 
           </div>
+          {/* === End Right: carousel + dots === */}
+
+
         </div>
 
         {/* ── CTA Section ── */}
         <div className="border border-[#111827]/8 rounded-2xl overflow-hidden bg-white">
           <div className="grid lg:grid-cols-[1fr_auto] items-stretch">
 
-            {/* Left: content */}
+            {/* Left: Buttons */}
             <div className="px-8 py-10 sm:px-12 sm:py-12 space-y-5">
               <p className="text-xs font-semibold tracking-widest uppercase text-[#9333EA]">
                 Work with us
@@ -358,17 +373,18 @@ const Services = () => {
                 We work with startups and established businesses to deliver digital products that are fast, beautiful, and built to scale.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9333EA] text-white text-sm font-semibold rounded-lg hover:bg-[#7c3aed] transition-colors duration-150 active:scale-95">
+                <button className="cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 bg-[#9333EA] text-white text-sm font-semibold rounded-lg hover:bg-[#7c3aed] transition-colors duration-150 active:scale-95">
                   Book a Free Call
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
-                <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-transparent text-[#111827] text-sm font-semibold rounded-lg border border-[#111827]/15 hover:border-[#111827]/30 hover:bg-[#111827]/3 transition-all duration-150 active:scale-95">
+                <button className="cursor-pointer inline-flex items-center gap-2 px-5 py-2.5 bg-transparent text-[#111827] text-sm font-semibold rounded-lg border border-[#111827]/15 hover:border-[#111827]/30 hover:bg-[#111827]/3 transition-all duration-150 active:scale-95" onClick={() => scrollIntoSection('our-works')}>
                   See Our Work
                 </button>
               </div>
             </div>
+            {/* End Left: Buttons */}
 
             {/* Right: contact strip */}
             <div className="hidden lg:flex flex-col justify-between px-8 py-10 min-w-55 bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
@@ -377,6 +393,8 @@ const Services = () => {
                   Get in touch
                 </p>
                 <div className="space-y-4">
+
+                  {/* mail */}
                   <a href="mailto:info@cornortech.com" className="flex items-center gap-3 group">
                     <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
@@ -388,17 +406,39 @@ const Services = () => {
                       <p className="text-sm text-white font-medium group-hover:text-purple-300 transition-colors">info@cornortech.com</p>
                     </div>
                   </a>
+                  {/* End mail */}
+
+                  {/* Phone */}
+                  <a href="tel:+9779828750115" className="flex items-center gap-3 group">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium">Phone</p>
+                      <p className="text-sm text-white font-medium group-hover:text-purple-300 transition-colors">+977 9828750115</p>
+                    </div>
+                  </a>
+                  {/* End Phone */}
+
+
+                  {/* Response Time */}
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
+
                     <div>
                       <p className="text-[10px] text-white/50 uppercase tracking-wider font-medium">Response time</p>
                       <p className="text-sm text-white font-medium">Within 24 hours</p>
                     </div>
                   </div>
+                  {/* End Response Time */}
+
+
                 </div>
               </div>
 
@@ -410,7 +450,11 @@ const Services = () => {
                 </span>
                 <span className="text-xs text-white/70 font-medium">Available for new projects</span>
               </div>
+              {/* End Availability */}
+
             </div>
+            {/* End Right: contact strip */}
+
 
           </div>
         </div>
