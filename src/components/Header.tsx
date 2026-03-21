@@ -22,9 +22,9 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
   const navigationItems = [
     { title: 'Home', id: 'hero', type: 'scroll' },
     { title: 'Services', id: 'services', type: 'scroll' },
+    { title: 'About Us', path: '/about-us', type: 'page' },
     { title: 'Our Works', id: 'our-works', type: 'scroll' },
     { title: 'Career', path: '/careers', type: 'page' },
-    { title: 'About Us', path: '/about-us', type: 'page' },
     {
       title: 'More',
       type: 'dropdown',
