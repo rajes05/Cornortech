@@ -9,8 +9,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cornortech",
-  description: "Cornortech where idea meet solutions.",
+  title:{
+    default: "Cornor Tech Pvt. Ltd. | Where Tech Meets Solution | Tilottama, Butwal< Nepal",
+    template: '%s | Cornor Tech',
+  }, 
+  description: "CornorTech turns ideas into powerful digital solutions. We deliver creative, reliable, and scalable tech services.",
   icons:{
     icon:"/logo.png",
     shortcut:"/logo.png",
