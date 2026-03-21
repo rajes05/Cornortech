@@ -113,15 +113,11 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     <section
       ref={sectionRef}
       id="hero"
-      className={`relative ${
-        bannerVisible ? 'pt-16 lg:pt-32' : 'pt-12 lg:pt-28'
-      } w-full min-h-screen bg-linear-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
+      className={`relative ${bannerVisible ? 'pt-16 lg:pt-32' : 'pt-12 lg:pt-28'
+        } w-full min-h-screen bg-linear-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
     >
 
-      {/* ==================================================
-          1. Background Layer
-          ================================================== */}
-
+      {/* ===== Background Layer ===== */}
       <motion.div
         className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
         style={{
@@ -139,29 +135,28 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       {particles.map((p, i) => (
         <Particle key={i} {...p} />
       ))}
+      {/* ===== End Background Layer ===== */}
 
 
-      {/* ==================================================
-          2. Main Bento Grid
-          ================================================== */}
+
+      {/* ===== Main Bento Grid ===== */}
       <div className="flex-1 container mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 pb-8 relative z-10">
 
 
-        {/* ================================================
-            2a. Giant Stacked Headline  (col-span-12)
+        {/* ==== 2a. Giant Stacked Headline ==== */}
 
-            Mobile (iPhone SE 375px):
+        {/*     Mobile (iPhone SE 375px):
               - flex-row always so decorative col stays right
               - font shrinks to 7.5vw (~28px) so "TECH PVT. LTD"
                 fits alongside the right column
               - right column uses compact sizes (pill text smaller,
                 scroll area narrower, dot grid smaller)
 
-            Desktop (lg+): completely unchanged
-            ================================================ */}
+            Desktop (lg+): completely unchanged */}
+
         <div className="lg:col-span-12 flex flex-row items-center lg:items-end justify-between relative gap-2 lg:gap-0">
 
-          {/* ── Left: headline block ── */}
+          {/* === Left: headline block === */}
           <div className="flex flex-col w-fit">
 
             {/* Line 1: "Cornor"
@@ -211,11 +206,8 @@ const Hero = ({ bannerVisible }: HeroProps) => {
           {/* === End left headline block === */}
 
 
-          {/* ── Right decorative accent column ──────────────────
-              Visible on ALL screen sizes.
-              Mobile: compact sizing (pill, scroll, dots scale down)
-              Desktop: original sizing (unchanged)
-          ──────────────────────────────────────────────────── */}
+          {/* === Right decorative accent column === */}
+          {/*  pill, scroll, dots scale down */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -223,21 +215,20 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             className="flex flex-col items-end gap-2 lg:gap-4 pb-2 shrink-0"
           >
 
-            {/* Slogan pill
-                Mobile:  compact padding + smaller text
-                         "Where" hidden on mobile to shorten the label
-                Desktop: original size + full label */}
+            {/* Slogan pill */}
             <div className="flex items-center gap-1.5 lg:gap-2 bg-white/8 backdrop-blur-sm border border-purple-400/25 rounded-full px-2.5 py-1.5 lg:px-5 lg:py-2.5">
               <svg width="8" height="8" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="shrink-0">
-                <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7"/>
+                <path d="M5 0L10 5L5 10L0 5Z" fill="#a855f7" />
               </svg>
               <span className="text-white/80 text-[8px] lg:text-sm font-medium tracking-wide italic whitespace-nowrap">
-                <span className="hidden lg:inline">Where </span>tech meets solution!
+                Where tech meets solution!
               </span>
               <svg width="8" height="8" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="shrink-0">
-                <path d="M5 0L10 5L5 10L0 5Z" fill="#a3e635"/>
+                <path d="M5 0L10 5L5 10L0 5Z" fill="#a3e635" />
               </svg>
             </div>
+            {/* End Slogan pill */}
+
 
             {/* Vertical scrolling service keywords
                 Mobile:  w-20 h-16  (80px wide, 64px tall)
@@ -447,16 +438,16 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
       </div>
-      {/* === End 2. Main Bento Grid === */}
+      {/* === Main Bento Grid === */}
 
 
-      {/* ==================================================
-          3. Bottom Ambient Glow Blob
-          ================================================== */}
+      {/* ===== Bottom Ambient Glow Blob ===== */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-purple-600/20 blur-[100px] pointer-events-none rounded-full"
         aria-hidden="true"
       />
+      {/* ===== End Bottom Ambient Glow Blob ===== */}
+
 
     </section>
   );
