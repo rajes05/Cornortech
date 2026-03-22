@@ -329,7 +329,7 @@ const TechStack = () => {
         />
       ))}
 
-      <div ref={ref} className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div ref={ref} className="container-custom relative z-10">
 
         {/* ── Header ── */}
         <div className="mb-14">
