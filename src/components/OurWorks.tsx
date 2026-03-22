@@ -68,7 +68,7 @@ const OurWorks = () => {
   };
 
   return (
-    <section id="our-works" className="py-20 bg-white relative overflow-hidden">
+    <section id="our-works" className="py-20 lg:py-32 bg-white relative overflow-hidden">
       <style>{`
         @keyframes fromBelow { from{opacity:0;transform:translateY(48px)}  to{opacity:1;transform:translateY(0)} }
         @keyframes fromAbove { from{opacity:0;transform:translateY(-48px)} to{opacity:1;transform:translateY(0)} }
@@ -102,8 +102,8 @@ const OurWorks = () => {
         .bottom-wave { animation: waveFloat 4s ease-in-out infinite; transform-origin: center bottom; }
       `}</style>
 
-      {/* ── Header ── */}
-      <div className="text-center space-y-4 px-8 mb-14">
+      {/* === Header === */}
+      <div className="container-custom text-center space-y-4 mb-14">
         <span className="px-4 py-2 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-sm font-semibold inline-block">
           Our Portfolio
         </span>
@@ -116,10 +116,10 @@ const OurWorks = () => {
           Discover how we&apos;ve helped businesses transform their digital presence with innovative solutions.
         </p>
       </div>
-      {/* ── End Header ── */}
+      {/* === End Header === */}
 
-      {/* ── Accordion Tab list — CapCut exact style ── */}
-      <div className="max-w-6xl mx-auto px-8">
+      {/* === Accordion Tab list === */}
+      <div className="container-custom">
         <ul className="list-none p-0 m-0">
           {shown.map((p, i) => {
             const isOpen = i === activeTab;
@@ -266,10 +266,10 @@ const OurWorks = () => {
           })}
         </ul>
       </div>
-      {/* ── Accordion Tab list — CapCut exact style ── */}
+      {/* === End Accordion Tab list === */}
 
-      {/* ── Show More / Collapse Controls ── */}
-      <div ref={controlsRef} className="max-w-6xl mx-auto px-8 mt-8 flex flex-col items-center gap-3">
+      {/* === Show More / Collapse Controls === */}
+      <div ref={controlsRef} className="container-custom mt-8 flex flex-col items-center gap-3">
         <p className="text-sm text-foreground-secondary font-medium">
           Showing <span className="text-[#9333EA] font-semibold">{Math.min(visible, total)}</span> of{" "}
           <span className="text-[#9333EA] font-semibold">{total}</span> projects
@@ -305,9 +305,9 @@ const OurWorks = () => {
 
         {allShown && <p className="text-xs text-foreground-secondary italic">You&apos;ve seen all our projects! 🎉</p>}
       </div>
-      {/* ── End Show More / Collapse Controls ── */}
+      {/* === End Show More / Collapse Controls === */}
 
-      {/* ── Bottom Wave — fixed with pb-16 buffer and animated ── */}
+      {/* === Bottom Wave — fixed with pb-16 buffer and animated === */}
       <div className="relative mt-12 h-12">
         <svg
           className="bottom-wave absolute bottom-0 left-0 w-full h-12"
@@ -318,7 +318,7 @@ const OurWorks = () => {
           <path d="M0,48 C320,48 320,0 640,0 C960,0 960,48 1280,48 L1440,48 L1440,0 L1280,0 C960,0 960,48 640,48 C320,48 320,0 0,0 L0,48 Z" />
         </svg>
       </div>
-      {/* ── End Bottom Wave — fixed with pb-16 buffer and animated ── */}
+      {/* === End Bottom Wave — fixed with pb-16 buffer and animated === */}
 
     </section>
   );
