@@ -169,17 +169,73 @@ const CLIENT_LOGOS = [
 const Testimonials = () => {
 
   const testimonials: Testimonial[] = [
-    { id: "1", name: "ARKBO Technologies", image: '/testimonials/arkbo_tech.png', role: "Tech Company", company: "ARKBO Technologies Pvt. Ltd", rating: 5, text: "We had a great experience working with the team. They took the time to understand our needs and delivered a clean, well-structured design that truly fits our vision.", service: "Web Development", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5" },
-    
-    { id: "2", name: "Sulav Kharel", role: "UI/UX Designer", company: "Creative Studios", rating: 5, text: "Cornor Tech redesigned our entire product interface from scratch. The attention to detail was remarkable — user research, wireframing, and final prototypes were all delivered on time. Our user retention improved significantly after launch.", service: "UI/UX Design", gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5" },
+    {
+      id: "1",
+      name: "ARKBO Technologies",
+      image: '/testimonials/arkbo_tech.png',
+      role: "Tech Company",
+      company: "ARKBO Technologies Pvt. Ltd",
+      rating: 5,
+      text: "We had a great experience working with the team. They took the time to understand our needs and delivered a clean, well-structured design that truly fits our vision.",
+      service: "Web Development",
+      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5"
+    },
 
-    { id: "3", name: "Manish Thapa", role: "Digital Marketing Specialist", company: "Growth Marketing Co.", rating: 5, text: "Cornor Tech handled our full digital marketing strategy — SEO, social media, and paid ads. Within three months our organic traffic doubled and lead generation increased by 3x. Their data-driven approach sets them apart from other agencies.", service: "Digital Marketing", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5" },
+    {
+      id: "2",
+      name: "Sulav Kharel",
+      image:'/testimonials/sulav_kharel.jpeg',
+      role: "Public Figure & Political Leader",
+      company: "Rastriya Swatantra Party (RSP)",
+      rating: 5,
+      text: "Cornor Tech managed our social media content with excellent professionalism and creativity. Their team understood our audience and delivered clear, engaging, and impactful content consistently. Our digital presence saw noticeable improvement in a short time.",
+      service: "Social Media Content",
+      gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5"
+    },
 
-    { id: "4", name: "Bhusan Giri", role: "Python Developer", company: "DataTech Solutions", rating: 5, text: "We hired Cornor Tech to build a custom data pipeline and automation system for our business. The backend architecture was clean, well-documented, and scalable. Delivery was ahead of schedule and the team was extremely communicative throughout.", service: "Web Development", gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5" },
+    {
+      id: "3",
+      name: "Manish Thapa",
+      role: "Digital Marketing Specialist",
+      company: "Growth Marketing Co.",
+      rating: 5,
+      text: "Cornor Tech handled our full digital marketing strategy — SEO, social media, and paid ads. Within three months our organic traffic doubled and lead generation increased by 3x. Their data-driven approach sets them apart from other agencies.",
+      service: "Digital Marketing",
+      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5"
+    },
 
-    { id: "5", name: "Padam Neupane", role: "Graphic Designer", company: "Design Hub", rating: 5, text: "The branding package Cornor Tech delivered was beyond what we imagined. Logo, color system, typography, and social media assets all felt cohesive and premium. Our brand identity now stands out in a crowded market.", service: "Branding & Strategy", gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5" },
+    {
+      id: "4",
+      name: "Bhusan Giri",
+      role: "Python Developer",
+      company: "DataTech Solutions",
+      rating: 5,
+      text: "We hired Cornor Tech to build a custom data pipeline and automation system for our business. The backend architecture was clean, well-documented, and scalable. Delivery was ahead of schedule and the team was extremely communicative throughout.",
+      service: "Web Development",
+      gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5"
+    },
 
-    { id: "6", name: "Bardan Acharya", role: "IT Manager", company: "SecureNet Systems", rating: 5, text: "Cornor Tech migrated our entire infrastructure to AWS with zero downtime. The CI/CD pipelines they set up have drastically reduced our deployment time. Their DevOps expertise is world-class and the post-launch support has been excellent.", service: "Cloud Solutions", gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5" },
+    {
+      id: "5",
+      name: "Padam Neupane",
+      role: "Graphic Designer",
+      company: "Design Hub",
+      rating: 5,
+      text: "The branding package Cornor Tech delivered was beyond what we imagined. Logo, color system, typography, and social media assets all felt cohesive and premium. Our brand identity now stands out in a crowded market.",
+      service: "Branding & Strategy",
+      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5"
+    },
+
+    {
+      id: "6",
+      name: "Bardan Acharya",
+      role: "IT Manager",
+      company: "SecureNet Systems",
+      rating: 5,
+      text: "Cornor Tech migrated our entire infrastructure to AWS with zero downtime. The CI/CD pipelines they set up have drastically reduced our deployment time. Their DevOps expertise is world-class and the post-launch support has been excellent.",
+      service: "Cloud Solutions",
+      gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5"
+    },
   ];
 
   const [visibleRows, setVisibleRows] = useState(INITIAL_ROWS);
