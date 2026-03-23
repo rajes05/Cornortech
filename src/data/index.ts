@@ -6,39 +6,37 @@ export const footerSections: FooterSection[] = [
   {
     title: "Services",
     links: [
-      { title: "Digital Marketing", link: "#" },
-      { title: "Web Development", link: "#" },
-      { title: "App Development", link: "#" },
-      { title: "Search Engine Optimization", link: "#" }
+      { title: "Digital Marketing", link: "#services" },
+      { title: "Web Development", link: "#services" },
+      { title: "App Development", link: "#services" },
+      { title: "Search Engine Optimization", link: "#services" }
     ]
   },
 
   {
     title: "Our Works",
     links: [
-      { title: "Web Development", link: "#" },
-      { title: "Mobile Development", link: "#" },
-      { title: "AI & ML", link: "#" },
-      { title: "Digital Marketing", link: "#" },
-      { title: "Cloud Solutions", link: "#" },
+      { title: "Web Development", link: "#our-works" },
+      { title: "Mobile Development", link: "#our-works" },
+      { title: "AI & ML", link: "#our-works" },
+      { title: "Digital Marketing", link: "#our-works" },
     ]
   },
   {
     title: "Discover",
     links: [
-      { title: "Blog & Insignts", link: "#" },
-      { title: "Community", link: "#" },
-      { title: "Resources", link: "#" },
-      { title: "News & Update", link: "#" },
-      { title: "Help", link: "#" },
+      { title: "Blog & Insignts", link: "/blogs" },
+      { title: "Community", link: "/blogs" },
+      { title: "News & Update", link: "/updates" },
+      { title: "Help", link: "/blogs" },
     ]
   },
   {
     title: "About Us",
     links: [
-      { title: "Vision & Mission", link: "#" },
-      { title: "Team", link: "#" },
-      { title: "Contact", link: "#" },
+      { title: "Vision & Mission", link: "/about-us" },
+      { title: "Team", link: "/about-us" },
+      { title: "Contact", link: "/about-us" },
     ]
   }
 ];
@@ -77,7 +75,7 @@ export const socialLinks: SocialSection[] = [
 ];
 
 export const legalLinks: LegalLinks[] = [
-  { title: 'Terms of Service', href: '#' },
+  { title: 'Terms of Service', href: '/legal/terms-of-service' },
   { title: 'Privacy Policy', href: '#' },
   { title: 'Cookies Policy', href: '#' },
   { title: 'License Agreement', href: '#' },
