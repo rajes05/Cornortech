@@ -30,7 +30,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
       type: 'dropdown',
       children: [
         { title: 'Blogs', path: '/blogs' },
-        { title: 'Updates', path: '/updates' },
+        { title: 'News & Updates', path: '/news-and-updates' },
       ],
     },
   ];
