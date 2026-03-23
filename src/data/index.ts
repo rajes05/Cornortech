@@ -76,10 +76,10 @@ export const socialLinks: SocialSection[] = [
 
 export const legalLinks: LegalLinks[] = [
   { title: 'Terms of Service', href: '/legal/terms-of-service' },
-  { title: 'Privacy Policy', href: '#' },
-  { title: 'Cookies Policy', href: '#' },
-  { title: 'License Agreement', href: '#' },
-  { title: 'Creator Terms', href: '#' },
-  { title: 'Community Guidelines', href: '#' }
+  { title: 'Privacy Policy', href: '/legal/privacy-policy' },
+  { title: 'Cookies Policy', href: '/legal/cookies-policy' },
+  { title: 'License Agreement', href: '/legal/license-agreement' },
+  { title: 'Creator Terms', href: '/legal/creator-terms' },
+  { title: 'Community Guidelines', href: '/legal/community-guidelines' }
 ];
 // ===== End Footer Section =====
