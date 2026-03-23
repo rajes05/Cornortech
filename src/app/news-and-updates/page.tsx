@@ -1,4 +1,4 @@
-// app/blogs/page.tsx
+// app/news-and-updates/page.tsx
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
