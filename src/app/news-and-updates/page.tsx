@@ -358,7 +358,7 @@ export default async function BlogsPage() {
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[12vw] font-black uppercase tracking-tighter text-white/[0.035] select-none pointer-events-none leading-none"
                         aria-hidden="true"
                     >
-                        Blogs
+                        News & Update
                     </p>
 
                     <div className="container-custom relative z-10">
