@@ -372,7 +372,7 @@ export default async function BlogsPage() {
                             <svg className="w-3 h-3 text-white/20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                             </svg>
-                            <span className="text-[11px] font-semibold text-white/70 uppercase tracking-wider">Blogs</span>
+                            <span className="text-[11px] font-semibold text-white/70 uppercase tracking-wider">News & Update</span>
                         </div>
 
                         <h1 className="text-4xl lg:text-6xl font-black text-white leading-[0.95] tracking-tight mb-6">
