@@ -60,8 +60,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
   // ─── CHOOSE YOUR MOBILE NAV STYLE ────────────────────────────────────────
   // Set one of: 'pill' | 'segment' | 'tab'
-  const mobileNavStyle: 'pill' | 'segment' | 'tab' = 'segment';
-  // ─────────────────────────────────────────────────────────────────────────
+const mobileNavStyle = 'segment' as 'pill' | 'segment' | 'tab';  // ─────────────────────────────────────────────────────────────────────────
 
   const MobileNavItems = () => {
     // ── OPTION A: Pill buttons ──────────────────────────────────────────────
