@@ -30,7 +30,6 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
       title: 'More',
       type: 'dropdown',
       children: [
-        { title: 'Blogs', path: '/blogs' },
         { title: 'News & Updates', path: '/news-and-updates' },
       ],
     },
@@ -58,10 +57,9 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
     }
   };
 
-  // ─── CHOOSE YOUR MOBILE NAV STYLE ────────────────────────────────────────
+  // mobile Nav Style 
   // Set one of: 'pill' | 'segment' | 'tab'
-const mobileNavStyle = 'segment' as 'pill' | 'segment' | 'tab';  // ─────────────────────────────────────────────────────────────────────────
-
+const mobileNavStyle = 'segment' as 'pill' | 'segment' | 'tab'; 
   const MobileNavItems = () => {
     // ── OPTION A: Pill buttons ──────────────────────────────────────────────
     if (mobileNavStyle === 'pill') {
