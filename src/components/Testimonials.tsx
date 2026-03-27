@@ -50,9 +50,11 @@ const AvatarImage = ({ name, src }: { name: string; src?: string }) => {
 
   return (
     <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#9333EA]/20 group-hover:ring-[#9333EA] transition-all duration-300">
-      <img
+      <Image
         src={src}
         alt={name}
+        width={48}
+        height={48}
         className="w-full h-full object-cover"
         onError={() => setFailed(true)}
       />
@@ -98,7 +100,6 @@ const TestimonialCard = ({
             ))}
           </div>
         </div>
-        {/* End Top row: quote + stars */}
 
         {/* Quote text */}
         <div className="space-y-3">
@@ -111,18 +112,13 @@ const TestimonialCard = ({
             </span>
           )}
         </div>
-        {/* End Quote text */}
 
         {/* User info */}
         <div className="flex items-center space-x-3 pt-4 border-t border-[#9333EA]/10">
-
-          {/* Avatar with initials fallback */}
           <div className="relative shrink-0">
             <AvatarImage name={testimonial.name} src={testimonial.image} />
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#9333EA] rounded-full border-2 border-white" />
           </div>
-          {/* End Avatar */}
-
           <div className="flex-1 min-w-0">
             <h4 className="font-bold text-gray-800 text-sm group-hover:text-[#9333EA] transition-colors truncate">
               {testimonial.name}
@@ -130,20 +126,158 @@ const TestimonialCard = ({
             <p className="text-xs text-[#9333EA]/70">{testimonial.role}</p>
             <p className="text-xs text-foreground-secondary truncate">{testimonial.company}</p>
           </div>
-
           <div className="shrink-0 w-7 h-7 bg-[#9333EA] rounded-full flex items-center justify-center" title="Verified">
             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
           </div>
         </div>
-        {/* End User info */}
 
       </div>
     </div>
   );
 };
 // ===== End Testimonial Card =====
+
+
+// ===== Voices of Satisfaction Slider — extracted as proper component so hooks are valid =====
+const VOICES_SLIDES = [
+  {
+    image: '/teams/coo.jpeg',
+    quote: 'I believe that the strength in our team and our ability to deal with adversities is what makes us a great partner for our clients.',
+    highlight: "THIS IS WHY I'M PROUD TO BE ON THIS TEAM.",
+    name: 'Santosh Kunwar',
+    role: 'COO, Cornor Tech',
+  },
+  {
+    image: '/teams/coo.jpeg',
+    quote: "At Cornor Tech, every challenge is an opportunity. We don't just deliver projects — we build long-term partnerships that create real impact.",
+    highlight: 'THIS IS WHAT DRIVES US EVERY SINGLE DAY.',
+    name: 'Santosh Kunwar',
+    role: 'COO, Cornor Tech',
+  },
+];
+
+const VoicesSlider = () => {
+  const [active, setActive] = useState(0);
+  const total = VOICES_SLIDES.length;
+  const prev = () => setActive((i) => (i - 1 + total) % total);
+  const next = () => setActive((i) => (i + 1) % total);
+  const slide = VOICES_SLIDES[active];
+
+  return (
+    <div className="relative rounded-3xl overflow-hidden shadow-xl border border-[#9333EA]/15">
+
+      {/* Section label */}
+      <div className="absolute top-6 left-6 z-20">
+        <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm border border-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em]">
+          
+        </span>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="absolute top-6 right-6 z-20 flex items-center gap-1">
+        {VOICES_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`rounded-full transition-all duration-300 ${i === active ? 'w-6 h-2 bg-white' : 'w-2 h-2 bg-white/30 hover:bg-white/60'
+              }`}
+          />
+        ))}
+      </div>
+
+      {/* Image + quote grid */}
+      <div className="grid lg:grid-cols-2 min-h-105">
+
+        {/* Left: Portrait image */}
+        <div className="relative min-h-65 lg:min-h-0 overflow-hidden">
+          <Image
+            key={active}
+            src={slide.image}
+            alt={slide.name}
+            fill
+            className="object-cover object-top transition-all duration-700"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+          {/* Desktop: fade right into quote panel */}
+          <div className="absolute inset-0 bg-linear-to-b lg:bg-linear-to-r from-transparent via-transparent to-[#1e003a]/80" />
+          {/* Mobile: fade bottom into quote panel */}
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-[#1e003a] to-transparent lg:hidden" />
+        </div>
+
+        {/* Right: Quote panel */}
+        <div
+          className="relative flex flex-col justify-center gap-6 px-8 py-10 lg:px-12 lg:py-14"
+          style={{ background: 'linear-gradient(135deg, #1e003a 0%, #2d0a52 60%, #3b1266 100%)' }}
+        >
+          {/* Decorative large quote mark */}
+          <svg
+            className="absolute top-8 right-8 w-20 h-20 text-purple-400/10 pointer-events-none"
+            fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+          >
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+
+          {/* Accent rule */}
+          <div className="w-10 h-0.5 bg-[#a855f7] rounded-full" />
+
+          {/* Quote body */}
+          <blockquote className="text-white/75 text-base lg:text-lg leading-relaxed italic font-medium">
+            &ldquo;{slide.quote}&rdquo;
+          </blockquote>
+
+          {/* Bold all-caps highlight */}
+          <p className="text-white font-black text-lg lg:text-2xl tracking-tight leading-snug uppercase">
+            {slide.highlight}
+          </p>
+
+          {/* Person info row */}
+          <div className="flex items-center gap-4 pt-2 border-t border-white/10">
+            <div className="w-11 h-11 rounded-full overflow-hidden ring-2 ring-[#a855f7]/60 shrink-0 relative">
+              <Image
+                src={slide.image}
+                alt={slide.name}
+                fill
+                className="object-cover object-top"
+                sizes="44px"
+              />
+            </div>
+            <div>
+              <p className="text-white font-bold text-sm">{slide.name}</p>
+              <p className="text-purple-300/70 text-xs">{slide.role}</p>
+            </div>
+          </div>
+
+          {/* Prev / Next buttons */}
+          <div className="flex items-center gap-3 pt-1">
+            <button
+              onClick={prev}
+              aria-label="Previous slide"
+              className="w-9 h-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 flex items-center justify-center text-white transition-all duration-200 hover:scale-105"
+            >
+              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              aria-label="Next slide"
+              className="w-9 h-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 flex items-center justify-center text-white transition-all duration-200 hover:scale-105"
+            >
+              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+// ===== End Voices of Satisfaction Slider =====
 
 
 const CARDS_PER_ROW = 3;
@@ -178,21 +312,19 @@ const Testimonials = () => {
       rating: 5,
       text: "We had a great experience working with the team. They took the time to understand our needs and delivered a clean, well-structured design that truly fits our vision.",
       service: "Web Development",
-      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7c3aed]/5"
+      gradient: "bg-linear-to-br from-[#9333EA]/5 to-[#7c3aed]/5",
     },
-
     {
       id: "2",
       name: "Sulav Kharel",
-      image:'/testimonials/sulav_kharel.jpeg',
+      image: '/testimonials/sulav_kharel.jpeg',
       role: "Public Figure & Political Leader",
       company: "Rastriya Swatantra Party (RSP)",
       rating: 5,
       text: "Cornor Tech managed our social media content with excellent professionalism and creativity. Their team understood our audience and delivered clear, engaging, and impactful content consistently. Our digital presence saw noticeable improvement in a short time.",
       service: "Social Media Content",
-      gradient: "bg-gradient-to-br from-[#a855f7]/5 to-[#9333EA]/5"
+      gradient: "bg-linear-to-br from-[#a855f7]/5 to-[#9333EA]/5",
     },
-
     {
       id: "3",
       name: "Manish Thapa",
@@ -201,9 +333,8 @@ const Testimonials = () => {
       rating: 5,
       text: "Cornor Tech handled our full digital marketing strategy — SEO, social media, and paid ads. Within three months our organic traffic doubled and lead generation increased by 3x. Their data-driven approach sets them apart from other agencies.",
       service: "Digital Marketing",
-      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#a855f7]/5"
+      gradient: "bg-linear-to-br from-[#9333EA]/5 to-[#a855f7]/5",
     },
-
     {
       id: "4",
       name: "Bhusan Giri",
@@ -212,9 +343,8 @@ const Testimonials = () => {
       rating: 5,
       text: "We hired Cornor Tech to build a custom data pipeline and automation system for our business. The backend architecture was clean, well-documented, and scalable. Delivery was ahead of schedule and the team was extremely communicative throughout.",
       service: "Web Development",
-      gradient: "bg-gradient-to-br from-[#7c3aed]/5 to-[#9333EA]/5"
+      gradient: "bg-linear-to-br from-[#7c3aed]/5 to-[#9333EA]/5",
     },
-
     {
       id: "5",
       name: "Padam Neupane",
@@ -223,9 +353,8 @@ const Testimonials = () => {
       rating: 5,
       text: "The branding package Cornor Tech delivered was beyond what we imagined. Logo, color system, typography, and social media assets all felt cohesive and premium. Our brand identity now stands out in a crowded market.",
       service: "Branding & Strategy",
-      gradient: "bg-gradient-to-br from-[#9333EA]/5 to-[#7e22ce]/5"
+      gradient: "bg-linear-to-br from-[#9333EA]/5 to-[#7e22ce]/5",
     },
-
     {
       id: "6",
       name: "Bardan Acharya",
@@ -234,13 +363,12 @@ const Testimonials = () => {
       rating: 5,
       text: "Cornor Tech migrated our entire infrastructure to AWS with zero downtime. The CI/CD pipelines they set up have drastically reduced our deployment time. Their DevOps expertise is world-class and the post-launch support has been excellent.",
       service: "Cloud Solutions",
-      gradient: "bg-gradient-to-br from-[#7e22ce]/5 to-[#9333EA]/5"
+      gradient: "bg-linear-to-br from-[#7e22ce]/5 to-[#9333EA]/5",
     },
   ];
 
   const [visibleRows, setVisibleRows] = useState(INITIAL_ROWS);
   const [newRowStart, setNewRowStart] = useState<number | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
 
   const totalRows = Math.ceil(testimonials.length / CARDS_PER_ROW);
   const visibleCount = visibleRows * CARDS_PER_ROW;
@@ -268,7 +396,6 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
 
-      {/* keyframes */}
       <style>{`
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(16px); }
@@ -288,7 +415,7 @@ const Testimonials = () => {
 
       <div className="container mx-auto px-4 xl:px-8 max-w-7xl relative z-10 space-y-10">
 
-        {/* ── Header ── */}
+        {/*  Header  */}
         <div className="text-center space-y-6">
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">
             <span className="text-[#9333EA]">What Our Clients</span>
@@ -298,10 +425,10 @@ const Testimonials = () => {
             Trusted by businesses across industries — hear from the teams we have helped build, scale, and secure their IT infrastructure.
           </p>
         </div>
-        {/* ── End Header ── */}
+        {/* End Header  */}
 
 
-        {/* ── Testimonial Grid ── */}
+        {/*  Testimonial Grid  */}
         <div className="space-y-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleCards.map((testimonial, index) => (
@@ -316,25 +443,20 @@ const Testimonials = () => {
 
           {/* Show More / Collapse */}
           <div className="flex flex-col items-center gap-3 pt-2">
-
             <p className="text-sm text-foreground-secondary font-medium">
               Showing{" "}
               <span className="text-[#9333EA] font-semibold">{Math.min(visibleCount, testimonials.length)}</span>
               {" "}of{" "}
               <span className="text-[#9333EA] font-semibold">{testimonials.length}</span> reviews
             </p>
-
-            {/* Row progress dots */}
             <div className="flex items-center gap-2">
               {Array.from({ length: totalRows }).map((_, i) => (
                 <div
                   key={i}
-                  className={`rounded-full transition-all duration-300 ${i < visibleRows ? "w-6 h-2 bg-[#9333EA]" : "w-2 h-2 bg-[#9333EA]/20"
-                    }`}
+                  className={`rounded-full transition-all duration-300 ${i < visibleRows ? "w-6 h-2 bg-[#9333EA]" : "w-2 h-2 bg-[#9333EA]/20"}`}
                 />
               ))}
             </div>
-
             <div className="flex items-center gap-3 pt-1">
               {!allShown && (
                 <button
@@ -348,7 +470,6 @@ const Testimonials = () => {
                   </svg>
                 </button>
               )}
-
               {visibleRows > INITIAL_ROWS && (
                 <button
                   onClick={collapseLastRow}
@@ -361,116 +482,32 @@ const Testimonials = () => {
                 </button>
               )}
             </div>
-
             {allShown && (
               <p className="text-xs text-foreground-secondary italic">You&apos;ve seen all our reviews!</p>
             )}
           </div>
+          {/* End Show More / Collapse */}
+
         </div>
-        {/* ── End Testimonial Grid ── */}
+        {/* End Testimonial Grid  */}
 
-
-        {/* ── Video Testimonial ── */}
-        <div className="mt-12 p-8 lg:p-12 bg-linear-to-br from-[#9333EA]/10 to-white rounded-3xl shadow-sm border border-[#9333EA]/10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-
-            <div className="space-y-4">
-              <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA]">Watch Video Testimonials</h3>
-              <p className="text-foreground-secondary">
-                Hear directly from our students and clients about their experiences and success stories with Cornor Tech.
-              </p>
-              <button
-                onClick={() => setShowVideo(true)}
-                className="px-6 py-3 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#9333EA]/90 hover:scale-105 transition-all duration-200 inline-flex items-center space-x-2"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                </svg>
-                <span>Watch Videos</span>
-              </button>
-            </div>
-
-            <div
-              className="relative aspect-video rounded-xl overflow-hidden shadow-md cursor-pointer"
-              onClick={() => setShowVideo(true)}
-            >
-              <img
-                src="https://img.youtube.com/vi/mXkmS2asah8/hqdefault.jpg"
-                alt="Video Thumbnail"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors duration-200">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
-                  <svg className="w-10 h-10 text-[#9333EA]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        {/* ── End Video Testimonial ── */}
-
-
-        {/* ===== Video Modal ===== */}
-        {showVideo && (
-          <div
-            className="fixed inset-0 z-999 bg-black/70 flex items-center justify-center p-4"
-            onClick={() => setShowVideo(false)}
-          >
-            <div
-              className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setShowVideo(false)}
-                className="absolute top-3 right-3 z-10 text-white bg-black/50 hover:bg-black/80 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
-              >
-                ✕
-              </button>
-              <iframe
-                src="https://www.youtube.com/embed/mXkmS2asah8?start=1&autoplay=1"
-                className="w-full h-full"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
-        {/* ===== End Video Modal ===== */}
 
 
         {/* ===== Trusted Clients — infinite horizontal marquee ===== */}
         <div className="pt-4 pb-0">
-
-          {/* Section label */}
           <div className="text-center mb-5">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#9333EA]/70">
               Trusted by leading companies
             </p>
           </div>
-
-          {/* Marquee wrapper — overflow hidden + fade edges */}
           <div className="relative overflow-hidden">
-
-            {/* Left fade edge */}
             <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-white to-transparent pointer-events-none" />
-            {/* Right fade edge */}
             <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-white to-transparent pointer-events-none" />
-
-            {/* Scrolling track — duplicated for seamless infinite loop */}
             <div className="flex gap-12 w-max animate-[marquee_28s_linear_infinite]">
               {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-center
-                             w-45 h-25 shrink-0
-                             bg-white rounded-xl
-                             border border-[#9333EA]/10
-                             px-5 py-3 shadow-sm
-                             hover:border-[#9333EA]/30 hover:shadow-md
-                             transition-all duration-300"
+                  className="flex items-center justify-center w-45 h-25 shrink-0 bg-white rounded-xl border border-[#9333EA]/10 px-5 py-3 shadow-sm hover:border-[#9333EA]/30 hover:shadow-md transition-all duration-300"
                 >
                   <Image
                     src={client.src}
@@ -482,21 +519,17 @@ const Testimonials = () => {
                 </div>
               ))}
             </div>
-
           </div>
         </div>
-        {/* ===== End Trusted Clients ===== */}
+        {/* ===== End Trusted Clients — infinite horizontal marquee ===== */}
 
-        {/* ── Stats Section ── */}
+
+        {/* === Stats Section === */}
         <div className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-14 shadow-large overflow-hidden animate-fade-in" style={{ animationDelay: '0.5s' }}>
-
-          {/* Decorative rings */}
           <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full border border-purple-500/20 pointer-events-none" />
           <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full border border-purple-400/10 pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full border border-purple-500/15 pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 rounded-full bg-purple-600/5 blur-3xl pointer-events-none" />
-
-          {/* Header */}
           <div className="text-center mb-10 relative z-10">
             <span className="inline-block px-4 py-1.5 bg-white/10 text-purple-200 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
               By the Numbers
@@ -504,8 +537,6 @@ const Testimonials = () => {
             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">Cornor Tech at a Glance</h3>
             <p className="text-white/50 text-sm max-w-md mx-auto">Numbers that reflect our commitment to excellence</p>
           </div>
-
-          {/* Stats grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 relative z-10">
             {[
               { number: '3+', label: 'Years of Excellence', sub: 'Since 2024', accent: 'from-purple-500/30 to-violet-600/20', ring: 'ring-purple-400/30', icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
@@ -515,11 +546,7 @@ const Testimonials = () => {
             ].map((stat, idx) => (
               <div
                 key={idx}
-                className={`group relative bg-linear-to-br ${stat.accent} backdrop-blur-sm
-                                            rounded-2xl p-5 lg:p-6 ring-1 ${stat.ring}
-                                            hover:ring-white/20 hover:bg-white/10
-                                            transition-all duration-300 hover:-translate-y-1
-                                            flex flex-col items-center text-center gap-3`}
+                className={`group relative bg-linear-to-br ${stat.accent} backdrop-blur-sm rounded-2xl p-5 lg:p-6 ring-1 ${stat.ring} hover:ring-white/20 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center gap-3`}
               >
                 <div className="w-12 h-12 rounded-xl bg-white/10 ring-1 ring-white/20 flex items-center justify-center text-purple-200 group-hover:bg-white/20 group-hover:scale-110 transition-all duration-300">
                   {stat.icon}
@@ -534,21 +561,18 @@ const Testimonials = () => {
             ))}
           </div>
         </div>
-        {/* ── End Stats Section ── */}
+        {/* === End Stats Section === */}
 
+        {/* === Voices of Satisfaction === */}
+        <VoicesSlider />
 
-        {/* ===== View career Section ===== */}
-        <div id='career' className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
-
-          {/* Background */}
+        {/* ===== View Career Section ===== */}
+        <div id="career" className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <div className="absolute inset-0 bg-linear-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />
           <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
           <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
           <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
-
           <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
-
-            {/* Left content */}
             <div className="flex-1 space-y-4 text-center lg:text-left">
               <span className="inline-block px-3 py-1 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-xs font-bold uppercase tracking-widest">
                 Careers
@@ -560,7 +584,6 @@ const Testimonials = () => {
               <p className="text-gray-500 text-sm lg:text-base max-w-lg leading-relaxed">
                 We&apos;re growing fast and looking for talented people who love building products that make a real difference. Competitive pay, great culture, remote options.
               </p>
-              {/* Trust pills */}
               <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
                 {[
                   { icon: '🌍', label: 'Remote Friendly' },
@@ -574,18 +597,10 @@ const Testimonials = () => {
                 ))}
               </div>
             </div>
-
-            {/* Right: single CTA button */}
             <div className="flex flex-col items-center gap-3 shrink-0">
               <Link
                 href="/careers"
-                className="group relative flex items-center gap-3
-                                           px-8 py-4 bg-[#9333EA] text-white rounded-2xl
-                                           font-bold text-base
-                                           hover:bg-[#7c3aed] active:scale-95
-                                           transition-all duration-200
-                                           shadow-lg shadow-[#9333EA]/30
-                                           hover:shadow-xl hover:shadow-[#9333EA]/40"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-[#9333EA] text-white rounded-2xl font-bold text-base hover:bg-[#7c3aed] active:scale-95 transition-all duration-200 shadow-lg shadow-[#9333EA]/30 hover:shadow-xl hover:shadow-[#9333EA]/40"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -597,14 +612,12 @@ const Testimonials = () => {
               </Link>
               <p className="text-xs text-gray-400 font-medium">{OPENINGS.length} positions open right now</p>
             </div>
-
           </div>
         </div>
-        {/* ===== End View career Section ===== */}
+        {/* ===== End View Career Section ===== */}
 
 
       </div>
-
     </section>
   );
 };
