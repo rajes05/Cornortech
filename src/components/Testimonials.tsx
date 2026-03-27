@@ -140,14 +140,14 @@ const TestimonialCard = ({
 // ===== End Testimonial Card =====
 
 
-// ===== Voices of Satisfaction Slider — extracted as proper component so hooks are valid =====
+// ===== Voices Slider =====
 const VOICES_SLIDES = [
   {
-    image: '/teams/coo.jpeg',
+    image: '/teams/ceo.jpeg',
     quote: 'I believe that the strength in our team and our ability to deal with adversities is what makes us a great partner for our clients.',
     highlight: "THIS IS WHY I'M PROUD TO BE ON THIS TEAM.",
-    name: 'Santosh Kunwar',
-    role: 'COO, Cornor Tech',
+    name: 'Ramit Neupane',
+    role: 'CEO, Cornor Tech',
   },
   {
     image: '/teams/coo.jpeg',
@@ -155,6 +155,27 @@ const VOICES_SLIDES = [
     highlight: 'THIS IS WHAT DRIVES US EVERY SINGLE DAY.',
     name: 'Santosh Kunwar',
     role: 'COO, Cornor Tech',
+  },
+  {
+    image: '/teams/cfo.jpeg',
+    quote: "Sound financial strategy is the backbone of every great tech company. At Cornor Tech, we build with clarity, accountability, and long-term vision.",
+    highlight: 'THIS IS HOW WE BUILD FOR THE FUTURE.',
+    name: 'Laxman Neupane',
+    role: 'CFO, Cornor Tech',
+  },
+  {
+    image: '/teams/om.jpeg',
+    quote: "Great organizations don't happen by accident. Every system, every process, every person — we align them all toward one goal: excellence.",
+    highlight: 'THIS IS THE STANDARD WE HOLD OURSELVES TO.',
+    name: 'Aman Pokhrel',
+    role: 'Organizational Manager, Cornor Tech',
+  },
+  {
+    image: '/teams/mh.jpg',
+    quote: "Marketing isn't just about visibility — it's about connection. We tell stories that resonate, campaigns that convert, and brands that last.",
+    highlight: 'THIS IS HOW WE MAKE CORNOR TECH KNOWN.',
+    name: 'Rubi Ale',
+    role: 'Marketing Head, Cornor Tech',
   },
 ];
 
@@ -277,7 +298,7 @@ const VoicesSlider = () => {
     </div>
   );
 };
-// ===== End Voices of Satisfaction Slider =====
+// ===== End Voices Slider =====
 
 
 const CARDS_PER_ROW = 3;
