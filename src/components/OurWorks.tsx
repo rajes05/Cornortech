@@ -27,11 +27,84 @@ const Ico = ({ d }: { d: string }) => (
 );
 
 const ALL_PROJECTS: Project[] = [
-  { id: "p1", index: "01", title: "Enterprise E-Commerce Platform",image:'/projects/e_commerce.jpg', client: "Nav Yantra Pvt. Ltd", year: "2025", type: "Web Development", shortInfo: "Headless e-commerce with real-time inventory sync, multi-currency checkout, and performance-optimized storefront.", tags: ["Next.js", "Node.js", "Redis", "PostgreSQL"], link: "https://www.navyantech.com/", tabBg: "#F5F0FF", accentColor: "#9333EA", imgBg: "from-purple-100 to-violet-200", icon: <Ico d='<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>' /> },
-  { id: "p2", index: "02", title: "Learning Management System",image:'/projects/lms_srk.jpeg', client: "The SRK University", year: "2025", type: "Learning Management System", shortInfo: "Custom LMS with adaptive learning paths, live streaming, interactive assessments, certificate generation, and creator marketplace.", tags: ["Next.js", "Node.js", "PostgreSQL", "AWS",], link: "https://thesrkuniversity.com/", tabBg: "#F0EEFF", accentColor: "#6366f1", imgBg: "from-indigo-100 to-purple-200", icon: <Ico d='<path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>' /> },
-  { id: "p3", index: "03", title: "AI-Powered Analytics Dashboard",image:'/projects/ai_dashboard.webp', client: "DataTech Corp", year: "2024", type: "AI & Machine Learning", shortInfo: "ML-driven BI platform with natural language queries, anomaly detection, and predictive forecasting across 12 data sources.", tags: ["Python", "TensorFlow", "FastAPI", "React", "D3.js"], link: "https://example.com/2", tabBg: "#EDEAFF", accentColor: "#7c3aed", imgBg: "from-violet-100 to-indigo-200", icon: <Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' /> },
-  { id: "p4", index: "04", title: "Healthcare Patient Portal", client: "HealthCare Plus Network", year: "2024", type: "Web Development", shortInfo: "HIPAA-compliant portal with smart scheduling, WebRTC telemedicine, EHR integration, and automated prescription management.", tags: ["Vue.js", "Laravel", "WebRTC", "MySQL", "AWS HIPAA"], link: "https://example.com/5", tabBg: "#FFF0FA", accentColor: "#db2777", imgBg: "from-pink-100 to-rose-200", icon: <Ico d='<path d="M9 12h6M12 9v6"/><circle cx="12" cy="12" r="10"/>' /> },
-  { id: "p5", index: "05", title: "Restaurant Chain POS System", client: "Culinary Delights Group", year: "2023", type: "Software Development", shortInfo: "Real-time POS with kitchen display, auto-reorder inventory, franchise analytics, and offline-first mobile ordering.", tags: ["React", "Express", "MySQL", "Socket.io", "PWA"], link: "https://example.com/6", tabBg: "#FFF8E8", accentColor: "#d97706", imgBg: "from-amber-100 to-orange-200", icon: <Ico d='<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>' /> },
+  {
+    id: "p1",
+    index: "01",
+    title: "Enterprise E-Commerce Platform",
+    image: '/projects/e_commerce.jpg',
+    client: "Nav Yantra Pvt. Ltd",
+    year: "2025",
+    type: "Web Development",
+    shortInfo: "Headless e-commerce with real-time inventory sync, multi-currency checkout, and performance-optimized storefront.",
+    tags: ["Next.js", "Node.js", "Redis", "PostgreSQL"],
+    link: "https://www.navyantech.com/",
+    tabBg: "#F5F0FF",
+    accentColor: "#9333EA",
+    imgBg: "from-purple-100 to-violet-200",
+    icon: <Ico d='<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>' />
+  },
+  {
+    id: "p2",
+    index: "02",
+    title: "Writeasy – Gamified Writing Platform",
+    image: '/projects/writeasy.jpg',
+    client: "Cornor Tech Pvt. Ltd.",
+    year: "2024",
+    type: "EdTech Platform",
+    shortInfo: "Gamified writing and comprehension platform with weekly contests, collaborative writing games, adaptive feedback, and premium subscription model.",
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Gamification", "EdTech"],
+    link: "https://writeasy.app",
+    tabBg: "#F5F0FF",
+    accentColor: "#9333EA",
+    imgBg: "from-purple-100 to-violet-200",
+    icon: <Ico d='<path d="M4 19.5A2.5 2.5 0 006.5 22h11a2.5 2.5 0 002.5-2.5V6l-7-4-7 4v13.5z"/><line x1="9.5" y1="9" x2="14.5" y2="9"/><line x1="9.5" y1="13" x2="14.5" y2="13"/>' />
+  },
+  {
+    id: "p3",
+    index: "03",
+    title: "Social Media Marketing",
+    image: '/projects/sulav_kharel_smm.jpg',
+    client: "Sulav Kharel",
+    year: "2026",
+    type: "Social Media Marketing",
+    shortInfo: "Full social media management for Sulav Kharel, RSP political leader from Rupandehi-2 — content strategy, post design, and audience engagement to strengthen his digital presence.",
+    tags: ["Social Media", "Content Strategy", "Political Branding", "Meta", "Canva"],
+    link: "https://www.facebook.com/SulavKharelRSP?mibextid=wwXIfr&rdid=odl3wJOdHbxr5nKc&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Csoo2AWSp%2F%3Fmibextid%3DwwXIfr#",
+    tabBg: "#EDEAFF",
+    accentColor: "#7c3aed",
+    imgBg: "from-violet-100 to-indigo-200", icon: <Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' />
+  },
+  {
+    id: "p4",
+    index: "04",
+    title: "POS System",
+    client: "",
+    year: "2026",
+    type: "POS System",
+    shortInfo: "Fresh village-grown vegetables, smart inventory management, farmer-to-customer supply chain, and offline-friendly ordering for rural areas.",
+    tags: ["React", "Express", "MySQL", "Socket.io", "PWA"],
+    link: "Gaukotarkari.com",
+    tabBg: "#FFF8E8",
+    accentColor: "#d97706",
+    imgBg: "from-amber-100 to-orange-200",
+    icon: <Ico d='<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>' />
+  },
+  {
+    id: "p5",
+    index: "05",
+    title: "Social Media Marketing",
+    image: '/projects/dynamic_ec_smm.jpg',
+    client: "Dynamic Education Center",
+    year: "2025",
+    type: "Social Media Marketing",
+    shortInfo: "End-to-end social media management for Dynamic Education Center — promotional content, student engagement campaigns, and brand visibility across platforms.",
+    tags: ["Social Media", "Content Creation", "Education Marketing", "Meta", "Canva"],
+    link: "https://www.facebook.com/dynamiceducationbutwal?mibextid=wwXIfr&rdid=UbbCozQBkasJdHhp&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DueXWQJ8Z%2F%3Fmibextid%3DwwXIfr#",
+    tabBg: "#EDEAFF",
+    accentColor: "#7c3aed",
+    imgBg: "from-violet-100 to-indigo-200", icon: <Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' />
+  },
+  
 ];
 
 const INITIAL = 4;
