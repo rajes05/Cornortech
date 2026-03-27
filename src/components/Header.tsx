@@ -39,7 +39,11 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
     .filter((item) => item.type === 'dropdown')
     .flatMap((item: any) => item.children ?? []);
 
-  const nonDropdownItems = navigationItems.filter((item) => item.type !== 'dropdown');
+  // Non Dropdown items first three to show on mobile view 
+  const nonDropdownItems = navigationItems.filter((item) => item.type !== 'dropdown').slice(0, 3);
+
+  // For Remaining 
+  const hiddenMobileNavItems = navigationItems.filter((item) => item.type !== 'dropdown').slice(3);
 
   const handleNavClick = (item: any) => {
     if (item.type === 'scroll') {
@@ -153,17 +157,17 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
           {/* End Desktop Nav with Dropdown */}
 
 
-          {/* NavItems */}
+          {/* NavItems Mobile Nav*/}
           {!isMobileMenuOpen && (
             <div className="md:hidden flex-1 flex items-center overflow-x-auto scrollbar-none px-1">
-              <div className="flex items-center gap-0.5 mx-auto">
+              <div className="flex items-center gap-3 mx-auto">
                 {nonDropdownItems.map((item) => (
                   <button
                     key={item.title}
                     onClick={() => handleNavClick(item)}
-                    className={`cursor-pointer shrink-0 px-1.5 py-0.5 rounded-full text-[10px] font-medium whitespace-nowrap transition-colors ${isScrolled
-                      ? 'text-gray-600 hover:text-[#9333EA] hover:bg-purple-50'
-                      : 'text-white/75 hover:text-white hover:bg-white/10'
+                    className={`cursor-pointer shrink-0 px-2.5 py-1 rounded-full text-[12px] font-medium whitespace-nowrap transition-colors ${isScrolled
+                      ? 'text-gray-700 hover:text-[#9333EA] hover:bg-purple-50'
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
                       }`}
                   >
                     {item.title}
@@ -172,10 +176,10 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               </div>
             </div>
           )}
-          {/* End NavItems */}
+          {/* End NavItems Mobile Nav*/}
 
 
-          {/* Right: desktop social + hamburger */}
+          {/* Right: desktop social + hamburger Button*/}
           <div className="flex items-center gap-1 shrink-0">
             <div className="hidden md:flex items-center gap-0.5">
               {socialLinks.map((social: SocialSection) => (
@@ -210,17 +214,32 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               </div>
             </button>
           </div>
-          {/* End Right: desktop social + hamburger */}
+          {/* End Right: desktop social + hamburger Button*/}
 
 
         </div>
-        {/* ═══ End main bar ═══ */}
+        {/* ═══ End MAIN BAR ═══ */}
 
 
         {/* ═══ MOBILE HAMBURGER MENU ═══ */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
           <div className="pb-4">
 
+            {/* Hidden Nav items - Our works, Career */}
+            {hiddenMobileNavItems.map((item) => (
+              <div key={item.title}
+              className='border-b border-gray-100'
+              >
+                <button
+                onClick={()=> handleNavClick(item)}
+                className='w-full text-left px-4 py-3.5 text-sm font-medium text-foreground hover:bg-gray-50 hover:text-[#9333EA] transition-colors'
+                >
+                  {item.title}
+                </button>
+              </div>
+            ))}
+
+            {/* Dropdown Children - Blogs, News & Updates */}
             {dropdownChildren.length > 0 && (
               <div className="px-4 pt-3 pb-1">
                 <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">More</span>
@@ -257,7 +276,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
           </div>
         </div>
-        {/* ═══ End mobile hamburger menu ═══ */}
+        {/* ═══ End MOBILE HAMBURGER MENU ═══ */}
 
       </nav>
     </header>
