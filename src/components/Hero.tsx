@@ -113,7 +113,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     <section
       ref={sectionRef}
       id="hero"
-      className={`relative ${bannerVisible ? 'pt-16 lg:pt-32' : 'pt-12 lg:pt-28'
+      className={`relative ${bannerVisible ? 'pt-16 lg:pt-32' : 'pt-16 lg:pt-28'
         } w-full min-h-screen bg-linear-to-b from-[#1e003a] via-[#2d0a52] to-[#3b1266] overflow-hidden flex flex-col font-sans`}
     >
 
