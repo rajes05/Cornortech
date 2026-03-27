@@ -104,7 +104,7 @@ const ALL_PROJECTS: Project[] = [
     accentColor: "#7c3aed",
     imgBg: "from-violet-100 to-indigo-200", icon: <Ico d='<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>' />
   },
-  
+
 ];
 
 const INITIAL = 4;
@@ -137,7 +137,9 @@ const OurWorks = () => {
   };
 
   return (
-    <section id="our-works" className="py-20 lg:py-32 bg-white relative overflow-hidden">
+    <section id="our-works"
+      className="relative py-24 lg:py-36 bg-[#faf8ff] overflow-hidden font-sans">
+
       <style>{`
         @keyframes fromBelow { from{opacity:0;transform:translateY(48px)}  to{opacity:1;transform:translateY(0)} }
         @keyframes fromAbove { from{opacity:0;transform:translateY(-48px)} to{opacity:1;transform:translateY(0)} }
@@ -171,24 +173,83 @@ const OurWorks = () => {
         .bottom-wave { animation: waveFloat 4s ease-in-out infinite; transform-origin: center bottom; }
       `}</style>
 
-      {/* === Header === */}
-      <div className="container-custom text-center space-y-4 mb-14">
-        <span className="px-4 py-2 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-sm font-semibold inline-block">
-          Our Portfolio
-        </span>
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">
-          <span className="text-[#9333EA]">Our Works</span>
-          <br />
-          Projects That Make an Impact
-        </h2>
-        <p className="text-lg text-foreground-secondary max-w-3xl mx-auto">
-          Discover how we&apos;ve helped businesses transform their digital presence with innovative solutions.
+      {/* ===== Background Elements ===== */}
+      <>
+
+        {/*  Dot grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        {/* Ambient blobs */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)',
+            }}
+          />
+          <div
+            className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)',
+            }}
+          />
+        </div>
+
+        {/* Ghost text  */}
+        <p
+          className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+        >
+          Our Works
         </p>
+
+      </>
+      {/* ===== End Background Elements ===== */}
+
+      {/* === Header === */}
+      <div className="container-custom relative z-10 text-center space-y-4 mb-14">
+
+        <div className="mb-14 lg:mb-18 text-center">
+
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div className="h-px w-8 bg-[#9333EA] rounded-full" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
+              Our Portfolio
+            </span>
+          </div>
+
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight">
+            <span className="text-[#1e003a]">Our</span>
+            <br />
+            <span
+              className="text-transparent bg-clip-text"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg, #9333EA 0%, #6366f1 60%, #a855f7 100%)",
+              }}
+            >
+              Works
+            </span>
+            <br />
+            <span className="text-[#1e003a]/25">That Deliver Impact.</span>
+          </h2>
+
+          <p className="text-lg text-[#1e003a]/60 max-w-3xl mx-auto mt-4">
+            Discover how we’ve helped businesses transform their digital presence with innovative solutions.
+          </p>
+
+        </div>
+
       </div>
       {/* === End Header === */}
 
       {/* === Accordion Tab list === */}
-      <div className="container-custom">
+      <div className="container-custom relative z-10">
         <ul className="list-none p-0 m-0">
           {shown.map((p, i) => {
             const isOpen = i === activeTab;
@@ -229,7 +290,7 @@ const OurWorks = () => {
                 {/* === Expanded body — pastel bg, compact 2-col layout === */}
                 {isOpen && (
                   <div
-                    className={`ow-tab-body ${bodyAnim(i)} flex flex-col lg:flex-row gap-0 pb-6 rounded-xl overflow-hidden`}
+                    className={`ow-tab-body backdrop-blur-[6px] ${bodyAnim(i)} flex flex-col lg:flex-row gap-0 pb-6 rounded-xl overflow-hidden`}
                     style={{ background: p.tabBg }}>
 
                     {/* ===== LEFT: 2/3 — compact project info ===== */}
@@ -338,7 +399,7 @@ const OurWorks = () => {
       {/* === End Accordion Tab list === */}
 
       {/* === Show More / Collapse Controls === */}
-      <div ref={controlsRef} className="container-custom mt-8 flex flex-col items-center gap-3">
+      <div ref={controlsRef} className="container-custom relative z-10 mt-8 flex flex-col items-center gap-3">
         <p className="text-sm text-foreground-secondary font-medium">
           Showing <span className="text-[#9333EA] font-semibold">{Math.min(visible, total)}</span> of{" "}
           <span className="text-[#9333EA] font-semibold">{total}</span> projects
