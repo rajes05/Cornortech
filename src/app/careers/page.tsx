@@ -82,20 +82,6 @@ export default function CareersPage() {
                         </a>
                     </div>
 
-                    {/* Quick stats */}
-                    <div className="flex flex-wrap justify-center gap-8 mt-14 pt-10 border-t border-white/10">
-                        {[
-                            { n: '25+', l: 'Team Members' },
-                            { n: '3+',  l: 'Years Old' },
-                            { n: '150+', l: 'Projects Shipped' },
-                            { n: '98%', l: 'Client Retention' },
-                        ].map((s, i) => (
-                            <div key={i} className="text-center">
-                                <p className="text-2xl font-black text-white">{s.n}</p>
-                                <p className="text-xs text-white/40 font-medium mt-0.5">{s.l}</p>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </section>
             {/* ── End Hero ── */}
