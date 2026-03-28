@@ -228,7 +228,7 @@ const AboutUs = () => {
                                     Today, we&apos;re proud to be a trusted partner for businesses ranging from startups to enterprises. Our multidisciplinary team combines expertise in web development, mobile apps, AI/ML, digital marketing, and design to deliver comprehensive solutions that drive growth.
                                 </p>
                                 <p>
-                                    With over <span className="font-semibold text-purple-300">150+ successful projects</span> and <span className="font-semibold text-purple-300">120+ satisfied clients</span>, we continue to push the boundaries of what&apos;s possible in the digital realm.
+                                    With over <span className="font-semibold text-purple-300">50+ successful projects</span> and <span className="font-semibold text-purple-300">90+ satisfied clients</span>, we continue to push the boundaries of what&apos;s possible in the digital realm.
                                 </p>
                             </div>
                         </div>
