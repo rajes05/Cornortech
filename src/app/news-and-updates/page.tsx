@@ -3,28 +3,12 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { ARTICLES, NewsArticle } from '@/data/news';
 
 export const metadata = {
     title: 'News & Updates | Cornor Tech Pvt. Ltd.',
     description: 'Latest news, articles, and updates from Cornor Tech Pvt. Ltd.',
 };
-
-// ── Article data — only href, source info, category, date needed ──
-// OG title, description, and image are auto-fetched from the URL
-const articles = [
-    {
-        id: '1',
-        source: 'Khabar Khata',
-        sourceLogo: 'KK',
-        sourceColor: '#e11d48',
-        date: 'August 7, 2025',
-        category: 'News',
-        categoryColor: '#9333EA',
-        href: 'https://khabarkhata.com/2025/08/07/15/4757/',
-        external: true,
-        featured: true,
-    },
-];
 
 // ── OG metadata type ──────────────────────────────────────────
 interface OGData {
@@ -63,15 +47,15 @@ async function fetchOG(url: string): Promise<OGData> {
 }
 
 // ── Article type ──────────────────────────────────────────────
-type Article = typeof articles[0] & { og: OGData };
+type Article = NewsArticle & { og: OGData };
 
-// ── Featured Card — social preview style ──────────────────────
-const FeaturedCard = ({ article }: { article: Article }) => (
+// ── News Card (Horizontal) — social preview style ──────────────────
+const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article; isFeatured?: boolean }) => (
     
-    <a    href={article.href}
+    <Link href={article.href}
         target={article.external ? '_blank' : '_self'}
         rel={article.external ? 'noopener noreferrer' : undefined}
-        className="group grid grid-cols-1 lg:grid-cols-5 rounded-3xl overflow-hidden border border-[#1e003a]/08 hover:border-[#9333EA]/20 transition-all duration-500 hover:shadow-[0_12px_60px_rgba(147,51,234,0.10)] bg-white"
+        className={`group grid grid-cols-1 lg:grid-cols-5 rounded-3xl overflow-hidden border border-[#1e003a]/08 hover:border-[#9333EA]/20 transition-all duration-500 hover:shadow-[0_12px_60px_rgba(147,51,234,0.10)] bg-white ${isFeatured ? 'ring-2 ring-[#9333EA]/10 shadow-lg' : ''}`}
     >
         {/* ── Left: OG image or branded fallback ── */}
         <div className="lg:col-span-2 relative min-h-64 lg:min-h-0 overflow-hidden bg-[#1e003a]">
@@ -83,7 +67,6 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                         alt={article.og.title}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    {/* Subtle dark overlay for readability */}
                     <div
                         className="absolute inset-0 pointer-events-none"
                         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.25) 100%)' }}
@@ -92,7 +75,6 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                 </>
             ) : (
                 <>
-                    {/* Branded fallback */}
                     <div
                         className="absolute inset-0"
                         style={{ background: 'linear-gradient(135deg, #1e003a 0%, #2d0a52 60%, #3b1266 100%)' }}
@@ -105,11 +87,6 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                         }}
                         aria-hidden="true"
                     />
-                    <div
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full pointer-events-none"
-                        style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 70%)' }}
-                        aria-hidden="true"
-                    />
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                         <div
                             className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] group-hover:scale-110 transition-transform duration-500"
@@ -119,17 +96,19 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                         </div>
                         <div className="flex flex-col items-center gap-1">
                             <span className="text-white/80 text-[11px] font-bold uppercase tracking-[0.25em]">{article.source}</span>
-                            <span className="text-white/30 text-[10px] font-medium uppercase tracking-widest">Press Coverage</span>
+                            <span className="text-white/30 text-[10px] font-medium uppercase tracking-widest">Article Preview</span>
                         </div>
                     </div>
                 </>
             )}
 
             {/* Featured badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/30 border border-white/15 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Featured</span>
-            </div>
+            {isFeatured && (
+                <div className="absolute top-4 left-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/30 border border-white/15 backdrop-blur-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">Featured</span>
+                </div>
+            )}
 
             {/* External indicator */}
             {article.external && (
@@ -140,7 +119,6 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                 </div>
             )}
         </div>
-        {/* ── End left panel ── */}
 
         {/* ── Right: OG content ── */}
         <div className="lg:col-span-3 flex flex-col justify-between p-7 lg:p-10">
@@ -157,24 +135,27 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                     <span className="text-[11px] text-[#1e003a]/40 font-medium">{article.date}</span>
                 </div>
 
-                {/* OG Title */}
-                <h2 className="text-2xl lg:text-3xl font-black text-[#1e003a] leading-[1.1] tracking-tight mb-4 group-hover:text-[#9333EA] transition-colors duration-300">
-                    {article.og.title}
-                </h2>
+                {/* Heading (Source + Title) */}
+                <div className="space-y-2 mb-4">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#9333EA]/60 block">{article.source}</span>
+                    <h2 className={`font-black text-[#1e003a] leading-[1.1] tracking-tight group-hover:text-[#9333EA] transition-colors duration-300 ${isFeatured ? 'text-2xl lg:text-3xl' : 'text-xl lg:text-2xl'}`}>
+                        {article.og.title}
+                    </h2>
+                </div>
 
-                {/* OG Description */}
+                {/* Description */}
                 {article.og.description && (
-                    <p className="text-[14px] text-[#1e003a]/60 leading-[1.8] line-clamp-3">
+                    <p className={`text-[#1e003a]/60 leading-[1.8] line-clamp-3 ${isFeatured ? 'text-[14px]' : 'text-[13px]'}`}>
                         {article.og.description}
                     </p>
                 )}
             </div>
 
-            {/* Source row + CTA */}
+            {/* Footer row + CTA */}
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#1e003a]/06">
                 <div className="flex items-center gap-2.5">
                     <div
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[9px] font-black shrink-0"
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[9px] font-black shrink-0 shadow-sm"
                         style={{ background: article.sourceColor }}
                     >
                         {article.sourceLogo}
@@ -182,122 +163,20 @@ const FeaturedCard = ({ article }: { article: Article }) => (
                     <div className="flex flex-col">
                         <span className="text-[11px] font-bold text-[#1e003a]/70">{article.source}</span>
                         <span className="text-[9px] text-[#1e003a]/35 font-medium truncate max-w-48">
-                            {new URL(article.href).hostname}
+                            {article.external ? new URL(article.href).hostname : 'cornortech.com'}
                         </span>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-[12px] font-bold text-[#9333EA] group-hover:gap-3 transition-all duration-300">
-                    Read Full Article
+                <div className="flex items-center gap-2 text-[12px] font-bold text-[#9333EA] group-hover:gap-3 transition-all duration-300 uppercase tracking-widest">
+                    {article.external ? 'Read Full Article' : 'Read More'}
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </div>
             </div>
         </div>
-        {/* ── End right panel ── */}
-
-    </a>
-);
-
-// ── Regular Card ──────────────────────────────────────────────
-const ArticleCard = ({ article }: { article: Article }) => (
-    
-     <a   href={article.href}
-        target={article.external ? '_blank' : '_self'}
-        rel={article.external ? 'noopener noreferrer' : undefined}
-        className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[#1e003a]/06 hover:border-[#9333EA]/20 hover:shadow-[0_8px_40px_rgba(147,51,234,0.10)] hover:-translate-y-0.5 transition-all duration-300"
-    >
-        {/* OG image or branded fallback */}
-        <div className="relative h-44 overflow-hidden bg-[#1e003a]">
-            {article.og.image ? (
-                <>
-                    <img
-                        src={article.og.image}
-                        alt={article.og.title}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.18) 100%)' }}
-                        aria-hidden="true"
-                    />
-                </>
-            ) : (
-                <>
-                    <div
-                        className="absolute inset-0"
-                        style={{ background: 'linear-gradient(135deg, #1e003a 0%, #2d0a52 60%, #3b1266 100%)' }}
-                    />
-                    <div
-                        className="absolute inset-0 opacity-[0.07] pointer-events-none"
-                        style={{
-                            backgroundImage: 'radial-gradient(circle, #a855f7 1px, transparent 1px)',
-                            backgroundSize: '16px 16px',
-                        }}
-                        aria-hidden="true"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center gap-3">
-                        <div
-                            className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-sm shadow-lg group-hover:scale-110 transition-transform duration-300"
-                            style={{ background: article.sourceColor }}
-                        >
-                            {article.sourceLogo}
-                        </div>
-                        <span className="text-white/50 text-[10px] font-bold uppercase tracking-widest">{article.source}</span>
-                    </div>
-                </>
-            )}
-
-            {/* Category badge over image */}
-            <div className="absolute bottom-3 left-3">
-                <span
-                    className="text-[9px] font-black uppercase tracking-[0.18em] px-2 py-1 rounded-full backdrop-blur-sm"
-                    style={{ background: `${article.categoryColor}cc`, color: '#fff' }}
-                >
-                    {article.category}
-                </span>
-            </div>
-
-            {article.external && (
-                <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-black/25 border border-white/15 flex items-center justify-center backdrop-blur-sm">
-                    <svg className="w-2.5 h-2.5 text-white/80" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                </div>
-            )}
-        </div>
-
-        {/* Content */}
-        <div className="flex flex-col flex-1 p-5">
-            <span className="text-[10px] text-[#1e003a]/35 font-medium mb-2">{article.date}</span>
-
-            <h3 className="text-[15px] font-black text-[#1e003a] leading-snug mb-2.5 group-hover:text-[#9333EA] transition-colors duration-200 flex-1">
-                {article.og.title}
-            </h3>
-
-            {article.og.description && (
-                <p className="text-[12.5px] text-[#1e003a]/55 leading-relaxed line-clamp-2 mb-4">
-                    {article.og.description}
-                </p>
-            )}
-
-            <div className="flex items-center justify-between pt-3.5 border-t border-[#1e003a]/05">
-                <div className="flex items-center gap-2">
-                    <div
-                        className="w-5 h-5 rounded-md flex items-center justify-center text-white text-[8px] font-black shrink-0"
-                        style={{ background: article.sourceColor }}
-                    >
-                        {article.sourceLogo}
-                    </div>
-                    <span className="text-[10px] font-semibold text-[#1e003a]/40">{article.source}</span>
-                </div>
-                <span className="text-[10px] font-bold text-[#9333EA] group-hover:underline underline-offset-2">
-                    Read →
-                </span>
-            </div>
-        </div>
-    </a>
+    </Link>
 );
 
 // ── Empty State ───────────────────────────────────────────────
@@ -318,15 +197,28 @@ export default async function BlogsPage() {
 
     // Fetch OG metadata for all articles in parallel
     const articlesWithOG: Article[] = await Promise.all(
-        articles.map(async (article) => ({
-            ...article,
-            og: await fetchOG(article.href),
-        }))
+        ARTICLES.map(async (article) => {
+            if (article.external) {
+                return {
+                    ...article,
+                    og: await fetchOG(article.href),
+                };
+            }
+            // For internal articles, use static metadata
+            return {
+                ...article,
+                og: {
+                    title: article.title || 'Cornor Tech Update',
+                    description: article.description || '',
+                    image: article.image || null,
+                },
+            };
+        })
     );
 
     const featuredArticle = articlesWithOG.find((a) => a.featured);
     const restArticles = articlesWithOG.filter((a) => !a.featured);
-    const categories = ['All', ...Array.from(new Set(articles.map((a) => a.category)))];
+    const categories = ['All', ...Array.from(new Set(ARTICLES.map((a) => a.category)))];
 
     return (
         <>
@@ -395,7 +287,7 @@ export default async function BlogsPage() {
                             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                 <span className="text-[11px] font-semibold text-white/75 uppercase tracking-wider">
-                                    {articles.length} {articles.length === 1 ? 'Article' : 'Articles'}
+                                    {ARTICLES.length} {ARTICLES.length === 1 ? 'Article' : 'Articles'}
                                 </span>
                             </div>
                             {categories.filter((c) => c !== 'All').map((cat) => (
@@ -425,24 +317,24 @@ export default async function BlogsPage() {
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="h-px w-8 bg-[#9333EA] rounded-full" />
                                         <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
-                                            
+                                            Featured Story
                                         </span>
                                     </div>
-                                    <FeaturedCard article={featuredArticle} />
+                                    <NewsCardHorizontal article={featuredArticle} isFeatured={true} />
                                 </div>
                             )}
 
                             {restArticles.length > 0 && (
-                                <div>
+                                <div className="space-y-12">
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="h-px w-8 bg-[#9333EA] rounded-full" />
                                         <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
-                                            All Articles
+                                            Recent Updates
                                         </span>
                                     </div>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                                    <div className="flex flex-col gap-8">
                                         {restArticles.map((article) => (
-                                            <ArticleCard
+                                            <NewsCardHorizontal
                                                 key={article.id}
                                                 article={article}
                                             />
