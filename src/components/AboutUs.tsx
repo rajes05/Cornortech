@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 
 interface TeamMember {
@@ -97,8 +98,7 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
                 <div className="absolute top-6 left-6 w-12 h-12 bg-white/10 rounded-lg transform -rotate-12 group-hover:rotate-12 transition-transform duration-300" />
                 <div className="absolute bottom-6 right-6 w-16 h-16 bg-white/5 rounded-full group-hover:scale-125 transition-transform duration-300" />
             </div>
-            {/* Enc Team Member Image */}
-
+            {/* End Team Member Image */}
 
             {/* Team Member Content */}
             <div className="p-4 space-y-2">
@@ -129,16 +129,17 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
 
 // ===== About Us Section =====
 const AboutUs = () => {
-
+    const sectionRef = useRef(null);
+    const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
     const teamMembers: TeamMember[] = [
         {
             id: '1',
             name: 'Ramit Neupane',
             role: 'Founder & CEO',
-            bio: 'Visionary leader passionate about driving innovation and building impactful digital solutions. Focused on guiding the company’s strategy, growth, and long-term vision.',
+            bio: "Visionary leader passionate about driving innovation and building impactful digital solutions. Focused on guiding the company's strategy, growth, and long-term vision.",
             image: '/teams/founder.jpeg',
-            gradient: 'bg-gradient-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
+            gradient: 'bg-linear-to-br from-[#9333EA]/20 to-[#7c3aed]/20',
             skills: ['Leadership', 'Business Strategy', 'Innovation'],
             social: { linkedin: '#', twitter: '#' }
         },
@@ -148,7 +149,7 @@ const AboutUs = () => {
             role: 'Chief Operational Officer',
             bio: 'Tech enthusiast leading our engineering team. Expert in full-stack development, AI/ML, and cloud architecture with a proven track record.',
             image: '/teams/coo.jpeg',
-            gradient: 'bg-gradient-to-br from-[#7c3aed]/20 to-[#9333EA]/20',
+            gradient: 'bg-linear-to-br from-[#7c3aed]/20 to-[#9333EA]/20',
             skills: ['Full-Stack', 'AI/ML', 'Cloud'],
             social: { linkedin: '#', github: '#' }
         },
@@ -158,7 +159,7 @@ const AboutUs = () => {
             role: 'Chief Financial Officer',
             bio: 'Financial strategist responsible for managing company finances, budgeting, and investment planning. Focused on maintaining financial stability and supporting sustainable business growth.',
             image: '/teams/cfo.jpeg',
-            gradient: 'bg-gradient-to-br from-[#a855f7]/20 to-[#9333EA]/20',
+            gradient: 'bg-linear-to-br from-[#a855f7]/20 to-[#9333EA]/20',
             skills: ['Financial Planning', 'Budget Management', 'Risk Analysis'],
             social: { linkedin: '#', twitter: '#' }
         },
@@ -166,9 +167,9 @@ const AboutUs = () => {
             id: '4',
             name: 'Aman Pokhrel',
             role: 'Organizational Manager',
-            bio: 'Experienced organizational manager responsible for coordinating team operations and ensuring smooth workflow across departments. Focused on efficient planning, communication, and team collaboration.',
+            bio: 'Experienced organizational manager responsible for coordinating team operations and ensuring smooth workflow across departments.',
             image: '/teams/om.jpeg',
-            gradient: 'bg-gradient-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
+            gradient: 'bg-linear-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
             skills: ['Team Management', 'Operations', 'Coordination'],
             social: { linkedin: '#', twitter: '#' }
         },
@@ -177,45 +178,101 @@ const AboutUs = () => {
             name: 'Rubi Ale',
             role: 'Marketing Head',
             bio: 'Creative marketing leader focused on building brand presence and driving growth. Skilled in digital marketing, campaign strategy, market research, and audience engagement.',
-            image: '/teams/rubi_ale.jpg',
-            gradient: 'bg-gradient-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
+            image: '/teams/mh.jpg',
+            gradient: 'bg-linear-to-br from-[#7e22ce]/20 to-[#9333EA]/20',
             skills: ['Digital Marketing', 'Brand Strategy', 'Market Research'],
             social: { linkedin: '#', twitter: '#' }
         }
-
     ];
 
     return (
-        <section className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+        <section
+            id="about-us"
+            ref={sectionRef}
+            className="relative py-24 lg:py-36 bg-[#faf8ff] overflow-hidden font-sans"
+        >
 
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-20 right-20 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-20 left-20 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
+            {/* ── Subtle dot grid background (from Contact) ── */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-40"
+                style={{
+                    backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+                    backgroundSize: '32px 32px',
+                }}
+                aria-hidden="true"
+            />
+
+            {/* ── Ambient blobs (from Contact) ── */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                <div
+                    className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+                />
+                <div
+                    className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+                    style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+                />
             </div>
 
-            <div className="container-custom relative z-10 space-y-16">
+            {/* ── Giant ghost text (from Contact) ── */}
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 1.4, delay: 0.15 }}
+                className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+                aria-hidden="true"
+            >
+                About Us
+            </motion.p>
 
-                {/* ── Header ── */}
-                <div className="text-center space-y-6 animate-fade-in">
-                    <div className="inline-block">
-                        <span className="px-4 py-2 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-sm font-semibold">
-                            About Us
+            <div className="container mx-auto px-4 lg:px-8 relative z-10 space-y-16">
+
+                {/* ── Header (Contact style) ── */}
+                <div className="mb-14 lg:mb-18">
+                    <motion.div
+                        initial={{ opacity: 0, y: 18 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.55 }}
+                        className="flex items-center gap-3 mb-5"
+                    >
+                        <div className="h-px w-8 bg-[#9333EA] rounded-full" />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
+                            Who we are
                         </span>
-                    </div>
-                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground">
-                        <span className="text-[#9333EA]">Meet the Team</span>
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 22 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.65, delay: 0.08 }}
+                        className="text-4xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight"
+                    >
+                        <span className="text-[#1e003a]">Meet the Team</span>
                         <br />
-                        Behind Cornor Tech
-                    </h2>
-                    <p className="text-lg lg:text-xl text-foreground-secondary max-w-3xl mx-auto">
+                        <span
+                            className="text-transparent bg-clip-text"
+                            style={{
+                                backgroundImage: 'linear-gradient(135deg, #9333EA 0%, #6366f1 60%, #a855f7 100%)',
+                            }}
+                        >
+                            Behind
+                        </span>
+                        <br />
+                        <span className="text-[#1e003a]/25">Cornor Tech.</span>
+                    </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.18 }}
+                        className="mt-6 text-base lg:text-lg text-[#1e003a]/50 max-w-xl font-medium leading-relaxed"
+                    >
                         We&apos;re a passionate team of innovators, designers, and developers dedicated to transforming businesses through technology.
-                    </p>
+                    </motion.p>
                 </div>
                 {/* ── End Header ── */}
 
-
-                {/* ── Company Story ── */}
+                {/* ── Company Story (original) ── */}
                 <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
                     <div className="bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-12 shadow-large border border-purple-500/30">
                         <div className="space-y-6">
@@ -236,39 +293,35 @@ const AboutUs = () => {
                 </div>
                 {/* ── End Company Story ── */}
 
-
                 {/* ── Team Members ── */}
                 <div className="space-y-8">
 
                     <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
-                            Leadership Team
-                        </h3>
-                        <p className="text-foreground-secondary max-w-2xl mx-auto">
-                            Meet the talented individuals driving innovation at Cornor Tech
-                        </p>
-                    </div>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
+                                Leadership Team
+                            </h3>
+                            <p className="text-foreground-secondary max-w-2xl mx-auto">
+                                Meet the talented individuals driving innovation at Cornor Tech
+                            </p>
+                        </div>
 
                     {/* First Row */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {teamMembers.slice(0, 4).map((member, index) => (
                             <TeamCard key={member.id} member={member} index={index} />
                         ))}
                     </div>
 
-                    {/* Second Row (Centered Card) */}
+                    {/* Second Row (Centered) */}
                     <div className="flex justify-center">
                         <div className="w-full md:w-1/2 lg:w-1/4">
                             <TeamCard member={teamMembers[4]} index={4} />
                         </div>
                     </div>
-
                 </div>
                 {/* ── End Team Members ── */}
 
             </div>
-
-
         </section>
     );
 };
