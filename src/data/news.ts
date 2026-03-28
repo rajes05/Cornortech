@@ -85,15 +85,27 @@ export const ARTICLES: NewsArticle[] = [
             <p>कलिका आईसीटी क्लबका अध्यक्ष सिद्धान्त पन्थीका अनुसार, यो कार्यक्रम क्लबको वार्षिक अध्यक्षीय कार्ययोजना (Presidential Plan Action) अन्तर्गतको पहिलो चरण हो। उनले आगामी दिनमा फरक–फरक स्थानहरूमा गएर नयाँ–नयाँ विद्यार्थीहरूलाई प्रविधिको ज्ञान बाँड्ने योजना रहेको बताएका छन्।</p>
         `
     },
-    {
+     {
         id: '4',
+        source: 'Annapurna Post',
+        sourceLogo: 'AP',
+        sourceColor: '#e11d48',
+        date: 'August 7, 2025',
+        category: 'News',
+        categoryColor: '#9333EA',
+        href: 'https://annapurnapost.com/epaper/?id=2148',
+        external: true,
+        featured: false,
+    },
+    {
+        id: '5',
         source: 'Cornor Tech',
         sourceLogo: 'CT',
         sourceColor: '#9333EA',
         date: 'June 15, 2024',
         category: 'Webinar',
         categoryColor: '#9333EA',
-        href: '/news-and-updates/4',
+        href: '/news-and-updates/5',
         external: false,
         featured: false,
         title: "Skillful Saturday: Mapping Your Future - नेपालकै ठूलो IT वेबिनारको रूपमा स्थापित",
@@ -113,4 +125,5 @@ export const ARTICLES: NewsArticle[] = [
             <p>साथै, आगामी दिनहरूमा देशका विभिन्न स्थानमा यस्ता skill-based कार्यक्रमहरू विस्तार गर्दै अझ धेरै विद्यार्थीहरूलाई लाभान्वित गर्ने योजना रहेको जनाइएको छ।</p>
         `
     },
+   
 ];
