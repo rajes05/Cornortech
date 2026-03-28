@@ -710,14 +710,14 @@ const Testimonials = () => {
 
         {/* ===== News and Update Section ===== */}
         <div id="news" className="relative rounded-3xl overflow-hidden animate-fade-in mt-12" style={{ animationDelay: '0.7s' }}>
-          <div className="absolute inset-0 bg-linear-to-br from-[#1e003a]/5 via-[#9333EA]/5 to-[#1e003a]/5" />
+          <div className="absolute inset-0 bg-linear-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />
           <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
           <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
           <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
           <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="flex-1 space-y-4 text-center lg:text-left">
-              <span className="inline-block px-3 py-1 bg-[#1e003a]/10 text-[#1e003a] rounded-full text-xs font-bold uppercase tracking-widest">
-               News & Updates
+              <span className="inline-block px-3 py-1 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-xs font-bold uppercase tracking-widest">
+                News & Updates
               </span>
               <h3 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">
                 Stay updated with
@@ -742,7 +742,7 @@ const Testimonials = () => {
             <div className="flex flex-col items-center gap-3 shrink-0">
               <Link
                 href="/news-and-updates"
-                className="group relative flex items-center gap-3 px-8 py-4 bg-[#1e003a] text-white rounded-2xl font-bold text-base hover:bg-[#2d0a52] active:scale-95 transition-all duration-200 shadow-lg shadow-[#1e003a]/30 hover:shadow-xl hover:shadow-[#1e003a]/40"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-[#9333EA] text-white rounded-2xl font-bold text-base hover:bg-[#a855f7] active:scale-95 transition-all duration-200 shadow-lg shadow-[#9333EA]/30 hover:shadow-xl hover:shadow-[#9333EA]/40"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
