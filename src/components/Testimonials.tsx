@@ -77,14 +77,14 @@ const TestimonialCard = ({
 }) => {
   return (
     <div
-      className={`group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer bg-white border border-[#9333EA]/10
+      className={`group relative h-full overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer bg-white border border-[#9333EA]/10
         ${isNew ? "animate-[fadeSlideIn_0.4s_ease_forwards]" : ""}`}
       style={isNew ? { animationDelay: `${(index % 3) * 0.08}s`, opacity: 0 } : {}}
     >
       {/* Hover gradient bg */}
       <div className={`absolute inset-0 ${testimonial.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-      <div className="relative z-10 p-6 space-y-4">
+      <div className="relative z-10 p-6 h-full flex flex-col space-y-4">
 
         {/* Top row: quote + stars */}
         <div className="flex justify-between items-start">
@@ -114,8 +114,8 @@ const TestimonialCard = ({
           )}
         </div>
 
-        {/* User info */}
-        <div className="flex items-center space-x-3 pt-4 border-t border-[#9333EA]/10">
+        {/* User info — pinned to bottom */}
+        <div className="flex items-center space-x-3 pt-4 border-t border-[#9333EA]/10 mt-auto">
           <div className="relative shrink-0">
             <AvatarImage name={testimonial.name} src={testimonial.image} />
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#9333EA] rounded-full border-2 border-white" />
