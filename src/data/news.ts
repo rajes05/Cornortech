@@ -17,7 +17,7 @@ export interface NewsArticle {
 }
 
 export const ARTICLES: NewsArticle[] = [
-    //ex-1: Content Aggregated from external sources
+    // ex-1: Content Aggregated from external sources
     {
         id: '1',
         source: 'Khabar Khata',
@@ -34,8 +34,8 @@ export const ARTICLES: NewsArticle[] = [
     {
         id: '2',
         source: 'Cornor Tech',
-        sourceLogo: 'CT',
-        sourceColor: '#9333EA',
+        sourceLogo: '/logo.png',
+        sourceColor: '#FFFFFF',
         date: 'November 28, 2025',
         category: 'Event',
         categoryColor: '#9333EA',
@@ -62,8 +62,8 @@ export const ARTICLES: NewsArticle[] = [
     {
         id: '3',
         source: 'Cornor Tech',
-        sourceLogo: 'CT',
-        sourceColor: '#9333EA',
+        sourceLogo: '/logo.png',
+        sourceColor: '#FFFFFF',
         date: 'October 17, 2025',
         category: 'CSR',
         categoryColor: '#9333EA',
@@ -75,7 +75,7 @@ export const ARTICLES: NewsArticle[] = [
         image: '/news-and-updates/dh.jpeg',
         content: `
             <h2>शिक्षामा प्रविधिको पहुँच: गिँचौर एकेडेमीलाई वेबसाइट हस्तान्तरण</h2>
-            <p>बुटवल । डिजिटलाइजेसनको क्षेत्रमा सक्रिय Cornor Tech ले गिँचौर एकेडेमीलाई विद्यालयको वेबसाइट हस्तान्तरण गर्दै शिक्षालाई प्रविधिमैत्री बनाउने महत्वपूर्ण पहल गरेको छ। साथै, उक्त कार्यक्रममा Cornor Academy ले Academy Partner को रूपमा सहकार्य गर्दै कार्यक्रमलाई थप प्रभावकारी बनाएको थियो।</p>
+            <p>बुटवल । डिजिटलाइजेसनको क्षेत्रमा सक्रिय Cornor Tech ले गिँचौर एकेडेमीलाई विद्यालयको वेबसाइट हस्तान्तरण गर्दै शिक्षालाई प्रविधिमेत्री बनाउने महत्वपूर्ण पहल गरेको छ। साथै, उक्त कार्यक्रममा Cornor Academy ले Academy Partner को रूपमा सहकार्य गर्दै कार्यक्रमलाई थप प्रभावकारी बनाएको थियो।</p>
             
             <p>कलिका आईसीटी क्लब, इन्टर्याक्ट क्लब अफ बुटवल, इन्टर्याक्ट क्लब अफ सेन्ट्रल बुटवल, इन्टर्याक्ट क्लब अफ वाल्मिकी तथा लियो क्लब अफ अल्फा कलिकाको संयुक्त आयोजनामा तीन दिने ‘डिजिटल क्षितिज’ डिजिटल शिक्षा शिविर सफलतापूर्वक सम्पन्न भएको छ।</p>
 
@@ -85,7 +85,7 @@ export const ARTICLES: NewsArticle[] = [
             <p>कलिका आईसीटी क्लबका अध्यक्ष सिद्धान्त पन्थीका अनुसार, यो कार्यक्रम क्लबको वार्षिक अध्यक्षीय कार्ययोजना (Presidential Plan Action) अन्तर्गतको पहिलो चरण हो। उनले आगामी दिनमा फरक–फरक स्थानहरूमा गएर नयाँ–नयाँ विद्यार्थीहरूलाई प्रविधिको ज्ञान बाँड्ने योजना रहेको बताएका छन्।</p>
         `
     },
-     {
+    {
         id: '4',
         source: 'Annapurna Post',
         sourceLogo: 'AP',
@@ -100,8 +100,8 @@ export const ARTICLES: NewsArticle[] = [
     {
         id: '5',
         source: 'Cornor Tech',
-        sourceLogo: 'CT',
-        sourceColor: '#9333EA',
+        sourceLogo: '/logo.png',
+        sourceColor: '#FFFFFF',
         date: 'June 15, 2024',
         category: 'Webinar',
         categoryColor: '#9333EA',
@@ -125,5 +125,4 @@ export const ARTICLES: NewsArticle[] = [
             <p>साथै, आगामी दिनहरूमा देशका विभिन्न स्थानमा यस्ता skill-based कार्यक्रमहरू विस्तार गर्दै अझ धेरै विद्यार्थीहरूलाई लाभान्वित गर्ने योजना रहेको जनाइएको छ।</p>
         `
     },
-   
 ];

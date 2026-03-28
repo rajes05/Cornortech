@@ -157,10 +157,21 @@ const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article;
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#1e003a]/06">
                 <div className="flex items-center gap-2.5">
                     <div
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[9px] font-black shrink-0 shadow-sm"
-                        style={{ background: article.sourceColor }}
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-[9px] font-black shrink-0 shadow-sm overflow-hidden border border-black/5"
+                        style={{ 
+                            background: article.sourceColor,
+                            color: article.sourceColor === '#FFFFFF' ? '#9333EA' : '#FFFFFF' 
+                        }}
                     >
-                        {article.sourceLogo}
+                        {article.sourceLogo.startsWith('/') || article.sourceLogo.startsWith('http') ? (
+                            <img 
+                                src={article.sourceLogo} 
+                                alt={article.source} 
+                                className="w-full h-full object-contain p-1"
+                            />
+                        ) : (
+                            article.sourceLogo
+                        )}
                     </div>
                     <div className="flex flex-col">
                         <span className="text-[11px] font-bold text-[#1e003a]/70">{article.source}</span>

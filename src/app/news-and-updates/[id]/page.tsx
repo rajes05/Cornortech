@@ -24,8 +24,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
         <>
             <Header />
 
-            <main className="min-h-screen bg-[#faf8ff]">
-                
+            <main className="min-h-screen bg-[#faf8ff] space-y-2">
+
                 {/* ===== Premium Hero Section ===== */}
                 <div
                     className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden"
@@ -82,7 +82,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                         {/* Article Header Info */}
                         <div className="max-w-4xl">
                             <div className="flex items-center gap-3 mb-6">
-                                <span 
+                                <span
                                     className="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/12 backdrop-blur-sm"
                                 >
                                     {article.category}
@@ -96,11 +96,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                             </h1>
 
                             <div className="flex items-center gap-4">
-                                <div 
-                                    className="w-12 h-12 rounded-2xl flex items-center justify-center text-white text-sm font-black shadow-lg"
-                                    style={{ background: article.sourceColor }}
+                                <div
+                                    className="w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-black shadow-lg overflow-hidden border border-white/10"
+                                    style={{
+                                        background: article.sourceColor,
+                                        color: article.sourceColor === '#FFFFFF' ? '#9333EA' : '#FFFFFF'
+                                    }}
                                 >
-                                    {article.sourceLogo}
+                                    {article.sourceLogo.startsWith('/') || article.sourceLogo.startsWith('http') ? (
+                                        <img
+                                            src={article.sourceLogo}
+                                            alt={article.source}
+                                            className="w-full h-full object-contain p-2"
+                                        />
+                                    ) : (
+                                        article.sourceLogo
+                                    )}
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-base font-bold text-white">{article.source}</span>
@@ -111,15 +122,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                     </div>
                 </div>
                 {/* ===== End Hero Section ===== */}
-
+                
+                {/* ===== Article Content ===== */}
                 <div className="container-custom max-w-4xl py-16 lg:py-24">
-                    
+
                     {/* Featured Image */}
                     {article.image && (
                         <div className="relative aspect-video rounded-3xl overflow-hidden mb-16 shadow-2xl">
-                            <img 
-                                src={article.image} 
-                                alt={article.title} 
+                            <img
+                                src={article.image}
+                                alt={article.title}
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl" />
@@ -129,9 +141,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                     {/* Article Content */}
                     <article className="prose prose-purple max-w-none text-[#1e003a]/80">
                         {/* We use dangerouslySetInnerHTML here as the content is trusted from our own data file */}
-                        <div 
+                        <div
                             className="space-y-8 leading-[1.8] text-[18px] lg:text-[20px]"
-                            dangerouslySetInnerHTML={{ __html: article.content || '' }} 
+                            dangerouslySetInnerHTML={{ __html: article.content || '' }}
                         />
                     </article>
 
@@ -143,8 +155,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                             <p className="text-white/70 mb-8 max-w-xl">
                                 Subscribe to our newsletter or follow us on social media to stay connected with the Cornor Tech community.
                             </p>
-                            <Link 
-                                href="/" 
+                            <Link
+                                href="/"
                                 className="inline-flex items-center px-8 py-4 bg-white text-[#1e003a] rounded-xl font-bold hover:bg-gray-100 transition-all transform hover:scale-105"
                             >
                                 Back to Home
@@ -153,6 +165,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                     </div>
 
                 </div>
+                {/* ===== End Article Content ===== */}
+
+
             </main>
 
             <Footer />
