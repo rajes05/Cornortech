@@ -89,7 +89,13 @@ const Footer = () => {
                 <div className="w-12 h-12 bg-linear-to-br from-[#111827] to-[#1f2937] rounded-xl flex items-center justify-center shadow-medium">
                   <Image src={Logo} alt='CT' height={35} width={35}/>
                 </div>
-                <h3 className="text-xl font-bold text-[#111827]">Cornor Tech</h3>
+                <div>
+                  <h3 className="text-xl font-bold text-[#111827]">Cornor Tech Pvt. Ltd</h3>
+                  <div className="flex flex-col text-[10px] font-bold text-foreground-secondary/60 mt-0.5 leading-tight uppercase tracking-wider">
+                    <span>Reg No. 366203/81/82</span>
+                    <span>PAN No. 622355199</span>
+                  </div>
+                </div>
               </div>
               <p className="text-sm text-foreground-secondary">
                 Where ideas meet technology. Empowering individuals and businesses with cutting-edge digital solutions.
