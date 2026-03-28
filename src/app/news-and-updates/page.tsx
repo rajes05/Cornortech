@@ -4,6 +4,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ARTICLES, NewsArticle } from '@/data/news';
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+import CTA from '@/components/ui/CTA';
 
 export const metadata = {
     title: 'News & Updates | Cornor Tech Pvt. Ltd.',
@@ -51,7 +53,7 @@ type Article = NewsArticle & { og: OGData };
 
 // ── News Card (Horizontal) — social preview style ──────────────────
 const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article; isFeatured?: boolean }) => (
-    
+
     <Link href={article.href}
         target={article.external ? '_blank' : '_self'}
         rel={article.external ? 'noopener noreferrer' : undefined}
@@ -304,6 +306,8 @@ export default async function BlogsPage() {
                 </div>
                 {/* ===== End Heading Section ===== */}
 
+                <ScrollToTopButton />
+                <CTA />
 
                 {/* ===== Articles Section ===== */}
                 <div className="container-custom py-16 lg:py-24">
