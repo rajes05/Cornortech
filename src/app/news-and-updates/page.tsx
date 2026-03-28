@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Blogs & Updates | Cornor Tech Pvt. Ltd.',
+    title: 'News & Updates | Cornor Tech Pvt. Ltd.',
     description: 'Latest news, articles, and updates from Cornor Tech Pvt. Ltd.',
 };
 
@@ -425,7 +425,7 @@ export default async function BlogsPage() {
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="h-px w-8 bg-[#9333EA] rounded-full" />
                                         <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
-                                            Featured
+                                            
                                         </span>
                                     </div>
                                     <FeaturedCard article={featuredArticle} />
