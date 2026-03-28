@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import {CONTACT} from '@/config/contact'
 
-const PRIMARY = "#9333EA";
+// const PRIMARY = "#9333EA";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -257,6 +257,28 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {/* ===== Options ===== */}
             <div className="cm-options">
 
+              {/* Direct Call */}
+              <button
+                className="cm-option"
+                style={{ "--acc": "#3b82f6", "--ibg": "rgba(59,130,246,0.1)", "--iborder": "rgba(59,130,246,0.22)" } as React.CSSProperties}
+                onClick={() => window.location.href = `tel:${CONTACT.whatsapp}`}
+              >
+                <div className="cm-opt-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="cm-opt-text">
+                  <div className="cm-opt-label">Direct Call</div>
+                  <div className="cm-opt-desc">+977 9828750115 — call us directly anytime</div>
+                </div>
+                <div className="cm-opt-arrow">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </div>
+              </button>
+
               {/* WhatsApp */}
               <button
                 className="cm-option"
@@ -269,10 +291,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   </svg>
                 </div>
                 <div className="cm-opt-text">
-                  <div className="cm-opt-label">
-                    WhatsApp / Live Chat
-                    <span className="cm-badge" style={{ background: "#25D366" }}>Fastest reply</span>
-                  </div>
+                  <div className="cm-opt-label">WhatsApp</div>
                   <div className="cm-opt-desc">Ping us directly — usually respond within minutes</div>
                 </div>
                 <div className="cm-opt-arrow">
@@ -282,50 +301,21 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </div>
               </button>
 
-              {/* Email */}
+              {/* Visit Office */}
               <button
                 className="cm-option"
-                style={{ "--acc": PRIMARY, "--ibg": "rgba(108,63,235,0.1)", "--iborder": "rgba(108,63,235,0.22)" } as React.CSSProperties}
-                onClick={() => { window.location.href = `mailto:${CONTACT.email}?subject=I'd like to get in touch`; }}
+                style={{ "--acc": "#f59e0b", "--ibg": "rgba(245,158,11,0.1)", "--iborder": "rgba(245,158,11,0.22)" } as React.CSSProperties}
+                onClick={() => window.open("https://share.google/ipeEuiQ4lKklENKRz", "_blank")}
               >
                 <div className="cm-opt-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={PRIMARY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2.5" />
-                    <path d="M22 7L13.03 12.7a1.9 1.9 0 01-2.06 0L2 7" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <circle cx="12" cy="11" r="3" />
                   </svg>
                 </div>
                 <div className="cm-opt-text">
-                  <div className="cm-opt-label">Send an Email</div>
-                  <div className="cm-opt-desc">Pre-filled subject — just hit send, we reply within a few hours</div>
-                </div>
-                <div className="cm-opt-arrow">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </div>
-              </button>
-
-              {/* Calendly */}
-              <button
-                className="cm-option"
-                style={{ "--acc": "#a78bfa", "--ibg": "rgba(167,139,250,0.1)", "--iborder": "rgba(167,139,250,0.22)" } as React.CSSProperties}
-                onClick={() => window.open(`https://calendly.com/${CONTACT.calendly}`, "_blank")}
-              >
-                <div className="cm-opt-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2.5" />
-                    <path d="M16 2v4M8 2v4M3 10h18" />
-                    <circle cx="8" cy="15" r="1" fill="#a78bfa" stroke="none" />
-                    <circle cx="12" cy="15" r="1" fill="#a78bfa" stroke="none" />
-                    <circle cx="16" cy="15" r="1" fill="#a78bfa" stroke="none" />
-                  </svg>
-                </div>
-                <div className="cm-opt-text">
-                  <div className="cm-opt-label">
-                    Book a Discovery Call
-                    <span className="cm-badge" style={{ background: "#9333EA" }}>Free 30 min</span>
-                  </div>
-                  <div className="cm-opt-desc">Pick a slot — no pressure, no sales pitch</div>
+                  <div className="cm-opt-label">Visit Our Office</div>
+                  <div className="cm-opt-desc">Tilottama, Butwal, Nepal — get directions on Maps</div>
                 </div>
                 <div className="cm-opt-arrow">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
