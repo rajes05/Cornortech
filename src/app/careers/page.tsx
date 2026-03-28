@@ -4,14 +4,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
 
-const OPENINGS = [
-    { role: 'Senior Full Stack Developer',    type: 'Full-time', location: 'Remote',           tags: ['React', 'Node.js', 'PostgreSQL'],         hot: true,  desc: 'Build and scale our core product infrastructure. You will own critical features end-to-end, from architecture to deployment.'         },
-    { role: 'UI/UX Designer',                 type: 'Full-time', location: 'Hybrid · Butwal',   tags: ['Figma', 'Prototyping', 'Design Systems'],  hot: true,  desc: 'Shape the visual identity of our products. You will design intuitive interfaces that delight users and convert visitors.'            },
-    { role: 'DevOps Engineer',                type: 'Full-time', location: 'Remote',            tags: ['AWS', 'Docker', 'Kubernetes'],             hot: false, desc: 'Own our cloud infrastructure. Build reliable CI/CD pipelines, monitor systems, and keep everything running at scale.'             },
-    { role: 'Digital Marketing Specialist',   type: 'Full-time', location: 'On-site · Butwal',  tags: ['SEO', 'Meta Ads', 'Analytics'],            hot: false, desc: 'Drive growth through data-driven campaigns. Own SEO, paid ads, and analytics to bring qualified leads to our doorstep.'           },
-    { role: 'React Native Developer',         type: 'Contract',  location: 'Remote',            tags: ['React Native', 'iOS', 'Android'],          hot: false, desc: 'Build polished cross-platform mobile apps. Work closely with design to ship experiences users love on iOS and Android.'           },
-    { role: 'Business Development Executive', type: 'Full-time', location: 'On-site · Butwal',  tags: ['Sales', 'CRM', 'Strategy'],                hot: false, desc: 'Open new markets and build lasting client relationships. You will be the face of Cornor Tech to enterprise decision-makers.'       },
-];
+import { OPENINGS } from '@/data/openings';
 
 const PERKS = [
     { icon: <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>, label: 'Competitive Salary', desc: 'Market-rate pay reviewed annually' },
@@ -33,12 +26,15 @@ const PROCESS = [
 ];
 
 export default function CareersPage() {
+    const openRoles = OPENINGS.filter(j => j.status === 'Open');
+    const closedRoles = OPENINGS.filter(j => j.status === 'Closed');
+
     return (
         <main className="min-h-screen bg-white" id='career'>
 
             <Header/>
 
-            {/* ── Hero ── */}
+            {/* ==== Hero ==== */}
             <section className="relative bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] pt-24 pb-20 px-4 overflow-hidden">
 
             {/* Decorative rings */}
@@ -48,17 +44,17 @@ export default function CareersPage() {
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
 
-                    <span className="inline-block px-4 py-1.5 bg-[#a3e635]/20 text-[#a3e635] rounded-full text-xs font-bold uppercase tracking-widest mb-6">
-                        We&apos;re Hiring — {OPENINGS.length} open positions
+                    <span className="inline-block px-4 py-1.5 bg-[#a3e635]/20 text-[#a3e635] rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-[#a3e635]/30">
+                        We&apos;re Hiring — {openRoles.length} open roles
                     </span>
 
                     <h1 className="text-4xl lg:text-6xl font-black text-white leading-[1.05] mb-6">
-                        Build the future<br />
+                        Start your journey<br />
                         <span className="text-[#a855f7]">with Cornor Tech</span>
                     </h1>
 
                     <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                        Join a team of passionate engineers, designers, and strategists working on products that make a real difference. We move fast, grow together, and celebrate every win.
+                        Join our internship program to gain hands-on experience with real-world projects. Work alongside experts to build the software of tomorrow.
                     </p>
 
                     <div className="flex flex-wrap items-center justify-center gap-4">
@@ -66,7 +62,7 @@ export default function CareersPage() {
                             href="#openings"
                             className="flex items-center gap-2 px-6 py-3 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#7c3aed] transition-colors shadow-lg shadow-[#9333EA]/30"
                         >
-                            See Open Roles
+                            View Intern Roles
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
@@ -78,15 +74,15 @@ export default function CareersPage() {
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
-                            Send Your CV
+                            General Application
                         </a>
                     </div>
 
                 </div>
             </section>
-            {/* ── End Hero ── */}
+            {/* ==== End Hero ==== */}
 
-            {/* ── Perks ── */}
+            {/* ==== Perks section ==== */}
             <section className="py-20 px-4 bg-white">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-12">
@@ -108,93 +104,181 @@ export default function CareersPage() {
                     </div>
                 </div>
             </section>
-            {/* ── End Perks ── */}
+            {/* ==== End Perks section ==== */}
 
-
-            {/* ── Open Positions ── */}
-            <section id="openings" className="py-20 px-4 bg-[#faf9ff]">
+            {/* ==== Open Positions ==== */}
+            <section id="openings" className="py-24 px-4 bg-[#faf9ff]">
                 <div className="max-w-4xl mx-auto">
-                    <div className="text-center mb-12">
-                        <p className="text-xs font-bold uppercase tracking-widest text-[#9333EA]/60 mb-3">Join the team</p>
-                        <h2 className="text-2xl lg:text-3xl font-black text-gray-900">Open Positions</h2>
-                        <p className="text-gray-500 text-sm mt-2">{OPENINGS.length} roles available right now</p>
+                    <div className="text-center mb-16">
+                        <p className="text-xs font-bold uppercase tracking-widest text-[#9333EA]/60 mb-3">Join our team</p>
+                        <h2 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">Current Openings</h2>
+                        <p className="text-gray-500 text-sm mt-3">{openRoles.length} positions available right now</p>
                     </div>
 
-                    <div className="space-y-4">
-                        {OPENINGS.map((job, i) => (
+                    {/* Open Positions */}
+                    <div className="space-y-8 mb-24">
+                        {openRoles.map((job, i) => (
                             <div
                                 key={i}
-                                className="group bg-white rounded-2xl border border-gray-100
-                                           hover:border-[#9333EA]/25 hover:shadow-md
-                                           transition-all duration-200 p-5 lg:p-6"
+                                className="group bg-white rounded-3xl border border-purple-100/50
+                                           hover:border-[#9333EA]/25 hover:shadow-[0_20px_50px_rgba(147,51,234,0.08)]
+                                           transition-all duration-500 p-6 lg:p-8"
                             >
-                                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-
-                                    {/* Left */}
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-11 h-11 bg-[#9333EA]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#9333EA]/20 transition-colors">
-                                            <svg className="w-5 h-5 text-[#9333EA]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-2 flex-wrap mb-1">
-                                                <h3 className="font-black text-gray-900 text-base group-hover:text-[#9333EA] transition-colors">
+                                <div className="flex flex-col gap-8">
+                                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <h3 className="font-black text-gray-900 text-xl group-hover:text-[#9333EA] transition-colors leading-none">
                                                     {job.role}
                                                 </h3>
-                                                {job.hot && (
-                                                    <span className="px-2 py-0.5 bg-orange-100 text-orange-600 rounded-full text-[10px] font-bold uppercase tracking-wide">
-                                                        Hot
-                                                    </span>
-                                                )}
+                                                <span className="px-2.5 py-1 bg-[#a3e635]/15 text-[#65a30d] rounded-full text-[10px] font-black uppercase tracking-wider">
+                                                    Open
+                                                </span>
                                             </div>
-                                            <p className="text-sm text-gray-500 leading-relaxed mb-3">{job.desc}</p>
-                                            <div className="flex flex-wrap items-center gap-3">
-                                                <span className="flex items-center gap-1 text-xs text-gray-400">
-                                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                    </svg>
+                                            <p className="text-[15px] text-gray-600 leading-relaxed mb-6 font-medium">{job.desc}</p>
+                                            
+                                            <div className="grid sm:grid-cols-2 gap-8 py-6 border-y border-gray-100 my-6">
+                                                <div>
+                                                    <h4 className="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-[#9333EA]" />
+                                                        Key Skills
+                                                    </h4>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {job.skills?.map((skill, s) => (
+                                                            <span key={s} className="px-3 py-1 bg-[#9333EA]/5 text-[#9333EA] text-xs font-bold rounded-lg border border-[#9333EA]/10">
+                                                                {skill}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-[#9333EA]" />
+                                                        Responsibilities
+                                                    </h4>
+                                                    <ul className="space-y-2">
+                                                        {job.responsibilities?.map((res, r) => (
+                                                            <li key={r} className="text-xs text-gray-500 flex items-start gap-2">
+                                                                <svg className="w-3.5 h-3.5 text-[#a3e635] shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                                                {res}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-wrap items-center gap-4">
+                                                <span className="flex items-center gap-2 text-xs font-bold text-gray-400">
+                                                    <svg className="w-4 h-4 text-[#9333EA]/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                                     {job.location}
                                                 </span>
                                                 <span className="w-1 h-1 rounded-full bg-gray-200" />
-                                                <span className="text-xs text-gray-400">{job.type}</span>
-                                                <span className="w-1 h-1 rounded-full bg-gray-200" />
-                                                <div className="flex flex-wrap gap-1.5">
-                                                    {job.tags.map((tag, t) => (
-                                                        <span key={t} className="px-2 py-0.5 bg-gray-100 text-gray-500 rounded-md text-[10px] font-semibold">
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
+                                                <span className="flex items-center gap-2 text-xs font-bold text-gray-400">
+                                                    <svg className="w-4 h-4 text-[#9333EA]/40" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                                    {job.type}
+                                                </span>
                                             </div>
                                         </div>
+
+                                        <div className="shrink-0">
+                                            <a
+                                                href={`mailto:careers@cornortech.com?subject=Application — ${job.role}`}
+                                                className="flex items-center justify-center gap-2 px-8 py-4
+                                                           bg-[#9333EA] text-white rounded-2xl text-sm font-black
+                                                           hover:bg-[#7c3aed] hover:shadow-xl hover:shadow-purple-500/20 
+                                                           active:scale-95 transition-all w-full lg:w-auto"
+                                            >
+                                                Apply Now
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-
-                                    {/* Apply button */}
-                                    <a
-                                        href={`mailto:careers@cornortech.com?subject=Application — ${job.role}`}
-                                        className="shrink-0 flex items-center gap-2 px-5 py-2.5
-                                                   bg-[#9333EA] text-white rounded-xl text-sm font-semibold
-                                                   hover:bg-[#7c3aed] active:scale-95 transition-all
-                                                   self-start lg:self-center"
-                                    >
-                                        Apply Now
-                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                        </svg>
-                                    </a>
-
                                 </div>
                             </div>
                         ))}
                     </div>
+
+                    {/* Closed Positions */}
+                    <div className="pt-12 border-t border-gray-200">
+                        <div className="mb-8">
+                            <h3 className="text-xl font-black text-gray-900 leading-none">Other Positions (Applied / Not Open)</h3>
+                            <p className="text-sm text-gray-400 mt-2 font-medium">These roles are currently filled or receiving applications</p>
+                        </div>
+                        
+                        <div className="grid gap-6">
+                            {closedRoles.map((job, i) => (
+                                <div key={i} className="bg-gray-50/80 rounded-3xl border border-gray-200 p-6 lg:p-8 opacity-80 hover:opacity-100 transition-all">
+                                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-3 mb-3">
+                                                <h4 className="font-black text-gray-700 text-lg leading-none">{job.role}</h4>
+                                                <span className="px-2.5 py-1 bg-gray-200 text-gray-500 rounded-full text-[10px] font-black uppercase tracking-wider">
+                                                    Filled
+                                                </span>
+                                            </div>
+                                            <p className="text-sm text-gray-500 leading-relaxed mb-6 font-medium">{job.desc}</p>
+                                            
+                                            <div className="grid sm:grid-cols-2 gap-8 py-6 border-y border-gray-200/60 my-6">
+                                                <div>
+                                                    <h5 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                                                        Experience Highlights
+                                                    </h5>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {job.skills?.map((skill, s) => (
+                                                            <span key={s} className="px-2.5 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-bold rounded-md border border-gray-200">
+                                                                {skill}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h5 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                                                        Core Focus
+                                                    </h5>
+                                                    <ul className="space-y-1.5">
+                                                        {job.responsibilities?.map((res, r) => (
+                                                            <li key={r} className="text-[11px] text-gray-400 flex items-start gap-2">
+                                                                <svg className="w-3 h-3 text-gray-300 shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                                                {res}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex items-center gap-4">
+                                                <span className="flex items-center gap-2 text-[10px] font-bold text-gray-400">
+                                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                                    {job.location}
+                                                </span>
+                                                <span className="w-1 h-1 rounded-full bg-gray-200" />
+                                                <span className="flex items-center gap-2 text-[10px] font-bold text-gray-400">
+                                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                                    {job.type}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="shrink-0">
+                                            <div className="px-6 py-3 bg-gray-100 text-gray-400 rounded-xl text-xs font-black border border-gray-200 cursor-not-allowed">
+                                                Position Filled
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
-            {/* ── End Open Positions ── */}
+            {/* ==== End Open Positions ==== */}
 
 
-            {/* ── Hiring Process ── */}
+            {/* ==== Hiring Process ==== */}
             <section className="py-20 px-4 bg-white">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
@@ -218,10 +302,10 @@ export default function CareersPage() {
                     </div>
                 </div>
             </section>
-            {/* ── End Hiring Process ── */}
+            {/* ==== End Hiring Process ==== */}
 
 
-            {/* ── General Application CTA ── */}
+            {/* ==== General Application CTA ==== */}
             <section className="py-20 px-4 bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266]">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-2xl lg:text-4xl font-black text-white mb-4">
@@ -250,7 +334,7 @@ export default function CareersPage() {
                     <p className="text-white/30 text-xs mt-8">careers@cornortech.com · We reply within 24 hours</p>
                 </div>
             </section>
-            {/* ── End General Application CTA ── */}
+            {/* ==== End General Application CTA ==== */}
 
             <Footer/>
 

@@ -18,14 +18,7 @@ interface Testimonial {
 }
 
 // ── Shared openings positions ──────────
-const OPENINGS = [
-  { role: 'Senior Full Stack Developer', type: 'Full-time', location: 'Remote', tags: ['React', 'Node.js', 'PostgreSQL'], hot: true },
-  { role: 'UI/UX Designer', type: 'Full-time', location: 'Hybrid · Butwal', tags: ['Figma', 'Prototyping', 'Design Systems'], hot: true },
-  { role: 'DevOps Engineer', type: 'Full-time', location: 'Remote', tags: ['AWS', 'Docker', 'Kubernetes'], hot: false },
-  { role: 'Digital Marketing Specialist', type: 'Full-time', location: 'On-site · Butwal', tags: ['SEO', 'Meta Ads', 'Analytics'], hot: false },
-  { role: 'React Native Developer', type: 'Contract', location: 'Remote', tags: ['React Native', 'iOS', 'Android'], hot: false },
-  { role: 'Business Development Executive', type: 'Full-time', location: 'On-site · Butwal', tags: ['Sales', 'CRM', 'Strategy'], hot: false },
-];
+import { OPENINGS } from "@/data/openings";
 
 // ===== Avatar — shows image if available, initials fallback if not =====
 const AvatarImage = ({ name, src }: { name: string; src?: string }) => {
@@ -520,7 +513,7 @@ const Testimonials = () => {
         </div>
 
 
-        {/*  Testimonial Grid  */}
+        {/* ===== Testimonial Grid ===== */}
         <div className="space-y-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleCards.map((testimonial, index) => (
@@ -581,7 +574,7 @@ const Testimonials = () => {
           {/* End Show More / Collapse */}
 
         </div>
-        {/* End Testimonial Grid  */}
+        {/* ===== End Testimonial Grid ===== */}
 
 
 
@@ -702,7 +695,7 @@ const Testimonials = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <p className="text-xs text-gray-400 font-medium">{OPENINGS.length} positions open right now</p>
+              <p className="text-xs text-gray-400 font-medium">{OPENINGS.filter(j => j.status === 'Open').length} positions open right now</p>
             </div>
           </div>
         </div>
