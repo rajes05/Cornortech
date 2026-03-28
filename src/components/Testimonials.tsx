@@ -144,39 +144,39 @@ const TestimonialCard = ({
 // ===== Voices Slider =====
 const VOICES_SLIDES = [
   {
-    image: '/teams/ceo.jpeg',
-    quote: 'I believe that the strength in our team and our ability to deal with adversities is what makes us a great partner for our clients.',
+    image: '/teams/ramit.jpeg',
+    quote: 'I believe that the true strength of Cornor Tech lies in our collective resilience and our unwavering commitment to overcoming complex challenges. Our ability to adapt and deliver excellence even in adversity is what truly makes us a trusted long-term partner for our global clients.',
     highlight: "THIS IS WHY I'M PROUD TO BE ON THIS TEAM.",
     name: 'Ramit Neupane',
-    role: 'CEO, Cornor Tech',
+    role: 'CEO & Founder, Cornor Tech Pvt. Ltd',
   },
   {
     image: '/teams/coo.jpeg',
-    quote: "At Cornor Tech, every challenge is an opportunity. We don't just deliver projects — we build long-term partnerships that create real impact.",
+    quote: "At Cornor Tech, we view every unique challenge as an opportunity for innovation and growth. We go beyond simply delivering technical projects; we focus on building enduring partnerships that drive measurable success and create a lasting impact on our clients' businesses.",
     highlight: 'THIS IS WHAT DRIVES US EVERY SINGLE DAY.',
     name: 'Santosh Kunwar',
-    role: 'COO, Cornor Tech',
+    role: 'Chief Operational Officer, Cornor Tech Pvt. Ltd',
   },
   {
     image: '/teams/cfo.jpeg',
-    quote: "Sound financial strategy is the backbone of every great tech company. At Cornor Tech, we build with clarity, accountability, and long-term vision.",
+    quote: "A robust and transparent financial strategy is the essential backbone of any successful technology firm. At Cornor Tech, we manage our growth with absolute clarity and accountability, ensuring that every investment we make is aligned with our long-term vision of excellence and sustainability.",
     highlight: 'THIS IS HOW WE BUILD FOR THE FUTURE.',
     name: 'Laxman Neupane',
-    role: 'CFO, Cornor Tech',
+    role: 'Chief Financial Officer, Cornor Tech Pvt. Ltd',
   },
   {
     image: '/teams/om.jpeg',
-    quote: "Great organizations don't happen by accident. Every system, every process, every person — we align them all toward one goal: excellence.",
+    quote: "Exceptional organizations are built on purpose, not by accident. We meticulously align every internal system, every operational process, and every talented individual toward a single, unified objective: delivering world-class engineering solutions that exceed expectations.",
     highlight: 'THIS IS THE STANDARD WE HOLD OURSELVES TO.',
     name: 'Aman Pokhrel',
-    role: 'Organizational Manager, Cornor Tech',
+    role: 'Organizational Manager, Cornor Tech Pvt. Ltd',
   },
   {
     image: '/teams/mh.jpg',
-    quote: "Marketing isn't just about visibility — it's about connection. We tell stories that resonate, campaigns that convert, and brands that last.",
+    quote: "Modern marketing is far more than just achieving visibility; it is about building meaningful human connections. We craft data-driven stories that resonate with audiences, design campaigns that drive real conversion, and build iconic brands that stand the test of time in a digital-first world.",
     highlight: 'THIS IS HOW WE MAKE CORNOR TECH KNOWN.',
     name: 'Rubi Ale',
-    role: 'Marketing Head, Cornor Tech',
+    role: 'Marketing Head, Cornor Tech Pvt. Ltd',
   },
 ];
 
@@ -211,10 +211,10 @@ const VoicesSlider = () => {
       </div>
 
       {/* Image + quote grid */}
-      <div className="grid lg:grid-cols-2 min-h-105">
+      <div className="grid lg:grid-cols-5 min-h-105">
 
         {/* Left: Portrait image */}
-        <div className="relative min-h-65 lg:min-h-0 overflow-hidden">
+        <div className="lg:col-span-2 relative min-h-65 lg:min-h-0 overflow-hidden">
           <Image
             key={active}
             src={slide.image}
@@ -231,7 +231,7 @@ const VoicesSlider = () => {
 
         {/* Right: Quote panel */}
         <div
-          className="relative flex flex-col justify-center gap-6 px-8 py-10 lg:px-12 lg:py-14"
+          className="lg:col-span-3 relative flex flex-col justify-center gap-6 px-8 py-10 lg:px-12 lg:py-14"
           style={{ background: 'linear-gradient(135deg, #1e003a 0%, #2d0a52 60%, #3b1266 100%)' }}
         >
           {/* Decorative large quote mark */}
