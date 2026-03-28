@@ -17,9 +17,6 @@ interface Testimonial {
   gradient: string;
 }
 
-// ── Shared openings positions ──────────
-import { OPENINGS } from "@/data/openings";
-
 // ===== Avatar — shows image if available, initials fallback if not =====
 const AvatarImage = ({ name, src }: { name: string; src?: string }) => {
   const [failed, setFailed] = useState(false);
@@ -186,7 +183,7 @@ const VoicesSlider = () => {
       {/* Section label */}
       <div className="absolute top-6 left-6 z-20">
         <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm border border-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em]">
-          
+
         </span>
       </div>
 
@@ -354,7 +351,7 @@ const Testimonials = () => {
     {
       id: "4",
       name: "Roshan Neupane",
-      image:'/testimonials/roshan_neupane.jpeg',
+      image: '/testimonials/roshan_neupane.jpeg',
       role: "Managing Director",
       company: "SR Creations Pvt. Ltd",
       rating: 5,
@@ -370,7 +367,7 @@ const Testimonials = () => {
       company: "Siddhartha Cottage Butwal",
       rating: 5,
       text: "Cornor Tech transformed our digital marketing and Meta boosting campaigns at Siddhartha Cottage Butwal. Their strategies, insights, and execution helped us reach more customers effectively and improve engagement. The team is professional, responsive, and results-driven—I highly recommend their services.",
-      service:"Social Media Marketing",
+      service: "Social Media Marketing",
       gradient: "bg-linear-to-br from-[#9333EA]/5 to-[#7e22ce]/5",
     },
     {
@@ -433,42 +430,48 @@ const Testimonials = () => {
         }
       `}</style>
 
-      {/* ── Subtle dot grid background ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-40"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* ── Ambient blobs ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      {/* ===== Background Layout ===== */}
+      <>
+        {/* ── Subtle dot grid background ── */}
         <div
-          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+          aria-hidden="true"
         />
-        <div
-          className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
-        />
-      </div>
 
-      {/* ── Giant ghost text ── */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 1.4, delay: 0.15 }}
-        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
-        aria-hidden="true"
-      >
-        Voices
-      </motion.p>
+        {/* ── Ambient blobs ── */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          <div
+            className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+          />
+          <div
+            className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+          />
+        </div>
+
+        {/* ── Giant ghost text ── */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 1.4, delay: 0.15 }}
+          className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+          aria-hidden="true"
+        >
+          Voices
+        </motion.p>
+
+      </>
+      {/* ===== End Background Layout ===== */}
+
 
       <div className="container mx-auto px-4 xl:px-8 max-w-7xl relative z-10 space-y-10">
 
-        {/* ── Section headline ── */}
+        {/* ===== Section headline ===== */}
         <div className="mb-14 lg:mb-18">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -511,6 +514,7 @@ const Testimonials = () => {
             Trusted by businesses across industries — hear from the teams we have helped build, scale, and secure their IT infrastructure.
           </motion.p>
         </div>
+        {/* ===== End Section headline ===== */}
 
 
         {/* ===== Testimonial Grid ===== */}
@@ -650,56 +654,6 @@ const Testimonials = () => {
 
         {/* === Voices of Satisfaction === */}
         <VoicesSlider />
-
-        {/* ===== View Career Section ===== */}
-        <div id="career" className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <div className="absolute inset-0 bg-linear-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />
-          <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
-          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
-          <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
-          <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="flex-1 space-y-4 text-center lg:text-left">
-              <span className="inline-block px-3 py-1 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-xs font-bold uppercase tracking-widest">
-                Careers
-              </span>
-              <h3 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">
-                Ready to build something
-                <span className="text-[#9333EA]"> great together?</span>
-              </h3>
-              <p className="text-gray-500 text-sm lg:text-base max-w-lg leading-relaxed">
-                We&apos;re growing fast and looking for talented people who love building products that make a real difference. Competitive pay, great culture, remote options.
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
-                {[
-                  { icon: '🌍', label: 'Remote Friendly' },
-                  { icon: '⚡', label: 'Fast Growth' },
-                  { icon: '💜', label: 'Great Culture' },
-                ].map((pill, i) => (
-                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#9333EA]/15 rounded-full text-xs font-semibold text-gray-600 shadow-sm">
-                    <span>{pill.icon}</span>
-                    {pill.label}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-3 shrink-0">
-              <Link
-                href="/careers"
-                className="group relative flex items-center gap-3 px-8 py-4 bg-[#9333EA] text-white rounded-2xl font-bold text-base hover:bg-[#7c3aed] active:scale-95 transition-all duration-200 shadow-lg shadow-[#9333EA]/30 hover:shadow-xl hover:shadow-[#9333EA]/40"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                View Career Options
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <p className="text-xs text-gray-400 font-medium">{OPENINGS.filter(j => j.status === 'Open').length} positions open right now</p>
-            </div>
-          </div>
-        </div>
-        {/* ===== End View Career Section ===== */}
 
         {/* ===== News and Update Section ===== */}
         <div id="news" className="relative rounded-3xl overflow-hidden animate-fade-in mt-12" style={{ animationDelay: '0.7s' }}>

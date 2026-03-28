@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface TeamMember {
     id: string;
@@ -16,6 +17,9 @@ interface TeamMember {
         github?: string;
     };
 }
+
+// ── Shared openings positions ──────────
+import { OPENINGS } from "@/data/openings";
 
 // ===== Team Card =====
 const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
@@ -192,42 +196,48 @@ const AboutUs = () => {
             className="relative py-24 lg:py-36 bg-[#faf8ff] overflow-hidden font-sans"
         >
 
-            {/* ── Subtle dot grid background (from Contact) ── */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-40"
-                style={{
-                    backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
-                    backgroundSize: '32px 32px',
-                }}
-                aria-hidden="true"
-            />
-
-            {/* ── Ambient blobs (from Contact) ── */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+            {/* ===== Background Layout theme ===== */}
+            <>
+                {/* ── Subtle dot grid background (from Contact) ── */}
                 <div
-                    className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+                    className="absolute inset-0 pointer-events-none opacity-40"
+                    style={{
+                        backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+                        backgroundSize: '32px 32px',
+                    }}
+                    aria-hidden="true"
                 />
-                <div
-                    className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
-                    style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
-                />
-            </div>
 
-            {/* ── Giant ghost text (from Contact) ── */}
-            <motion.p
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 1.4, delay: 0.15 }}
-                className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
-                aria-hidden="true"
-            >
-                About Us
-            </motion.p>
+                {/* ── Ambient blobs (from Contact) ── */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                    <div
+                        className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+                        style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+                    />
+                    <div
+                        className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+                        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+                    />
+                </div>
+
+                {/* ── Giant ghost text (from Contact) ── */}
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={inView ? { opacity: 1 } : {}}
+                    transition={{ duration: 1.4, delay: 0.15 }}
+                    className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+                    aria-hidden="true"
+                >
+                    About Us
+                </motion.p>
+
+            </>
+            {/* ===== End Background Layout theme ===== */}
+
 
             <div className="container mx-auto px-4 lg:px-8 relative z-10 space-y-16">
 
-                {/* ── Header (Contact style) ── */}
+                {/* ===== Header ===== */}
                 <div className="mb-14 lg:mb-18">
                     <motion.div
                         initial={{ opacity: 0, y: 18 }}
@@ -270,9 +280,9 @@ const AboutUs = () => {
                         We&apos;re a passionate team of innovators, designers, and developers dedicated to transforming businesses through technology.
                     </motion.p>
                 </div>
-                {/* ── End Header ── */}
+                {/* ===== End Header ===== */}
 
-                {/* ── Company Story (original) ── */}
+                {/* ===== Company Story (original) ===== */}
                 <div className="max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
                     <div className="bg-linear-to-br from-[#1e003a] via-[#2d0a52] to-[#3b1266] rounded-3xl p-8 lg:p-12 shadow-large border border-purple-500/30">
                         <div className="space-y-6">
@@ -291,19 +301,19 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </div>
-                {/* ── End Company Story ── */}
+                {/* ===== End Company Story ===== */}
 
-                {/* ── Team Members ── */}
+                {/* ===== Team Members ===== */}
                 <div className="space-y-8">
 
                     <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                            <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
-                                Leadership Team
-                            </h3>
-                            <p className="text-foreground-secondary max-w-2xl mx-auto">
-                                Meet the talented individuals driving innovation at Cornor Tech
-                            </p>
-                        </div>
+                        <h3 className="text-2xl lg:text-3xl font-bold text-[#9333EA] mb-3">
+                            Leadership Team
+                        </h3>
+                        <p className="text-foreground-secondary max-w-2xl mx-auto">
+                            Meet the talented individuals driving innovation at Cornor Tech
+                        </p>
+                    </div>
 
                     {/* First Row */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -319,7 +329,57 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </div>
-                {/* ── End Team Members ── */}
+                {/* ===== End Team Members ===== */}
+
+                {/* ===== View Career Section ===== */}
+                <div id="career" className="relative rounded-3xl overflow-hidden animate-fade-in" style={{ animationDelay: '0.6s' }}>
+                    <div className="absolute inset-0 bg-linear-to-br from-[#9333EA]/8 via-[#a855f7]/5 to-[#9333EA]/8" />
+                    <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
+                    <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
+                    <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
+                    <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
+                        <div className="flex-1 space-y-4 text-center lg:text-left">
+                            <span className="inline-block px-3 py-1 bg-[#9333EA]/10 text-[#9333EA] rounded-full text-xs font-bold uppercase tracking-widest">
+                                Careers
+                            </span>
+                            <h3 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">
+                                Ready to build something
+                                <span className="text-[#9333EA]"> great together?</span>
+                            </h3>
+                            <p className="text-gray-500 text-sm lg:text-base max-w-lg leading-relaxed">
+                                We&apos;re growing fast and looking for talented people who love building products that make a real difference. Competitive pay, great culture, remote options.
+                            </p>
+                            <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                                {[
+                                    { icon: '🌍', label: 'Remote Friendly' },
+                                    { icon: '⚡', label: 'Fast Growth' },
+                                    { icon: '💜', label: 'Great Culture' },
+                                ].map((pill, i) => (
+                                    <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#9333EA]/15 rounded-full text-xs font-semibold text-gray-600 shadow-sm">
+                                        <span>{pill.icon}</span>
+                                        {pill.label}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col items-center gap-3 shrink-0">
+                            <Link
+                                href="/careers"
+                                className="group relative flex items-center gap-3 px-8 py-4 bg-[#9333EA] text-white rounded-2xl font-bold text-base hover:bg-[#7c3aed] active:scale-95 transition-all duration-200 shadow-lg shadow-[#9333EA]/30 hover:shadow-xl hover:shadow-[#9333EA]/40"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                View Career Options
+                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
+                            <p className="text-xs text-gray-400 font-medium">{OPENINGS.filter(j => j.status === 'Open').length} positions open right now</p>
+                        </div>
+                    </div>
+                </div>
+                {/* ===== End View Career Section ===== */}
 
             </div>
         </section>
