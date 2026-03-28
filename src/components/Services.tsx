@@ -100,34 +100,24 @@ const services: Service[] = [
 ];
 
 const ServiceCard = ({ service }: { service: Service }) => (
-  // ==== Service Card — full overlay layout ====
-  // Image fills entire card. Title always visible at bottom.
-  // Frosted glass details panel slides up on hover.
   <div className="group relative w-full h-120
                   rounded-2xl overflow-hidden cursor-pointer
                   shadow-lg hover:shadow-[0_16px_48px_rgba(147,51,234,.22)]
                   border border-transparent hover:border-[#9333EA]/20
                   transition-all duration-300 hover:-translate-y-1">
 
-    {/* ── Full-card image (clear at rest) OR icon background ── */}
     {service.image ? (
       <>
-        {/* Normal state: crisp, no scale, no blur. Hover: gentle zoom only. */}
         <Image
           src={service.image}
           alt={service.title}
           fill
-          className="object-cover group-hover:scale-105
-                     transition-transform duration-700 ease-out"
+          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
-        {/* Bottom gradient dim — keeps title readable, lightens on hover */}
-        <div className="absolute inset-0
-                        bg-linear-to-t from-[#0f001e]/80 via-[#0f001e]/20 to-transparent
-                        transition-all duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0f001e]/80 via-[#0f001e]/20 to-transparent transition-all duration-500" />
       </>
     ) : (
-      /* ── No image: icon fills the card ── */
       <div className={`absolute inset-0 ${service.gradient} flex items-center justify-center`}>
         <div className="w-[calc(100%-24px)] h-[calc(100%-24px)] rounded-2xl bg-white/95
                         flex items-center justify-center text-[80px]
@@ -139,7 +129,6 @@ const ServiceCard = ({ service }: { service: Service }) => (
       </div>
     )}
 
-    {/* ── Badges — always on top ── */}
     <span className="absolute top-3 left-3 z-10
                      px-2.5 py-1 text-[10px] font-black uppercase tracking-widest
                      text-[#7c3aed] bg-white/95 backdrop-blur-sm rounded-full">
@@ -153,14 +142,12 @@ const ServiceCard = ({ service }: { service: Service }) => (
       </span>
     )}
 
-    {/* ── Static title strip — always visible, fades out when details panel opens ── */}
     <div className="absolute bottom-0 inset-x-0 z-5 px-4 pb-4 pt-10
                     transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
       <h3 className="text-[16px] font-bold text-white leading-snug">{service.title}</h3>
       <span className="text-[10px] text-white/50 font-medium">Hover to explore</span>
     </div>
 
-    {/* ── Details panel — slides up from bottom on hover ── */}
     <div className="absolute inset-x-0 bottom-0 z-8
                     bg-[rgba(15,0,35,0.85)] backdrop-blur-xl
                     border-t border-[#a855f7]/20
@@ -171,7 +158,6 @@ const ServiceCard = ({ service }: { service: Service }) => (
       <h3 className="text-[15px] font-bold text-white mb-1.5">{service.title}</h3>
       <p className="text-[11px] text-white/60 leading-[1.55] mb-3">{service.description}</p>
 
-      {/* Features list */}
       <ul className="flex flex-col gap-1.5 mb-3">
         {service.features.map((f) => (
           <li key={f} className="flex items-center gap-2 text-[10.5px] text-purple-200/85 font-medium">
@@ -181,17 +167,14 @@ const ServiceCard = ({ service }: { service: Service }) => (
         ))}
       </ul>
 
-      {/* Meta row + CTA */}
       <div className="flex items-center justify-between pt-2.5 border-t border-[#a855f7]/15">
         <div className="flex items-center gap-3">
-          {/* Fast delivery */}
           <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             Fast
           </span>
-          {/* Quality */}
           <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-purple-300/60">
             <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -212,7 +195,6 @@ const ServiceCard = ({ service }: { service: Service }) => (
         </button>
       </div>
     </div>
-    {/* ==== End Service Card ==== */}
   </div>
 );
 
@@ -223,20 +205,16 @@ const Services = () => {
   const touchStartX = useRef(0);
   const total = services.length;
 
-  // ── Measure slide width from the carousel container ──
   const computeLayout = useCallback(() => {
     if (!trackRef.current) return;
     const w = trackRef.current.parentElement?.offsetWidth ?? 0;
     setSlideWidth(w);
   }, []);
 
-  // ── Measure on mount ──
-  useLayoutEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => {
     computeLayout();
   }, [computeLayout]);
 
-  // ── Re-measure on resize ──
   useEffect(() => {
     window.addEventListener('resize', computeLayout);
     return () => window.removeEventListener('resize', computeLayout);
@@ -246,7 +224,6 @@ const Services = () => {
     setCurrent(Math.max(0, Math.min(idx, total - 1)));
   }, [total]);
 
-  // ===== Auto-slide every 10 seconds =====
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % total);
@@ -256,26 +233,45 @@ const Services = () => {
 
   const offset = current * slideWidth;
 
-  const scrollIntoSection = (id:string) =>{
-    const element = document.getElementById(id);
-    if(element){
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-    }
-  }
-
   return (
-    <section id="services" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+    <section
+      id="services"
+      className="relative py-20 lg:py-32 bg-[#faf8ff] overflow-hidden font-sans"
+    >
 
-      {/* === Background blobs === */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#9333EA]/5 rounded-full blur-3xl" style={{ animationDelay: '0.5s' }} />
+      {/* ── Dot grid — matches Contact exactly ── */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ── Ambient blobs — matches Contact style ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div
+          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 h-100 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(147,51,234,0.06) 0%, transparent 70%)' }}
+        />
       </div>
-      {/* === End Background blobs === */}
+
+      {/* ── Ghost text — matches Contact "Contact" watermark ── */}
+      <p
+        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+        aria-hidden="true"
+      >
+        Services
+      </p>
 
       <div className="container-custom relative z-10 space-y-16">
 
@@ -285,7 +281,6 @@ const Services = () => {
           {/* ── Left: content block ── */}
           <div className="space-y-7 animate-fade-in">
 
-            {/* Section label */}
             <div className="flex items-center gap-2">
               <div className="w-7 h-0.5 bg-[#9333EA] rounded-full" />
               <span className="text-[13px] font-bold uppercase tracking-[0.2em] text-[#9333EA]">
@@ -293,14 +288,19 @@ const Services = () => {
               </span>
             </div>
 
-            {/* Bold headline */}
-            <h2 className="text-3xl lg:text-4xl xl:text-[2.6rem] font-black text-[#111827] leading-[1.1]">
+            <h2 className="text-3xl lg:text-4xl xl:text-[2.6rem] font-black text-[#1e003a] leading-[1.1] tracking-tight">
               We Build<br />
-              <span className="text-[#9333EA]">Digital Products</span><br />
-              That Scale
+              <span
+                className="text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: 'linear-gradient(135deg, #9333EA 0%, #6366f1 60%, #a855f7 100%)',
+                }}
+              >
+                Digital Products
+              </span><br />
+              <span className="text-[#1e003a]/25">That Scale</span>
             </h2>
 
-            {/* Supporting copy */}
             <p className="text-[14.5px] text-foreground-secondary leading-[1.72]">
               Every service is crafted with precision, speed, and your growth in mind — trusted by startups and enterprises alike.
             </p>
@@ -310,7 +310,6 @@ const Services = () => {
           {/* === Right: carousel + dots === */}
           <div className="lg:col-span-2 flex flex-col gap-5">
 
-            {/* Carousel */}
             <div
               className="overflow-hidden"
               onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -335,7 +334,6 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Dot navigation */}
             <div className="flex items-center justify-center gap-2">
               {services.map((_, i) => (
                 <button
@@ -349,11 +347,8 @@ const Services = () => {
                 />
               ))}
             </div>
-            {/* End Dot navigation */}
 
           </div>
-          {/* === End Right: carousel + dots === */}
-
 
         </div>
 

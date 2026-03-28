@@ -50,7 +50,7 @@ const ContactRow = ({
             rel: href.startsWith('http') ? 'noopener noreferrer' : undefined,
           }
         : {})}
-      className="group flex items-center gap-4 py-4 border-b border-[#9333EA]/10 last:border-0 hover:bg-[#9333EA]/[0.04] -mx-4 px-4 rounded-xl transition-colors duration-200 cursor-pointer"
+      className="group flex items-center gap-4 py-4 border-b border-[#9333EA]/10 last:border-0 hover:bg-[#9333EA]/4 -mx-4 px-4 rounded-xl transition-colors duration-200 cursor-pointer"
     >
       <div className="w-10 h-10 rounded-xl bg-[#9333EA]/10 border border-[#9333EA]/20 flex items-center justify-center shrink-0 group-hover:bg-[#9333EA]/20 group-hover:border-[#9333EA]/40 transition-all duration-200">
         {icon}
@@ -103,11 +103,11 @@ const Contact = () => {
       {/* ── Ambient blobs ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
-          className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full"
+          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
         />
         <div
-          className="absolute -bottom-40 -right-20 w-[500px] h-[500px] rounded-full"
+          className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
         />
       </div>
@@ -117,7 +117,7 @@ const Contact = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 1.4, delay: 0.15 }}
-        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/[0.05] select-none pointer-events-none leading-none"
+        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
         aria-hidden="true"
       >
         Contact
