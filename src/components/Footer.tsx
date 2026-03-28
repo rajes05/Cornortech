@@ -51,7 +51,7 @@ const Footer = () => {
   // ];
 
   return (
-    <footer className="relative bg-linear-to-br from-[#111827]/5 via-white to-[#111827]/5 border-t border-[#111827]/10">
+    <footer className="relative bg-[#faf8ff] border-t border-[#9333EA]/10">
       
       <div className="container-custom">
         <div className="py-16 space-y-12">
