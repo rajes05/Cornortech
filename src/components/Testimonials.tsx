@@ -708,6 +708,56 @@ const Testimonials = () => {
         </div>
         {/* ===== End View Career Section ===== */}
 
+        {/* ===== News and Update Section ===== */}
+        <div id="news" className="relative rounded-3xl overflow-hidden animate-fade-in mt-12" style={{ animationDelay: '0.7s' }}>
+          <div className="absolute inset-0 bg-linear-to-br from-[#1e003a]/5 via-[#9333EA]/5 to-[#1e003a]/5" />
+          <div className="absolute inset-0 border border-[#9333EA]/15 rounded-3xl pointer-events-none" />
+          <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full border border-[#9333EA]/10 pointer-events-none" />
+          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full border border-[#9333EA]/8 pointer-events-none" />
+          <div className="relative z-10 px-8 lg:px-16 py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="flex-1 space-y-4 text-center lg:text-left">
+              <span className="inline-block px-3 py-1 bg-[#1e003a]/10 text-[#1e003a] rounded-full text-xs font-bold uppercase tracking-widest">
+               News & Updates
+              </span>
+              <h3 className="text-2xl lg:text-4xl font-black text-gray-900 leading-tight">
+                Stay updated with
+                <span className="text-[#9333EA]"> Cornor Tech News</span>
+              </h3>
+              <p className="text-gray-500 text-sm lg:text-base max-w-lg leading-relaxed">
+                Explore our latest articles, technical insights, and company updates. We share our expertise on modern technology trends and digital strategies to help your business stay ahead.
+              </p>
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                {[
+                  { icon: '💡', label: 'Insights' },
+                  { icon: '📰', label: 'Tech News' },
+                  { icon: '🌍', label: 'Community' },
+                ].map((pill, i) => (
+                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#9333EA]/15 rounded-full text-xs font-semibold text-gray-600 shadow-sm">
+                    <span>{pill.icon}</span>
+                    {pill.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-3 shrink-0">
+              <Link
+                href="/news-and-updates"
+                className="group relative flex items-center gap-3 px-8 py-4 bg-[#1e003a] text-white rounded-2xl font-bold text-base hover:bg-[#2d0a52] active:scale-95 transition-all duration-200 shadow-lg shadow-[#1e003a]/30 hover:shadow-xl hover:shadow-[#1e003a]/40"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+                View All Updates
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <p className="text-xs text-gray-400 font-medium whitespace-nowrap">Stay updated with Cornor Tech</p>
+            </div>
+          </div>
+        </div>
+        {/* ===== End News and Update Section ===== */}
+
 
       </div>
     </section>
