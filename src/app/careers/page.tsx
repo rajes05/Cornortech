@@ -3,7 +3,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
-
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+import CTA from '@/components/ui/CTA'
 import { OPENINGS } from '@/data/openings';
 
 const PERKS = [
@@ -62,7 +63,7 @@ export default function CareersPage() {
                             href="#openings"
                             className="flex items-center gap-2 px-6 py-3 bg-[#9333EA] text-white rounded-xl font-semibold hover:bg-[#7c3aed] transition-colors shadow-lg shadow-[#9333EA]/30"
                         >
-                            View Intern Roles
+                            View Open Roles
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
@@ -81,6 +82,9 @@ export default function CareersPage() {
                 </div>
             </section>
             {/* ==== End Hero ==== */}
+
+            <ScrollToTopButton/>
+            <CTA/>
 
             {/* ==== Perks section ==== */}
             <section className="py-20 px-4 bg-white">
