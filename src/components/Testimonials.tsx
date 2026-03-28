@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 
 interface Testimonial {
   id: string;
@@ -414,8 +415,15 @@ const Testimonials = () => {
     }, 50);
   };
 
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, margin: '-80px' });
+
   return (
-    <section id="testimonials" className="py-20 lg:py-32 bg-linear-to-br from-white via-[#9333EA]/5 to-white relative overflow-hidden">
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="relative py-24 lg:py-36 bg-[#faf8ff] overflow-hidden font-sans"
+    >
 
       <style>{`
         @keyframes fadeSlideIn {
@@ -428,25 +436,84 @@ const Testimonials = () => {
         }
       `}</style>
 
-      {/* Background blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-[#9333EA]/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 left-20 w-72 h-72 bg-[#9333EA]/15 rounded-full blur-3xl" />
+      {/* ── Subtle dot grid background ── */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* ── Ambient blobs ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div
+          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
+        />
       </div>
+
+      {/* ── Giant ghost text ── */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 1.4, delay: 0.15 }}
+        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+        aria-hidden="true"
+      >
+        Voices
+      </motion.p>
 
       <div className="container mx-auto px-4 xl:px-8 max-w-7xl relative z-10 space-y-10">
 
-        {/*  Header  */}
-        <div className="text-center space-y-6">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">
-            <span className="text-[#9333EA]">What Our Clients</span>
-            <br />& Partners Say
-          </h2>
-          <p className="text-lg text-foreground-secondary max-w-3xl mx-auto">
+        {/* ── Section headline ── */}
+        <div className="mb-14 lg:mb-18">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55 }}
+            className="flex items-center gap-3 mb-5"
+          >
+            <div className="h-px w-8 bg-[#9333EA] rounded-full" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
+              Testimonials
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="text-4xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight"
+          >
+            <span className="text-[#1e003a]">What Our</span>
+            <br />
+            <span
+              className="text-transparent bg-clip-text"
+              style={{
+                backgroundImage: 'linear-gradient(135deg, #9333EA 0%, #6366f1 60%, #a855f7 100%)',
+              }}
+            >
+              Clients
+            </span>
+            <br />
+            <span className="text-[#1e003a]/25">Partners Say.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.15 }}
+            className="mt-6 text-lg text-foreground-secondary max-w-2xl leading-relaxed"
+          >
             Trusted by businesses across industries — hear from the teams we have helped build, scale, and secure their IT infrastructure.
-          </p>
+          </motion.p>
         </div>
-        {/* End Header  */}
 
 
         {/*  Testimonial Grid  */}
@@ -522,8 +589,8 @@ const Testimonials = () => {
             </p>
           </div>
           <div className="relative overflow-hidden">
-            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-white to-transparent pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-white to-transparent pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-[#faf8ff] to-transparent pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-[#faf8ff] to-transparent pointer-events-none" />
             <div className="flex gap-12 w-max animate-[marquee_28s_linear_infinite]">
               {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((client, i) => (
                 <div
