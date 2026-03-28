@@ -175,7 +175,6 @@ const OurWorks = () => {
 
       {/* ===== Background Elements ===== */}
       <>
-
         {/*  Dot grid background */}
         <div
           className="absolute inset-0 pointer-events-none opacity-40"
@@ -436,19 +435,6 @@ const OurWorks = () => {
         {allShown && <p className="text-xs text-foreground-secondary italic">You&apos;ve seen all our projects! 🎉</p>}
       </div>
       {/* === End Show More / Collapse Controls === */}
-
-      {/* === Bottom Wave — fixed with pb-16 buffer and animated === */}
-      <div className="relative mt-12 h-12">
-        <svg
-          className="bottom-wave absolute bottom-0 left-0 w-full h-12"
-          style={{ fill: "#f3f4f6" }}
-          viewBox="0 0 1440 48"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,48 C320,48 320,0 640,0 C960,0 960,48 1280,48 L1440,48 L1440,0 L1280,0 C960,0 960,48 640,48 C320,48 320,0 0,0 L0,48 Z" />
-        </svg>
-      </div>
-      {/* === End Bottom Wave — fixed with pb-16 buffer and animated === */}
 
     </section>
   );
