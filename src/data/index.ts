@@ -25,9 +25,9 @@ export const footerSections: FooterSection[] = [
   {
     title: "Discover",
     links: [
+      { title: "News & Updates", link: "/news-and-updates" },
       { title: "Blog & Insignts", link: "/blogs" },
       { title: "Community", link: "/blogs" },
-      { title: "News & Update", link: "/updates" },
       { title: "Help", link: "/blogs" },
     ]
   },
