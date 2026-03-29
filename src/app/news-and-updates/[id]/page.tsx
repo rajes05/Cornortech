@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ARTICLES } from '@/data/news';
 import { notFound } from 'next/navigation';
 import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
+import CTA from '@/components/ui/CTA';
 
 export async function generateStaticParams() {
     return ARTICLES.filter(a => !a.external).map((article) => ({
@@ -125,6 +126,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 {/* ===== End Hero Section ===== */}
                 
                 <ScrollToTopButton/>
+                <CTA/>
                 
                 {/* ===== Article Image Section ===== */}
                 {article.image && (
