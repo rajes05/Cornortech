@@ -6,14 +6,9 @@ import Link from 'next/link';
 import { useRef, useEffect, useState } from 'react';
 
 
-// ============================================================
-// Hero Section
-// Top-of-funnel landing section for Cornor Tech Pvt. Ltd.
-// Layout: Bento-grid, 12-col at lg+, stacked on mobile
-// iPhone SE (375px) responsive
-// ============================================================
+// ====== Hero Section ======
 
-// ── Floating particle (decorative, aria-hidden) ──────────────
+// ===== Floating particle (decorative, aria-hidden) =====
 const Particle = ({ x, y, delay }: { x: number; y: number; delay: number }) => (
   <motion.div
     className="absolute w-1 h-1 rounded-full bg-purple-400/40 pointer-events-none"
@@ -23,8 +18,10 @@ const Particle = ({ x, y, delay }: { x: number; y: number; delay: number }) => (
     aria-hidden="true"
   />
 );
+// ===== End Floating particle (decorative, aria-hidden) =====
 
-// ── Typed text hook ───────────────────────────────────────────
+
+// ===== Typed text hook =====
 const useTypedText = (phrases: string[], speed = 80) => {
   const [displayed, setDisplayed] = useState('');
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -60,20 +57,18 @@ const useTypedText = (phrases: string[], speed = 80) => {
 
   return displayed;
 };
+// ===== End Typed text hook =====
 
 
-// ============================================================
-// Component
-// ============================================================
-
+// ===== Component =====
 const Hero = ({ bannerVisible }: HeroProps) => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // ── Parallax: noise layer drifts slightly on scroll ──────
+  // Parallax: noise layer drifts slightly on scroll 
   const { scrollY } = useScroll();
   const noiseY = useTransform(scrollY, [0, 600], [0, 40]);
 
-  // ── Typewriter: cycles through all 9 service titles ─────
+  // Typewriter: cycles through all 9 service titles 
   const typedText = useTypedText([
     'Web Development',
     'Digital Marketing',
@@ -86,7 +81,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     'Content Creation',
   ]);
 
-  // ── Particle positions (stable across renders) ───────────
+  // Particle positions (stable across renders) 
   const particles = useRef(
     Array.from({ length: 18 }, (_, i) => ({
       x: (i * 37 + 11) % 100,
@@ -95,7 +90,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     }))
   ).current;
 
-  // ── Service tags ─────────────────────────────────────────
+  // Service tags 
   const serviceTags = [
     'Web Development', 'Digital Marketing', 'Graphic Design',
     'Mobile App Dev', 'UI/UX Design', 'Cloud Solutions',
@@ -106,9 +101,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
   ];
 
 
-  // ============================================================
-  // Render
-  // ============================================================
+  //  ===== Render =====
   return (
     <section
       ref={sectionRef}
@@ -118,6 +111,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
     >
 
       {/* ===== Background Layer ===== */}
+      <>
       <motion.div
         className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
         style={{
@@ -135,6 +129,7 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       {particles.map((p, i) => (
         <Particle key={i} {...p} />
       ))}
+      </>
       {/* ===== End Background Layer ===== */}
 
 
@@ -144,22 +139,12 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ==== Giant Stacked Headline ==== */}
-        {/*     Mobile (iPhone SE 375px):
-              - flex-row always so decorative col stays right
-              - font shrinks to 7.5vw (~28px) so "TECH PVT. LTD"
-                fits alongside the right column
-              - right column uses compact sizes (pill text smaller,
-                scroll area narrower, dot grid smaller)
-
-            Desktop (lg+): completely unchanged */}
         <div className="lg:col-span-12 flex flex-row items-center lg:items-end justify-between relative gap-2 lg:gap-0">
 
           {/* === Left: headline block === */}
           <div className="flex flex-col w-fit">
 
-            {/* Line 1: "Cornor"
-                7.5vw on mobile = ~28px on 375px → fits with right col
-                8vw  on desktop = unchanged */}
+            {/* Line 1: "Cornor" */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -283,8 +268,8 @@ const Hero = ({ bannerVisible }: HeroProps) => {
             <span className="text-purple-200 text-xs uppercase tracking-widest">Est. 2023</span>
           </div>
 
-          {/* Logo — cap square size on mobile so it doesn't dominate */}
-          <div className="relative w-full max-h-52 lg:max-h-none aspect-square my-3 lg:my-4 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500 bg-purple-900/40 flex items-center justify-center">
+          {/* Logo — grayscale only on desktop (hover reveals color); always full color on mobile */}
+          <div className="relative w-full max-h-52 lg:max-h-none aspect-square my-3 lg:my-4 rounded-2xl overflow-hidden lg:grayscale group-hover:grayscale-0 transition-all duration-500 bg-purple-900/40 flex items-center justify-center">
             <Image
               src="/cornortech_logo.png"
               alt="Cornor Tech Pvt. Ltd Logo"
@@ -302,9 +287,6 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ===== Workspace Image Card ===== */}
-        {/* Mobile: h-100 (400px) → h-56 (224px) — much more
-                    manageable on a 667px-tall iPhone SE screen
-            Desktop: h-auto — unchanged */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -358,9 +340,6 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
 
         {/* ===== Right Column — Two Stacked Action Cards ===== */}
-        {/* Mobile: side-by-side (grid-cols-2) so they don't
-                    take up too much vertical space
-            Desktop: stacked flex-col — unchanged */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
