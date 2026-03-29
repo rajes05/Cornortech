@@ -21,14 +21,14 @@ export const ARTICLES: NewsArticle[] = [
     {
         id: '1',
         source: 'Khabar Khata',
-        sourceLogo: 'KK',
-        sourceColor: '#e11d48',
+        sourceLogo: 'http://khabarkhata.com/wp-content/uploads/2024/11/khabar-khata-logo-1.png',
+        sourceColor: '#FFFFFF',
         date: 'August 7, 2025',
         category: 'News',
         categoryColor: '#9333EA',
         href: 'https://khabarkhata.com/2025/08/07/15/4757/',
         external: true,
-        featured: true,
+        featured: false,
     },
     // ex-2: Headless CMS Pattern 
     {
@@ -88,14 +88,38 @@ export const ARTICLES: NewsArticle[] = [
     {
         id: '4',
         source: 'Annapurna Post',
-        sourceLogo: 'AP',
-        sourceColor: '#e11d48',
-        date: 'August 7, 2025',
-        category: 'News',
+        sourceLogo: 'https://annapurnapost.prixacdn.net/media/albums/annapurna_logo_updated.2957ba7d-res_GqPIpYRjRp.png',
+        sourceColor: '#FFFFFF',
+        date: 'March 29, 2026',
+        category: 'Honors',
         categoryColor: '#9333EA',
-        href: 'https://annapurnapost.com/epaper/?id=2148',
-        external: true,
-        featured: false,
+        href: '/news-and-updates/4',
+        external: false,
+        featured: true,
+        title: 'Cornor Tech का CEO रमित न्यौपाने ‘Annapurna Post’ मा सम्मानित, युवाका लागि प्रेरणाको स्रोत',
+        description: 'बुटवल — Cornor Tech Pvt. Ltd. का संस्थापक तथा मुख्य कार्यकारी अधिकृत (CEO) रमित न्यौपाने आज प्रकाशित Annapurna Post राष्ट्रिय दैनिकमा देशका विभिन्न क्षेत्रमा योगदान पुर्याइरहेका व्यक्तिहरूसँगै स्थान पाउन सफल भएका छन्।',
+        image: '/news-and-updates/ramit.jpeg',
+        content: `
+            <h2>Cornor Tech का CEO रमित न्यौपाने ‘Annapurna Post’ मा सम्मानित</h2>
+            <p><strong>बुटवल —</strong> Cornor Tech Pvt. Ltd. का संस्थापक तथा मुख्य कार्यकारी अधिकृत (CEO) रमित न्यौपाने आज प्रकाशित <strong>Annapurna Post</strong> राष्ट्रिय दैनिकमा देशका विभिन्न क्षेत्रमा योगदान पुर्याइरहेका व्यक्तिहरूसँगै स्थान पाउन सफल भएका छन्। वर्षौँको निरन्तर मेहनत र समर्पणपछि प्राप्त यो उपलब्धिलाई एक प्रेरणादायी क्षणको रूपमा हेरिएको छ।</p>
+
+            <p>केवल १६ वर्षको उमेरमा Cornor Tech स्थापना गरेका न्यौपानेले सुरुवाती दिनहरूमा अनेक चुनौतीहरूको सामना गरेका थिए। विद्यालय तथा समुदायबाट अपेक्षित साथ नपाउँदा समेत उनले आफ्नो लक्ष्यबाट पछि नहट्दै निरन्तर प्रयास जारी राखेका थिए। इमानदारी, धैर्य र अथक मेहनतका आधारमा उनले आफ्नो पहिचान निर्माण गर्दै आज राष्ट्रिय स्तरसम्म पुग्न सफल भएका हुन्।</p>
+
+            <blockquote>
+                "सफलता तुरुन्त प्राप्त नहुने तर निरन्तर प्रयासले असम्भवलाई पनि सम्भव बनाउन सकिने सन्देश उनले व्यवहारमै देखाएका छन्।"
+            </blockquote>
+
+            <p>आज Annapurna Post मा स्थान पाउनु केवल उनको व्यक्तिगत उपलब्धि मात्र नभई Cornor Tech को सम्पूर्ण टिम, परिवार र सपना देख्ने हरेक युवाका लागि गर्वको विषय बनेको छ। सानै उमेरदेखि सुरु गरिएको यात्राले आज धेरै युवाहरूलाई आफ्नै बाटो बनाउने प्रेरणा दिएको छ।</p>
+
+            <p>Cornor Tech का अनुसार, न्यौपानेको यो उपलब्धिले नेपाली युवाहरूलाई देशमै रहेर प्रविधि क्षेत्रमा केही गर्न सकिन्छ भन्ने विश्वास अझ बलियो बनाउनेछ।</p>
+
+            <div class="mt-10 p-6 bg-purple-50 rounded-2xl border border-purple-100 italic text-sm text-purple-900/70">
+                पूरा समाचार यहाँ पढ्न सक्नुहुन्छ: 
+                <a href="https://annapurnapost.com/epaper/?id=2148" target="_blank" rel="noopener noreferrer" class="text-purple-600 font-bold hover:underline ml-1">
+                    Annapurna Post E-paper
+                </a>
+            </div>
+        `
     },
     {
         id: '5',

@@ -175,9 +175,6 @@ const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article;
                     </div>
                     <div className="flex flex-col">
                         <span className="text-[11px] font-bold text-[#1e003a]/70">{article.source}</span>
-                        <span className="text-[9px] text-[#1e003a]/35 font-medium truncate max-w-48">
-                            {article.external ? new URL(article.href).hostname : 'cornortech.com'}
-                        </span>
                     </div>
                 </div>
 

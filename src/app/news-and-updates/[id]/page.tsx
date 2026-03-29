@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ARTICLES } from '@/data/news';
 import { notFound } from 'next/navigation';
+import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 
 export async function generateStaticParams() {
     return ARTICLES.filter(a => !a.external).map((article) => ({
@@ -123,20 +124,26 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 </div>
                 {/* ===== End Hero Section ===== */}
                 
-                {/* ===== Article Content ===== */}
-                <div className="container-custom max-w-4xl py-16 lg:py-24">
-
-                    {/* Featured Image */}
-                    {article.image && (
-                        <div className="relative aspect-video rounded-3xl overflow-hidden mb-16 shadow-2xl">
+                <ScrollToTopButton/>
+                
+                {/* ===== Article Image Section ===== */}
+                {article.image && (
+                    <div className="container-custom max-w-4xl py-12">
+                        <div className="relative h-[600px] md:h-[900px] lg:h-[1000px] rounded-3xl overflow-hidden shadow-2xl group/banner">
                             <img
                                 src={article.image}
                                 alt={article.title}
-                                className="absolute inset-0 w-full h-full object-cover"
+                                className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 group-hover/banner:scale-105"
                             />
-                            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl" />
+                            <div className="absolute inset-0 bg-linear-to-t from-[#1e003a]/25 to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-3xl" />
                         </div>
-                    )}
+                    </div>
+                )}
+
+                {/* ===== Article Content ===== */}
+                <div className="container-custom max-w-4xl py-16 lg:py-24">
+
 
                     {/* Article Content */}
                     <article className="prose prose-purple max-w-none text-[#1e003a]/80">
