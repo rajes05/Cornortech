@@ -12,7 +12,8 @@ export interface NewsArticle {
     // For internal articles
     title?: string;
     description?: string;
-    image?: string;
+    cardImage?: string;
+    articleImage?: string;
     content?: string; // Markdown or HTML content
 }
 
@@ -44,7 +45,8 @@ export const ARTICLES: NewsArticle[] = [
         featured: false,
         title: 'बुटवलमा वृहत शिक्षा एक्स्पो र रोबोटिक्स प्रतियोगिता सम्पन्न',
         description: 'Cornor Tech को दोस्रो वार्षिकोत्सवको अवसरमा आयोजित एक्स्पोमा १५ सयभन्दा बढी विद्यार्थीको सहभागिता र रोबोटिक्स प्रतिस्पर्धामा टिम ग्लेसियर प्रथम।',
-        image: '/news-and-updates/ct_ani.jpeg',
+        cardImage: '/news-and-updates/ct_ani.jpeg',
+        articleImage: '/news-and-updates/ct_ani.jpeg',
         content: `
             <h2>स्वदेशमै शिक्षा र अवसरको खोजी: कोर्नर टेकको दोस्रो वार्षिकोत्सव विशेष</h2>
             <p>बुटवल । पछिल्ला वर्षहरूमा प्लस टु पछि उच्च शिक्षा अध्ययनका लागि विदेश जाने विद्यार्थीको संख्या उल्लेख्य रूपमा बढ्दै गएको छ । विदेशमा पढाइसँगै कमाइको अवसर पाइने बुझाइका कारण धेरै विद्यार्थीले स्वदेशमै उपलब्ध सम्भावनालाई नजरअन्दाज गर्ने गरेका छन् । यस्तै सन्दर्भमा विद्यार्थीलाई स्वदेशमै रहेका अवसरबारे जानकारी गराउने उद्देश्यले बुटवलमा शिक्षा एक्स्पो आयोजना गरिएको छ ।</p>
@@ -72,7 +74,8 @@ export const ARTICLES: NewsArticle[] = [
         featured: false,
         title: 'गिँचौर एकेडेमीलाई वेबसाइट हस्तान्तरण र "डिजिटल क्षितिज" शिविर सम्पन्न',
         description: 'Cornor Tech द्वारा विद्यालयको वेबसाइट हस्तान्तरण र कलिका ICT क्लबको संयुक्त आयोजनामा स्याङ्जा र पाल्पामा तीन दिने डिजिटल शिक्षा शिविर सम्पन्न।',
-        image: '/news-and-updates/dh.jpeg',
+        cardImage: '/news-and-updates/dh.jpeg',
+        articleImage: '/news-and-updates/dh.jpeg',
         content: `
             <h2>शिक्षामा प्रविधिको पहुँच: गिँचौर एकेडेमीलाई वेबसाइट हस्तान्तरण</h2>
             <p>बुटवल । डिजिटलाइजेसनको क्षेत्रमा सक्रिय Cornor Tech ले गिँचौर एकेडेमीलाई विद्यालयको वेबसाइट हस्तान्तरण गर्दै शिक्षालाई प्रविधिमेत्री बनाउने महत्वपूर्ण पहल गरेको छ। साथै, उक्त कार्यक्रममा Cornor Academy ले Academy Partner को रूपमा सहकार्य गर्दै कार्यक्रमलाई थप प्रभावकारी बनाएको थियो।</p>
@@ -98,7 +101,8 @@ export const ARTICLES: NewsArticle[] = [
         featured: true,
         title: 'Cornor Tech का CEO रमित न्यौपाने ‘Annapurna Post’ मा सम्मानित, युवाका लागि प्रेरणाको स्रोत',
         description: 'बुटवल — Cornor Tech Pvt. Ltd. का संस्थापक तथा मुख्य कार्यकारी अधिकृत (CEO) रमित न्यौपाने आज प्रकाशित Annapurna Post राष्ट्रिय दैनिकमा देशका विभिन्न क्षेत्रमा योगदान पुर्याइरहेका व्यक्तिहरूसँगै स्थान पाउन सफल भएका छन्।',
-        image: '/news-and-updates/ramit.jpeg',
+        cardImage: '/news-and-updates/ramit.jpeg',
+        articleImage: '/news-and-updates/ramit_ap.jpg',
         content: `
             <h2>Cornor Tech का CEO रमित न्यौपाने ‘Annapurna Post’ मा सम्मानित</h2>
             <p><strong>बुटवल —</strong> Cornor Tech Pvt. Ltd. का संस्थापक तथा मुख्य कार्यकारी अधिकृत (CEO) रमित न्यौपाने आज प्रकाशित <strong>Annapurna Post</strong> राष्ट्रिय दैनिकमा देशका विभिन्न क्षेत्रमा योगदान पुर्याइरहेका व्यक्तिहरूसँगै स्थान पाउन सफल भएका छन्। वर्षौँको निरन्तर मेहनत र समर्पणपछि प्राप्त यो उपलब्धिलाई एक प्रेरणादायी क्षणको रूपमा हेरिएको छ।</p>
@@ -134,7 +138,8 @@ export const ARTICLES: NewsArticle[] = [
         featured: false,
         title: "Skillful Saturday: Mapping Your Future - नेपालकै ठूलो IT वेबिनारको रूपमा स्थापित",
         description: 'Cornor Tech द्वारा आयोजित ‘Skillful Saturday’ मा १०० भन्दा बढी विद्यार्थीको सहभागिता र विभिन्न प्राविधिक विधामा प्रशिक्षण।',
-        image: '/news-and-updates/ss.jpeg',
+        cardImage: '/news-and-updates/ss.jpeg',
+        articleImage: '/news-and-updates/ss.jpeg',
         content: `
             <h2>प्रविधि र करिअरको नयाँ मार्ग: स्किलफुल स्याटरडे सम्पन्न</h2>
             <p>बुटवल — Cornor Tech द्वारा आयोजना गरिएको ‘Skillful Saturday: Mapping Your Future’ कार्यक्रम आशार १, २०८१ (शनिबार) बिहान १०:०० बजेदेखि दिउँसो २:०० बजेसम्म सफलतापूर्वक सम्पन्न भएको छ। देशभरबाट १०० भन्दा बढी विद्यार्थीहरूको उत्साहजनक सहभागितासँगै यो कार्यक्रम नेपालकै ठूलो IT वेबिनार (Nepal’s Biggest IT Webinar) को रूपमा स्थापित भएको आयोजकले जनाएको छ।</p>

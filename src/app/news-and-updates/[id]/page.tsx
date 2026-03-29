@@ -129,16 +129,18 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 <CTA/>
                 
                 {/* ===== Article Image Section ===== */}
-                {article.image && (
-                    <div className="container-custom max-w-4xl py-12">
-                        <div className="relative h-[600px] md:h-[900px] lg:h-[1000px] rounded-3xl overflow-hidden shadow-2xl group/banner">
+                {article.articleImage && (
+                    <div className="w-full flex justify-center py-12">
+
+                        {/* articleImage container */}
+                        <div className="w-[448px] relative aspect-video rounded-2xl overflow-hidden shadow-2xl group/banner">
                             <img
-                                src={article.image}
+                                src={article.articleImage}
                                 alt={article.title}
                                 className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 group-hover/banner:scale-105"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-[#1e003a]/25 to-transparent pointer-events-none" />
-                            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-3xl" />
+                            <div className="absolute inset-0 ring-1 ring-inset ring-black/10 pointer-events-none rounded-2xl" />
                         </div>
                     </div>
                 )}

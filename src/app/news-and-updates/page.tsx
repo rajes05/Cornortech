@@ -220,7 +220,7 @@ export default async function BlogsPage() {
                 og: {
                     title: article.title || 'Cornor Tech Update',
                     description: article.description || '',
-                    image: article.image || null,
+                    image: article.cardImage || null,
                 },
             };
         })
