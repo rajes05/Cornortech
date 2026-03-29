@@ -308,6 +308,14 @@ const CLIENT_LOGOS = [
   { alt: 'Sulav Kharel', src: '/clients/Sulav_kharel.jpeg' },
   { alt: 'Siddhartha Hospitality', src: '/clients/Siddhartha_hospitality.jpeg' },
   { alt: 'Kalika Manavgyan Secondary School', src: '/clients/kalika.jpg' },
+  { alt: 'Krish Marble And Tiles', src: '/clients/krish_marble.jpg' },
+  { alt: 'Rohan Trade Link', src: '/clients/rohan_trade_link.jpg' },
+  { alt: 'Siddhartha Hospitality', src: '/clients/siddhartha_hospitality.jpg' },
+  { alt: 'SRM Termite And Pest Control', src: '/clients/srm.jpg' },
+  { alt: 'Swargadwari Carbon Cleaning and Workshop', src: '/clients/swargadwari_cc.jpg' },
+  { alt: 'Culinary Academy Of Arts Nepal', src: '/clients/caan.jpg' },
+  { alt: 'Dream Way Education Hub', src: '/clients/dream_way.jpg' },
+  { alt: 'Krish Aluminium UPVC And Steels', src: '/clients/krish_aluminium.jpg' },
 ];
 // ===== End Client logos data =====
 
