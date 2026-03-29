@@ -184,3 +184,16 @@ html {
 /* Hides scrollbar from Mobile NavItems */
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Disable Select Text */
+body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable for inputs and textareas so forms still work */
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}

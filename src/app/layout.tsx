@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import DisableInspect from '@/components/DisableInspect';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,10 +10,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title:{
+  title: {
     default: "Cornor Tech Pvt. Ltd. | Where Tech Meets Solution | Tilottama, Butwal, Nepal",
     template: '%s | Cornor Tech',
-  }, 
+  },
   description: "CornorTech turns ideas into powerful digital solutions. We deliver creative, reliable, and scalable tech services.",
   keywords: [
     'web development Nepal',
@@ -24,22 +25,22 @@ export const metadata: Metadata = {
     'Cornor Tech',
     'software company Nepal',
   ],
-  authors: [{name: 'Cornor Tech printTreeView. Ltd'}],
+  authors: [{ name: 'Cornor Tech printTreeView. Ltd' }],
   creator: 'Cornor Tech Pvt. Ltd',
-  metadataBase: new URL ('https://cornortech.com'), // real domain
+  metadataBase: new URL('https://cornortech.com'), // real domain
   alternates: {
     canonical: '/',
   },
-   icons:{
-    icon:"/logo.png",
-    shortcut:"/logo.png",
-    apple:"/logo.png",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
   // when it shared on social media
   openGraph: {
     title: 'Cornor Tech Pvt. Ltd | Web Development $ Digital Solutions',
-    description:'PM-led tech teams for web, mobile, design, and digital marketing.',
-    url:'https://cornortech.com',
+    description: 'PM-led tech teams for web, mobile, design, and digital marketing.',
+    url: 'https://cornortech.com',
     siteName: 'Cornor Tech',
     images: [
       {
@@ -58,9 +59,9 @@ export const metadata: Metadata = {
     description: 'PM-led tech teams for web, mobile, design, and digital marketing.',
     images: ['/logo.png'],
   },
-  robots:{
+  robots: {
     index: true,
-    follow:true,
+    follow: true,
     googleBot: {
       index: true,
       follow: true,
@@ -79,8 +80,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
+        <DisableInspect />   
+
         {children}
       </body>
     </html>
   );
 }
+
