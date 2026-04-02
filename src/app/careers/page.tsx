@@ -320,7 +320,7 @@ export default function CareersPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="mailto:careers@cornortech.com"
+                            href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                             className="flex items-center justify-center gap-2 px-8 py-4 bg-[#9333EA] text-white rounded-xl font-bold hover:bg-[#7c3aed] transition-colors shadow-lg shadow-[#9333EA]/30"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
